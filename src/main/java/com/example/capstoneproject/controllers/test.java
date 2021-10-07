@@ -1,2 +1,4 @@
-package com.example.capstoneproject.controllers;public class test {
+package com.example.capstoneproject.controllers;
+
+public class test {
 }
