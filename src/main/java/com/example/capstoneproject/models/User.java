@@ -21,10 +21,10 @@ public class User {
     @Column(nullable = false, unique = true)
     @Getter @Setter private String username;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     @Getter @Setter private String password;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     @Getter @Setter private String email;
 
     @Enumerated(EnumType.STRING)
