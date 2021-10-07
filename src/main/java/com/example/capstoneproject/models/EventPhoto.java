@@ -1,7 +1,6 @@
 package com.example.capstoneproject.models;
 
-import jdk.jfr.Event;
-import org.springframework.stereotype.Controller;
+
 
 import org.apache.catalina.User;
 
