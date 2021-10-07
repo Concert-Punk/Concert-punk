@@ -1,4 +1,5 @@
 package com.example.capstoneproject.models;
 
-public class users {
+public enum Roles {
+    admin,user
 }
