@@ -17,27 +17,18 @@ public class EventPhoto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String title;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String body;
-
     @Column(nullable = false, columnDefinition = "PHOTO")
     private String image_url;
 
     @ManyToOne
-    @JoinColumn(name = "event_id")
+    @JoinColumn(name = "user_id")
     private User owner;
 
     public EventPhoto(){
     }
 
-    public EventPhoto(Long id, String title, String body, User owner, String image_url) {
+    public EventPhoto(Long id, String image_url) {
         this.id = id;
-        this.title = title;
-        this.body = body;
-        this.owner = owner;
         this.image_url = image_url;
     }
 
@@ -47,30 +38,6 @@ public class EventPhoto {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
     }
 
     public String getImage_url() {
