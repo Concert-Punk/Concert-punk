@@ -33,7 +33,10 @@ public class User {
     @Column(nullable = false, columnDefinition = "boolean")
     @Getter @Setter private Boolean isActive;
 
+//    @OneToOne
+//    @Getter @Setter private Location location;
+
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-//    private List<Post> posts;
+//    private List<Event> events;
 
 }
