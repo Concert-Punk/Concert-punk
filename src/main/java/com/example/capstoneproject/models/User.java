@@ -39,4 +39,6 @@ public class User {
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
 //    private List<Event> events;
 
+
+
 }
