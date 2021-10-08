@@ -1,9 +1,7 @@
 package com.example.capstoneproject.models;
 
 
-import org.springframework.stereotype.Controller;
 
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 
