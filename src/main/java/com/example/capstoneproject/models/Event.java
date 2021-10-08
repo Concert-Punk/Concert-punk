@@ -48,6 +48,9 @@ public class Event {
     @Getter
     @Setter
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User owner;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
