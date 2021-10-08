@@ -49,8 +49,11 @@ public class Event {
     @Getter
     @Setter
     private String description;
+
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "owner_id")
+    @Getter
+    @Setter
     private User owner;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -59,9 +62,29 @@ public class Event {
             joinColumns = {@JoinColumn(name = "event_id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id")}
     )
+
     @Column(nullable = false, unique = false)
     @Getter
     @Setter
     private List<Tag> tag;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
+    @Getter
+    @Setter
+    private List<Comment> comments;
+
+    @Column(nullable = false, unique = true)
+    @Getter
+    @Setter
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "attending_users",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "attending_users")}
+    )
+    private List<User> potentialAttendees;
+
+
 
 }
