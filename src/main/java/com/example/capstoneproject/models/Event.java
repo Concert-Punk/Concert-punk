@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "Events")
@@ -32,7 +33,7 @@ public class Event {
     @Column(nullable = false, unique = false)
     @Getter
     @Setter
-    private Location location;
+    private String location;
 
     @Column(nullable = false, unique = false)
     @Getter

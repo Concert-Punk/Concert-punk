@@ -33,11 +33,11 @@ public class User {
     @Column(nullable = false, columnDefinition = "boolean")
     @Getter @Setter private Boolean isActive;
 
-//    @OneToOne
-//    @Getter @Setter private Location location;
+    @OneToOne
+    @Getter @Setter private Location location;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-//    private List<Event> events;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private List<Event> events;
 
 
 
