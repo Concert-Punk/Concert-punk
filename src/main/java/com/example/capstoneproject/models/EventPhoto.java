@@ -1,14 +1,15 @@
 package com.example.capstoneproject.models;
 
-
-
-import org.apache.catalina.User;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 
+
 @Entity
 @Table(name="photo")
+
 
 public class EventPhoto {
 
