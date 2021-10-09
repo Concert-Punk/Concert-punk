@@ -7,7 +7,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
+@Entity
+@Table(name = "comments")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,20 +25,26 @@ public class Comment {
     @Setter
     private String comment_text;
 
-    @Column(nullable = false, unique = true)
-    @Getter
-    @Setter
-    @OneToMany
-    private User potentialAttendee;
 
     @Column(nullable = false, unique = false)
     @Getter
     @Setter
     private Timestamp createdAt;
 
-    @OneToMany
+
+    @ManyToOne
+    @JoinColumn(name = "event_id")
     @Getter
     @Setter
     private Event event;
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @Getter
+    @Setter
+    private User user;
+
 
 }
