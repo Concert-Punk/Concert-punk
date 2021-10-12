@@ -30,5 +30,4 @@ public class EventPhoto {
     @Getter
     @Setter
     private User user;
-
 }
