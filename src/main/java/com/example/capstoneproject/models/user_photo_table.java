@@ -30,4 +30,5 @@ public class user_photo_table {
     @Getter
     @Setter
     private User user;
+
 }
