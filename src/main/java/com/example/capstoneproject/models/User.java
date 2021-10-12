@@ -89,6 +89,11 @@ public class User {
     private List<Event> potentialEvents;
 
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @Getter
+    @Setter
+    private List<user_photo_table>  userphotos;
+
 }
 
 
