@@ -25,8 +25,8 @@ public class AttendingStatus {
     @OneToOne
     @Getter @Setter private User potentialAttendee;
 
-//    @OneToOne
-//    @Getter @Setter private Event event;
+    @OneToOne
+    @Getter @Setter private Event event;
 
 
 }
