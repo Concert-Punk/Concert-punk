@@ -1,50 +1,34 @@
 package com.example.capstoneproject.models;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity
-@Table(name="photo")
-
-
+@Table(name="EventPhoto")
+@AllArgsConstructor
+@NoArgsConstructor
 public class EventPhoto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "PHOTO")
+    @Column(nullable = false)
+    @Getter
+    @Setter
     private String image_url;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User owner;
+    @Getter
+    @Setter
+    private User user;
 
-    public EventPhoto(){
-    }
-
-    public EventPhoto(Long id, String image_url) {
-        this.id = id;
-        this.image_url = image_url;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
-    }
 }

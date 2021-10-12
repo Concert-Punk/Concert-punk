@@ -84,9 +84,16 @@ public class User {
     @Getter @Setter
     private Event event;
 
-
     @ManyToMany(mappedBy = "potentialAttendees")
     private List<Event> potentialEvents;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @Getter
+    @Setter
+    private List<EventPhoto> eventphoto;
+
+
+
 
 
 }

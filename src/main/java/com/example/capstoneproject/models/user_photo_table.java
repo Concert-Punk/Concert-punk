@@ -12,7 +12,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="user_photo_table")
-@NoArgsConstructor
 @AllArgsConstructor
 public class user_photo_table {
 
