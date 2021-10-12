@@ -7,9 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
-
 
 @Entity
 @Table(name="user_photo_table")
@@ -32,6 +30,5 @@ public class user_photo_table {
     @Getter
     @Setter
     private User user;
-
 
 }
