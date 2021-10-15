@@ -1,0 +1,30 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<nav th:fragment="navbar" style="background-color: #f67f27">
+    <h1>Welcome to Concert Punk!</h1>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navigation">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav mr-auto">
+                <div class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </div>
+            </div>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+                <form action="/login">
+                    <input type="submit" value="login">
+                </form>
+<!--                <form action="/logout">-->
+<!--                    <input type="submit" value="logout">-->
+<!--                </form>-->
+        </div>
+    </nav>
+</nav>
+
+</html>
