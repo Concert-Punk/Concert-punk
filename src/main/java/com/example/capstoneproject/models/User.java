@@ -79,10 +79,17 @@ public class User {
     private List<User> followers;
 
 
+
     @ManyToOne
     @JoinColumn(name="event_id")
     @Getter @Setter
     private Event event;
+
+//    @ManyToOne
+//    @JoinColumn(name="event_id")
+//    @Getter @Setter
+//    private Event event;
+
 
     @ManyToMany(mappedBy = "potentialAttendees")
     private List<Event> potentialEvents;
@@ -101,6 +108,12 @@ public class User {
     @Setter
     private List<user_photo_table>  userphotos;
 
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
 }
 
 
