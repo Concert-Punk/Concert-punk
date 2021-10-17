@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+<h1>Get info</h1>
+<
+</body>
+</html>
+<div class="col-9 col-md-12 txtSearch">
+    <input type="text" required="" id="bandNameTextArea" onkeydown="enterSearch()" >
+</div>
+
+<script>
+    function enterSearch() {
+        let key = event.keyCode;
+       fetchData()
+    }
+    let bandSearch = document.querySelector('#bandNameTextArea');
+    function fetchData() {
+        let artist = bandSearch.value;
+        const url = "https://app.ticketmaster.com/discovery/v2/events.json?&countryCode=" + "&sort'date,asc'&keyword=" +
+            artist + "&apikey=UPZ5QoSaUAQ8kBvUZD6s3X7HT9z3p2wl";
+        axios.get(url).then(response => console.log(response.data._embedded.events))
+            .catch(error => console.log('Error: ', error))
+
+
+    }
+
+    function addShow(response) {
+
+            let evts = data._embedded.events;
+            for (let i = 0; i < evts.length; i++) {
+                let tourName = evts[i].name;
+                let tourDate = evts[i].dates.start.localDate;
+                let tourTime = evts[i].dates.start.localTime;
+                let venue = evts[i]._embedded.venues[0].name;
+                let showCity = evts[i]._embedded.venues[0].city.name;
+                let buyLink = evts[i].url;
+                let imageLink = evts[i].images[0].url;
+                let city = citySearch.value.trim().toLowerCase();
+                console.log(tourName)
+                console.log(tourDate)
+                console.log(tourTime)
+                console.log(venue);
+                console.log(showCity);
+                console.log(buyLink);
+                console.log(imageLink);
+                console.log(city);
+            }
+
+    }
+</script>
