@@ -79,10 +79,17 @@ public class User {
     private List<User> followers;
 
 
+
+    @ManyToOne
+    @JoinColumn(name="event_id")
+    @Getter @Setter
+    private Event event;
+
 //    @ManyToOne
 //    @JoinColumn(name="event_id")
 //    @Getter @Setter
 //    private Event event;
+
 
     @ManyToMany(mappedBy = "potentialAttendees")
     private List<Event> potentialEvents;
