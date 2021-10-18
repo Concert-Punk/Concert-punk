@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <title>Edit Post</title>
 </head>
-<body>
-
+<body>¬
 <form th:action="@{|/users/edit|}" th:method="post" th:object="${userToEdit}">
-
 
     <input type="text" th:field="*{username}" placeholder="username">
     <input type="text" th:field="*{email}" placeholder="email">
