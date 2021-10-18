@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LoginController {
 
     @GetMapping("/login")
-    public String login(){
-        return "login";
+    public String showLoginForm() {
+        return "users/login";
     }
+
 
 }

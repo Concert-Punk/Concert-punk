@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LogoutController {
     @GetMapping ("/logout")
     public String logout(){
-        return "logout";
+        return "users/logout";
     }
 
 
