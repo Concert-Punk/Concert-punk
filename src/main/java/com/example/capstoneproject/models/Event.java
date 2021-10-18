@@ -1,18 +1,19 @@
 package com.example.capstoneproject.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "Events")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,14 +37,16 @@ public class Event {
     private String location;
 
     @Column(nullable = false, unique = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Getter
     @Setter
-    private Timestamp startTime;
+    private LocalDateTime startTime;
 
     @Column(nullable = false, unique = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Getter
     @Setter
-    private Timestamp endTime;
+    private LocalDateTime endTime;
 
     @Column(nullable = false, unique = false, columnDefinition = "TEXT")
     @Getter

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Post</title>
+</head>
+<body>
+
+<form th:action="@{/events/create}" th:method="post" th:object="${event}">
+
+    <input type="text" th:field="*{title}" placeholder="title">
+    <input type="text" th:field="*{description}" placeholder="desc">
+    <input type="text" th:field="*{location}" placeholder="location">
+    <input type="datetime-local" th:field="*{startTime}"/>
+    <input type="datetime-local" th:field="*{endTime}"/>
+<!--    <input type="time" th:field="*{startTime}" placeholder="hour/minutes">-->
+<!--    <input type="time" th:field="*{endTime}" placeholder="hour/minutes">-->
+    <input type="submit">
+
+</form>
+
+</body>
+</html>
