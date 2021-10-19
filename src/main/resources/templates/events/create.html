@@ -1,23 +1,91 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
     <title>Create Post</title>
 </head>
-<body>
 
-<form th:action="@{/events/create}" th:method="post" th:object="${event}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <title></title>
+</head>
 
-    <input type="text" th:field="*{title}" placeholder="title">
-    <input type="text" th:field="*{description}" placeholder="desc">
-    <input type="text" th:field="*{location}" placeholder="location">
-    <input type="datetime-local" th:field="*{startTime}"/>
-    <input type="datetime-local" th:field="*{endTime}"/>
-<!--    <input type="time" th:field="*{startTime}" placeholder="hour/minutes">-->
-<!--    <input type="time" th:field="*{endTime}" placeholder="hour/minutes">-->
-    <input type="submit">
+<nav th:fragment="navbar">
+    <div style="background-color: #f67f27">
+        <div style="justify-content: center">
+            <h1>Concert Punk</h1>
+        </div>
+        <form class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-link" href="/profile">Profile</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-link" href="#">Following</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-link" href="/events/create">Create new event</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </div>
+            <div class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+    <body>
+    <div sec:authorize="isAuthenticated()">
+        <h1><span th:text="${#authentication.principal.username}"/>, create your event bellow</h1>
+        <a th:href="@{|/users/edit|}"></a>
+        <!--            <div th:poster="${user_photo_table.image_url}"></div>-->
 
-</form>
+        <!--            <div th:each="event : ${user.events}">-->
+        <!--                <h3 th:text="${event.title}">Title</h3>-->
+        <!--                <div th:text="${event.start_time}"></div>-->
+        <!--                <div th:text="${event.end_time}"></div>-->
+        <!--                <div th:text="${event.location}"></div>-->
+        <!--                <div th:text="${event.description}"></div>-->
+    </div>
+    </div>
+    </body>
 
-</body>
+    <body>
+
+    <form th:action="@{/events/create}" th:method="post" th:object="${event}">
+
+        <input type="text" th:field="*{title}" placeholder="title">
+        <input type="text" th:field="*{description}" placeholder="desc">
+        <input type="text" th:field="*{location}" placeholder="location">
+        <input type="datetime-local" th:field="*{startTime}"/>
+        <input type="datetime-local" th:field="*{endTime}"/>
+        <!--    <input type="time" th:field="*{startTime}" placeholder="hour/minutes">-->
+        <!--    <input type="time" th:field="*{endTime}" placeholder="hour/minutes">-->
+        <input type="submit">
+
+    </form>
+    </body>
+</nav>
 </html>
