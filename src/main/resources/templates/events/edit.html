@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Event</title>
+</head>
+<body>
+
+<form th:action="@{|/events/edit|}" th:method="post" th:object="${eventToEdit}">
+
+
+  <input type="text" th:field="*{title}" placeholder="title">
+  <input type="text" th:field="*{description}" placeholder="body">
+  <input type="text" th:field="*{location}" placeholder="location">
+  <input type="datetime-local" th:field="*{startTime}"/>
+  <input type="datetime-local" th:field="*{endTime}"/>
+  <input type="submit">
+
+</form>
+
+</body>
+</html>
