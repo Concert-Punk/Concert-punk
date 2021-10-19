@@ -62,7 +62,7 @@
     </div>
     <body>
     <div sec:authorize="isAuthenticated()">
-        <h1>Welcome<span th:text="${#authentication.principal.username}"/>!</h1>
+        <h1>Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
         <a th:href="@{|/users/edit|}">Edit User</a>
 <!--            <div th:poster="${user_photo_table.image_url}"></div>-->
 
