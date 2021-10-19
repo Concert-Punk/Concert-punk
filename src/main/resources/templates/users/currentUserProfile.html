@@ -32,13 +32,14 @@
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                        aria-expanded="true" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </div>
-            <div class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
+            <div class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="#">Following</a>
@@ -49,26 +50,29 @@
             <div class="nav-item">
                 <a class="nav-link" href="/users/edit">Edit Profile</a>
             </div>
-            <div class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+            <!--            <div class="nav-item">-->
+            <!--                <a class="nav-link" href="/logout">Logout</a>-->
+            <!--            </div>-->
+            <div th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout"/>
             </div>
 
         </form>
     </div>
     <body>
     <div sec:authorize="isAuthenticated()">
-        <h1>Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
+        <h1>Welcome<span th:text="${#authentication.principal.username}"/>!</h1>
         <a th:href="@{|/users/edit|}">Edit User</a>
-        <!--    <div th:poster="${user_photo_table.image_url}"></div>-->
+<!--            <div th:poster="${user_photo_table.image_url}"></div>-->
 
-        <!--    <div th:each="event : ${user.events}">-->
-        <!--        <h3 th:text="${event.title}">Title</h3>-->
-        <!--        <div th:text="${event.start_time}"></div>-->
-        <!--        <div th:text="${event.end_time}"></div>-->
-        <!--        <div th:text="${event.location}"></div>-->
-        <!--        <div th:text="${event.description}"></div>-->
-        <!--    </div>-->
+<!--            <div th:each="event : ${user.events}">-->
+<!--                <h3 th:text="${event.title}">Title</h3>-->
+<!--                <div th:text="${event.start_time}"></div>-->
+<!--                <div th:text="${event.end_time}"></div>-->
+<!--                <div th:text="${event.location}"></div>-->
+<!--                <div th:text="${event.description}"></div>-->
+            </div>
     </div>
     </body>
 </nav>
