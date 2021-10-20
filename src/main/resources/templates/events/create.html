@@ -47,18 +47,18 @@
             <div class="nav-item">
                 <a class="nav-link" href="/events/create">Create new event</a>
             </div>
-            <div class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-            </div>
             <div class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </div>
+            <div class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
             </div>
         </form>
     </div>
     <body>
     <div sec:authorize="isAuthenticated()">
-        <h1><span th:text="${#authentication.principal.username}"/>, create your event bellow</h1>
+        <h1><span th:text="${#authentication.principal.username}"/>, create your event below</h1>
         <a th:href="@{|/users/edit|}"></a>
         <!--            <div th:poster="${user_photo_table.image_url}"></div>-->
 
