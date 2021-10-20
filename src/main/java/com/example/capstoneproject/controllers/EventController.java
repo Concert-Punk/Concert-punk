@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -33,6 +34,14 @@ public class EventController {
         return "events/index";
     }
 
+    @GetMapping("/events/{id}")
+    public String showOneEvent(@PathVariable long id, Model model) {
+        Event event = eventsDao.getById(id);
+        model.addAttribute("eventId", id);
+        model.addAttribute("event", event);
+        return "events/show";
+    }
+
     @GetMapping("/events/create")
     public String showCreatePostForm(Model model) {
         model.addAttribute("event", new Event());
@@ -44,7 +53,6 @@ public class EventController {
     ) {
         System.out.println(eventToAdd);
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        eventToAdd.setApi_id(1L);
         eventToAdd.setOwner(usersDao.getById(currentUserSession.getId()));
 
         emailService.prepareAndSend(
@@ -55,6 +63,35 @@ public class EventController {
 
         eventsDao.save(eventToAdd);
         return "redirect:/events";
+    }
+
+    @GetMapping("/events/edit/{id}")
+    public String showEditEventForm(@PathVariable long id, Model model) {
+        Event eventToEdit = eventsDao.getById(id);
+        model.addAttribute("eventToEdit", eventToEdit);
+        return "events/edit";
+    }
+
+    @PostMapping("/events/edit/{id}")
+    public String editEvent(
+            @PathVariable long id,
+            @ModelAttribute Event updatedEvent
+    ) {
+        updatedEvent.setId(id);
+        updatedEvent.setOwner(usersDao.getById(1L));
+        eventsDao.save(updatedEvent);
+
+        return "redirect:/events";
+
+    }
+
+    @PostMapping("/events/delete/{id}")
+    public String deleteEvent(@PathVariable long id) {
+
+        eventsDao.deleteById(id);
+
+        return "redirect:/events";
+
     }
 
 
