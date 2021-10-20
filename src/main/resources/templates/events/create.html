@@ -60,14 +60,14 @@
     <div sec:authorize="isAuthenticated()">
         <h1><span th:text="${#authentication.principal.username}"/>, create your event below</h1>
         <a th:href="@{|/users/edit|}"></a>
-        <!--            <div th:poster="${user_photo_table.image_url}"></div>-->
+<!--                    <div th:poster="${user_photo_table.image_url}"></div>-->
 
-        <!--            <div th:each="event : ${user.events}">-->
-        <!--                <h3 th:text="${event.title}">Title</h3>-->
-        <!--                <div th:text="${event.start_time}"></div>-->
-        <!--                <div th:text="${event.end_time}"></div>-->
-        <!--                <div th:text="${event.location}"></div>-->
-        <!--                <div th:text="${event.description}"></div>-->
+<!--                    <div th:each="event : ${user.events}">-->
+<!--                        <h3 th:text="${event.title}">Title</h3>-->
+<!--                        <div th:text="${event.start_time}"></div>-->
+<!--                        <div th:text="${event.end_time}"></div>-->
+                        <div th:text="${event.location}"></div>
+                        <div th:text="${event.description}"></div>
     </div>
     </div>
     </body>
@@ -80,8 +80,8 @@
         <input type="text" th:field="*{location}" placeholder="location">
         <input type="datetime-local" th:field="*{startTime}"/>
         <input type="datetime-local" th:field="*{endTime}"/>
-        <!--    <input type="time" th:field="*{startTime}" placeholder="hour/minutes">-->
-        <!--    <input type="time" th:field="*{endTime}" placeholder="hour/minutes">-->
+            <input type="time" th:field="*{startTime}" placeholder="hour/minutes">
+            <input type="time" th:field="*{endTime}" placeholder="hour/minutes">
         <input type="submit">
 
     </form>
