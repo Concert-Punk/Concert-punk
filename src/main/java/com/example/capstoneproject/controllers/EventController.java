@@ -34,6 +34,14 @@ public class EventController {
         return "events/index";
     }
 
+    @GetMapping("/events/{id}")
+    public String showOneEvent(@PathVariable long id, Model model) {
+        Event event = eventsDao.getById(id);
+        model.addAttribute("eventId", id);
+        model.addAttribute("event", event);
+        return "events/show";
+    }
+
     @GetMapping("/events/create")
     public String showCreatePostForm(Model model) {
         model.addAttribute("event", new Event());
@@ -45,7 +53,6 @@ public class EventController {
     ) {
         System.out.println(eventToAdd);
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        eventToAdd.setApi_id(2L);
         eventToAdd.setOwner(usersDao.getById(currentUserSession.getId()));
 
         emailService.prepareAndSend(
@@ -73,6 +80,15 @@ public class EventController {
         updatedEvent.setId(id);
         updatedEvent.setOwner(usersDao.getById(1L));
         eventsDao.save(updatedEvent);
+
+        return "redirect:/events";
+
+    }
+
+    @PostMapping("/events/delete/{id}")
+    public String deleteEvent(@PathVariable long id) {
+
+        eventsDao.deleteById(id);
 
         return "redirect:/events";
 

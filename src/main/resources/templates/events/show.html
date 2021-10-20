@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div th:text="${eventId}">Id</div>
+    <div th:text="${event.title}">title</div>
+    <div th:text="${event.description}">body</div>
+    <div th:text="${event.location}">location</div>
+    <div th:text="${event.startTime}">start time</div>
+    <div th:text="${event.endTime}">end time</div>
+
+    <a th:href="@{|/events/edit/${eventId}|}">Edit Event</a>
+    <form th:action="@{|/events/delete/${eventId}|}" th:method="post">
+        <button type="submit">Delete</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,8 +1,6 @@
 package com.example.capstoneproject.models;
 
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +9,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="user_photo_table")
-@NoArgsConstructor
 @AllArgsConstructor
 public class user_photo_table {
     @Id
@@ -19,6 +16,7 @@ public class user_photo_table {
     @Getter
     @Setter
     private Long id;
+
 
     @Column(nullable = false)
     @Getter
@@ -30,5 +28,4 @@ public class user_photo_table {
     @Getter
     @Setter
     private User user;
-
 }

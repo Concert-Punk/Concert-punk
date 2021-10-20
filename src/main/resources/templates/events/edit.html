@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:action="@{|/events/edit|}" th:method="post" th:object="${eventToEdit}">
+<form th:action="@{|/events/edit/${eventToEdit.id}|}" th:method="post" th:object="${eventToEdit}">
 
 
   <input type="text" th:field="*{title}" placeholder="title">
