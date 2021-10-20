@@ -21,7 +21,7 @@ public class Event {
     @Setter
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = true, unique = true)
     @Getter
     @Setter
     private Long api_id;
