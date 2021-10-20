@@ -15,7 +15,6 @@
     <!-- Images Container -->
     <div class="probablywontwork"></div>
 </div>
-
 <script>
     $.ajax({
         type:"GET",
@@ -24,43 +23,33 @@
         dataType: "json",
         success: function(data) {
             let cardMaker = ''
-            for (const element of data.events) {
-                let image = element.performers[0].image
-                let ticketPurchaseUrl = element.url
-                console.log(ticketPurchaseUrl)
-                console.log(element)
-              //  console.log(element.title)
-                console.log(element.performers[0].image)
-
-            //    console.log(element.venue.name)
-             //   console.log(element.datetime_local);
+            let concerts = data.events.filter(element=> element.type === 'concert');
+            console.log(concerts)
+            for (const concerts of data.events.filter(element=> element.type === 'concert')) {
+                let image = concerts.performers[0].image
+                let ticketPurchaseUrl = concerts.url
+               //  console.log(ticketPurchaseUrl)
+               //  console.log(concerts)
+               // console.log(concerts.title)
+               //  console.log(concerts.performers[0].image)
+               // console.log(concerts.performers[0].genres[0].name)
+               //
+               // console.log(concerts.venue.name)
+               // console.log(concerts.datetime_local);
                 cardMaker +="<div class='card' style='width: 18rem;'>"
                 cardMaker +=`<a id="url" href="${ticketPurchaseUrl}"><img class="card-img-top" src='${image}' alt=' img'></a>`
-                cardMaker += "<div class='card-body'>" +element.title  + "</div>";
-                cardMaker += "<p class='card-text'>"+ "<strong>" + '@'+ element.venue.name + "</strong>" +"</p>" ;
-                cardMaker += "<p class='card-text'>" + element.datetime_local + "</p>" + "</div>" + "<br>"
+                cardMaker += `<div class='card-body'><h2> <strong>${concerts.title}</strong> </h2> </div>`;
+                cardMaker += `<div class='card-text'><h3> @${concerts.venue.name}</h3> </div>` ;
+                cardMaker += `<div class='card-text'><p>${concerts.datetime_local}</p></div><br>`
 
             }
             $(".probablywontwork").html(cardMaker)
-
-
         },
         error: function(xhr, status, err) {
-            // This time, we do not end up here!
         }
-
     });
 </script>
-
-
-<!--    //TODO: foreach loop isnt iterating through data like expected => console.log X-->
-<!--    //TODO:Display an image in the card &#45;&#45; Not Done-->
-<!--    //TODO: Able to get feedback from call&#45;&#45;Done-->
-<!--    //TODO: Narrowed down image path,able to retreieve Url&#45;&#45;Done-->
-
-
 </body>
 </html>
 
 
-<!--wkjEBFK;JWENF;KJ    WEFJO;  PJEFBO[ K2NEFJ  UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W12JOEFJOP    JWENFNWEFJON    WEKFN   W;JLEFNJL;  WEF;L   WNFLKW  NV;LKNDV;LQWNVL/N   WLKV    WKDV;LK WVL;K-->
