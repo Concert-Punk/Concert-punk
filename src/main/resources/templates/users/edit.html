@@ -2,12 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Post</title>
+    <title>Edit User</title>
 </head>
 <body>
-
 <form th:action="@{|/users/edit|}" th:method="post" th:object="${userToEdit}">
-
 
     <input type="text" th:field="*{username}" placeholder="username">
     <input type="text" th:field="*{email}" placeholder="email">

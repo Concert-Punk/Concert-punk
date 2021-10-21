@@ -1,0 +1,15 @@
+GET
+
+Accept: application/json
+
+###
+GET https://api.seatgeek.com/2/events?client_id=MjM5OTczOTd8MTYzNDY3MzY2Ni42ODE5ODE
+Accept: application/json
+
+###
+
+GET https://api.seatgeek.com/2/events?client_id=MjM5OTczOTd8MTYzNDY3MzY2Ni42ODE5ODE&geoip=true
+Accept: application/json
+
+###
+
