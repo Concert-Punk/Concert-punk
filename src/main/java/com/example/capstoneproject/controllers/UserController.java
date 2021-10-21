@@ -69,4 +69,17 @@ public class UserController {
 
     }
 
+//    @GetMapping("/user/posts")
+//    public String showUserPosts(
+//            Model model
+//    ){
+//
+//        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        model.addAttribute("user",currentUserSession);
+//
+//        return "users/displayPost";
+//    }
+
+
+
 }
