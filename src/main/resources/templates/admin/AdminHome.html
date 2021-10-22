@@ -169,7 +169,7 @@
             <th scope="col">#</th>
             <th scope="col">Username</th>
             <th scope="col">Email</th>
-            <th scope="col">Member Date</th>
+
             <th scope="col">Status</th>
         </tr>
         </thead>
@@ -177,7 +177,7 @@
         <tr th:each="user : ${users}">
             <td th:text="${user.username}"></td>
             <td th:text="${user.email}"></td>
-            <td></td>
+
             <td>
                 <div class="dropdown">
                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
