@@ -33,7 +33,7 @@ public class AdminController {
         if (userInDB.getRole() == Roles.admin) {
             return originalTemplate;
         } else{
-            return "redirect:/";
+            return "redirect:admin/AdminHome";
         }
     }
 
