@@ -61,17 +61,16 @@
     <body>
     <div sec:authorize="isAuthenticated()">
         <h1>Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
-<!--        <a th:href="@{|/users/edit|}">Edit User</a>-->
-        <!--            <div th:poster="${user_photo_table.image_url}"></div>-->
-
-        <!--            <div th:each="event : ${user.events}">-->
-        <!--                <h3 th:text="${event.title}">Title</h3>-->
-        <!--                <div th:text="${event.start_time}"></div>-->
-        <!--                <div th:text="${event.end_time}"></div>-->
-        <!--                <div th:text="${event.location}"></div>-->
-        <!--                <div th:text="${event.description}"></div>-->
-<!--    </div>-->
     </div>
+
+  <div th:if='${theCurrentUser}'>
+      <form th:action="@{/admin/AdminHome}">
+      <button class="btn btn-primary" type="submit">
+          Hello
+      </button>
+          </form>
+  </div>
+
     </body>
 </nav>
 </html>
