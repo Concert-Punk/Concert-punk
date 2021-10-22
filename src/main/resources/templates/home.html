@@ -47,25 +47,61 @@
             <div class="nav-item">
                 <a class="nav-link" href="/events/create">Create new event</a>
             </div>
-<!--            <div class="nav-item">-->
-<!--                <a class="nav-link" href="/logout">Logout</a>-->
-<!--            </div>-->
+
             <div class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </div>
         </form>
     </div>
-    </form>
-    </div>
+
+    <script src="/js/Jquery.js"></script>
 </nav>
 
 <body>
 
 <h1>Welcome Concert Punk</h1>
 
-<!--<div th:replace="partials/footer.html :: footer">-->
 
-<!--</div>-->
+<h1>Local Events</h1>
+<!--Container-->
+<div class="container">
+    <!-- Images Container -->
+    <div class="probablywontwork"></div>
+</div>
+
+<script>
+
+        $.ajax({
+            type: "GET",
+            url: "https://api.seatgeek.com/2/events?client_id=MjM5OTczOTd8MTYzNDY3MzY2Ni42ODE5ODE&geoip=true",
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                let cardMaker = ''
+                let concerts = data.events.filter(element => element.type === 'concert');
+                console.log(concerts)
+                for (const concerts of data.events.filter(element => element.type === 'concert')) {
+                    let image = concerts.performers[0].image
+                    let ticketPurchaseUrl = concerts.url
+                    let artistIndex = concerts.title
+                    console.log(artistIndex);
+                    cardMaker += "<div class='d-inline-block'>"
+                    cardMaker += ` <div class='card' style='width: 18rem;'>`
+                    cardMaker += `<a id="url" href="${ticketPurchaseUrl}"><img class="card-img-top" src='${image}' alt=' img'></a>`
+                    cardMaker += `<div class='card-body'><h2> <strong>${concerts.title}</strong> </h2> </div>`;
+                    cardMaker += `<div class='card-text'><h3> @${concerts.venue.name}</h3> </div>`;
+                    //   cardMaker +=`<div class="card-text"><p>${concerts.performers.genres.name}</p>`
+                    cardMaker += `<div class='card-text'><p>${concerts.datetime_local}</p></div>
+</div><br>`
+                    cardMaker += "</div>";
+                }
+                $(".probablywontwork").html(cardMaker)
+            },
+            error: function (xhr, status, err) {
+            }
+        });
+
+</script>
 </body>
 </html>

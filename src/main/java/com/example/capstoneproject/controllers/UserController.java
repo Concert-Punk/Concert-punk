@@ -28,6 +28,8 @@ public class UserController {
         return "users/sign-up";
     }
 
+
+
     @PostMapping("/sign-up")
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
@@ -39,11 +41,11 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String currentUserProfile()
+    public String currentUserProfile(Model model)
     {
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userInDB = usersDao.getById(currentUserSession.getId());
-
+        model.addAttribute("theCurrentUser", userInDB.getRole() == Roles.admin);
         return "users/currentUserProfile";
     }
 
@@ -69,16 +71,6 @@ public class UserController {
 
     }
 
-//    @GetMapping("/user/posts")
-//    public String showUserPosts(
-//            Model model
-//    ){
-//
-//        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("user",currentUserSession);
-//
-//        return "users/displayPost";
-//    }
 
 
 
