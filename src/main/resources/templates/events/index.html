@@ -64,6 +64,8 @@
     <div th:text="*{event.startTime}"></div>
     <div th:text="*{event.endTime}"></div>
 
+    <a th:href="@{|/events/${event.id}|}">View Event</a>
+
     <p>Owner: <span th:text="${event.owner.username}"></span> </p>
 
 </div>
