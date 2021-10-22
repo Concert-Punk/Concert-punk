@@ -49,6 +49,15 @@ public class UserController {
         return "users/currentUserProfile";
     }
 
+    @GetMapping("/viewedprofile")
+    public String viewedUserProfile(Model model)
+    {
+        User viewedUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDB = usersDao.getById(viewedUserSession.getId());
+        model.addAttribute("viewedUser", userInDB.getRole() == Roles.admin);
+        return "users/viewedProfile";
+    }
+
     @GetMapping("/users/edit")
     public String showEditUserForm(Model model) {
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
