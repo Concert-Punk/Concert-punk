@@ -58,7 +58,7 @@
             </div>
         </form>
     </div>
-    <body>
+
     <div sec:authorize="isAuthenticated()">
         <h1>Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
     </div>
@@ -71,6 +71,6 @@
           </form>
   </div>
 
-    </body>
+
 </nav>
 </html>
