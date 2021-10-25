@@ -19,7 +19,7 @@
 <script>
     $.ajax({
         type:"GET",
-        url:"https://api.seatgeek.com/2/events?client_id=MjM5OTczOTd8MTYzNDY3MzY2Ni42ODE5ODE&geoip=true",
+        url:"https://api.seatgeek.com/2/events?client_id=${seatGeek}&geoip=true",
         async:true,
         dataType: "json",
         success: function(data) {
@@ -36,7 +36,6 @@
                 cardMaker +=`<a id="url" href="${ticketPurchaseUrl}"><img class="card-img-top" src='${image}' alt=' img'></a>`
                 cardMaker += `<div class='card-body'><h2> <strong>${concerts.title}</strong> </h2> </div>`;
                 cardMaker += `<div class='card-text'><h3> @${concerts.venue.name}</h3> </div>` ;
-             //   cardMaker +=`<div class="card-text"><p>${concerts.performers.genres.name}</p>`
                 cardMaker += `<div class='card-text'><p>${concerts.datetime_local}</p></div>
 </div><br>`
                 cardMaker += "</div>";

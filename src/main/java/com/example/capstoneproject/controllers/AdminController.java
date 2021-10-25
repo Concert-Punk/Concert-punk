@@ -33,7 +33,6 @@ public class AdminController {
     public String checkifAdmin(String originalTemplate) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userInDB = userDao.getById(currentUser.getId());
-        System.out.println(userInDB.getRole());
         if (userInDB.getRole() == Roles.admin) {
             return originalTemplate;
         } else {
@@ -44,9 +43,6 @@ public class AdminController {
     @PostMapping("/admin/profile/{id}")
         public String changeStatus (@PathVariable long id, @RequestParam(name="status") String status){
         User userInDB = userDao.getById(id);
-        System.out.println(userInDB.getIsActive());
-        System.out.println(status);
-        System.out.println(userInDB);
         userInDB.setIsActive(status.equals("enable"));
         userDao.save(userInDB);
         return  "redirect:/admin/AdminHome";

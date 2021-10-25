@@ -1,7 +1,7 @@
 function handleSearch(artist) {
     console.log(artist);
     var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?&countryCode=US&sort'date,asc'&keyword=" +
-        artist + "&apikey=mUtsvjjuP9U7p30hNtIZXpGAI0rgbThb"
+        artist + "&apikey= " + ticketMasterKey
     console.log(queryURL)
     $.ajax({
         type: "GET",
