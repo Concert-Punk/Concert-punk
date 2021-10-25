@@ -49,11 +49,10 @@ public class UserController {
         return "users/currentUserProfile";
     }
 
-    @GetMapping("/viewedprofile")
-    public String viewedUserProfile(Model model)
+    @GetMapping("/profile/{id}")
+    public String viewedUserProfile(@PathVariable long id,Model model)
     {
-        User viewedUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User userInDB = usersDao.getById(viewedUserSession.getId());
+        User userInDB = usersDao.getById(id);
         model.addAttribute("viewedUser", userInDB.getRole() == Roles.admin);
         return "users/viewedProfile";
     }
