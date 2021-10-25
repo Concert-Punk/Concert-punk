@@ -1,12 +1,9 @@
 package com.example.capstoneproject.controllers;
-
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 @Controller
 public class HomeController {
@@ -31,9 +28,9 @@ public class HomeController {
         System.out.println(fileStackKey);
         return "const FileStackApiKey = `" + fileStackKey + "`;\n const ticketMasterKey = `" + ticketMasterKey + "`; "
                 + " const spotifyClientId = `" + spotifyClientId +
-                 "`;\n const spotifyClientSecret = `" + spotifyClientSecret +
-                 "`;\n const youtubeKey = `" + youtubeKey +
-                 "`;\n const mapboxKey = `" + MapboxKey +
+                "`;\n const spotifyClientSecret = `" + spotifyClientSecret +
+                "`;\n const youtubeKey = `" + youtubeKey +
+                "`;\n const mapboxKey = `" + MapboxKey +
                 "`;\n const seatGeek = `" + seatGeekKey + "`"
                 ;
     }
