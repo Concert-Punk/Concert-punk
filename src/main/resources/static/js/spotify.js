@@ -11,7 +11,7 @@ $(document).ready(function() {
                 "grant_type": "client_credentials"
             },
             headers: {
-                "Authorization": "Basic " + btoa(clientid + ":" + clientSecret)
+                "Authorization": "Basic " + btoa(spotifyClientId + ":" + spotifyClientSecret)
             }
         }).done(function(response) {
             console.log(response.access_token);
