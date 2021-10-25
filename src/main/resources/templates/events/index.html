@@ -66,6 +66,11 @@
 
     <p>Owner: <span th:text="${event.owner.username}"></span> </p>
 
+    <a th:href="@{|/events/edit/${eventId}|}">Edit Event</a>
+    <form th:action="@{|/events/delete/${eventId}|}" th:method="post">
+        <button type="submit">Delete</button>
+    </form>
+
 </div>
 </body>
 </nav>

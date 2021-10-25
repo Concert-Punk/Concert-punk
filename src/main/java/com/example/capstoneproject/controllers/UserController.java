@@ -3,14 +3,13 @@ package com.example.capstoneproject.controllers;
 import com.example.capstoneproject.models.Roles;
 import com.example.capstoneproject.models.User;
 import com.example.capstoneproject.repos.UsersRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -21,6 +20,9 @@ public class UserController {
         this.usersDao = usersDao;
         this.passwordEncoder = passwordEncoder;
     }
+
+
+
 
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
@@ -69,6 +71,12 @@ public class UserController {
 
         return "redirect:/profile";
 
+    }
+
+    @DeleteMapping("/users/{id}/")
+    public ResponseEntity deleteUser(
+            @PathVariable("id") String id){
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 

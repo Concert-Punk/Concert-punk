@@ -71,7 +71,14 @@
           Hello
       </button>
           </form>
+      <br>
   </div>
+    <div th:if='${theCurrentUser}'>
+        <form th:action="@{/users/currentUserProfile.html}">
+        <button class="btn btn-primary" type="button"> Delete </button>
+        </form>
+    </div>
+
 
 
 </nav>
