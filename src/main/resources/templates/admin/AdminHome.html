@@ -189,10 +189,11 @@
                             aria-haspopup="true" aria-expanded="false">
                         Active
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <form action="" id="adminAction">
-                        <a class="dropdown-item" href="#">Enable</a>
-                        <a class="dropdown-item" href="#">Disable</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                        <form th:action="@{/admin/profile/{id}(id=${user.id})}" th:method="post" th:object="${user}">
+                        <input type="radio" name="status" value="enable" >Enable</input>
+                        <input type="radio" name="status" value="disable" >Disable</input>
+                            <input type="submit" value="submit">
                     </form>
                     </div>
                 </div>
@@ -204,7 +205,10 @@
 
 </div>
 <script>
-
+    // $("#dropdown-menu").on("change", function() {
+    //     var getVal = $(this).val();
+    //     console.log(getVal)
+    // });
 
     $(function () {
         $(".dropdown-menu").on('click', 'a', function () {
