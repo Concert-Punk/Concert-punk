@@ -17,7 +17,7 @@ function youtubeSearch(q) {
             q: q,
             type: "video",
             maxResults: vidResults,
-            key: "AIzaSyBylEuSlqvJ3UM2PPqrRkW2vNPZQo1ccuo",
+            key: youtubekey,
         },
         function(data) {
             var output;

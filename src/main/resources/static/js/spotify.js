@@ -1,7 +1,6 @@
 $(document).ready(function() {
     var clickedKeyword = "";
-    const clientid = 'e81f9ea2e64e43cb834bd3488f779729';
-    const clientSecret = '3850ad8ffc3c46babb2c6526acb943da'
+
 
     function createAccessToken(callback) {
         var queryURL = "https://accounts.spotify.com/api/token";

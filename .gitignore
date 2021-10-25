@@ -35,4 +35,4 @@ application.properties
 src/main/resources/application.properties
 keys.js
 js/keys.js
-src/main/resources/js/keys.js
+src/main/resources/static/js/keys.js
