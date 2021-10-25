@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project One</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+<body>
+<form>
+    <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>
+    <input id="add-artist" type="submit" value="Search"/>
+</form>
+<div class="container">
+    <div class="row">
+        <div class="col s12" id="mainContent">
+            <span id="displayArtist"></span>
+            <div class="title">Top Tracks</div>
+        </div>
+        <div id="tracksContainer">
+        </div>
+        <div class="title">Concert Schedule</div>
+    </div>
+    <p id="concertSchedule">
+    </p>
+    <div class="title">YouTube Video</div>
+    <p><span id="youTube"></span></p>
+    <div class="title">Related Artists</div>
+    <div id="relatedArtistContainer"></div>
+    <br>
+</div>
+
+
+<!--spotify script-->
+<script type="text/javascript" src="js/spotify.js"></script>
+
+<!--youtube script-->
+<script type="text/javascript" src="js/youAPI.js"></script>
+
+<!--ticketmaster script-->
+<script type="text/javascript" src="js/ticketMasterAPI.js"></script>
+
+
+<!--materialize script-->
+
+
+</body>
+
+</html>
