@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -25,11 +26,12 @@ public class Comment {
     @Setter
     private String comment_text;
 
-
-    @Column(nullable = false, unique = false)
-    @Getter
-    @Setter
-    private Timestamp createdAt;
+//
+//    @Column(nullable = false, unique = false)
+//    @Getter
+//    @Setter
+//    @CreationTimestamp
+//    private Timestamp createdAt;
 
 
     @ManyToOne
