@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     let clickedKeyword = "";
 
 
@@ -13,7 +13,7 @@ $(document).ready(function() {
             headers: {
                 "Authorization": "Basic " + btoa(spotifyClientId + ":" + spotifyClientSecret)
             }
-        }).done(function(response) {
+        }).done(function (response) {
             console.log(response.access_token);
             sessionStorage.setItem("accessToken", response.access_token);
             callback(response.access_token);
@@ -26,8 +26,7 @@ $(document).ready(function() {
         let accessToken = sessionStorage.getItem("accessToken");
         if (accessToken !== null) {
             callback(accessToken);
-        }
-        else {
+        } else {
             createAccessToken(callback);
         }
     }
@@ -53,7 +52,7 @@ $(document).ready(function() {
             headers: {
                 "Authorization": "Bearer " + accessToken,
             }
-        }).done(function(response) {
+        }).done(function (response) {
             let results = response;
             console.log(results);
             let artistID = results.artists.items[0].id;
@@ -74,7 +73,7 @@ $(document).ready(function() {
             headers: {
                 "Authorization": "Bearer " + accessToken,
             }
-        }).done(function(response) {
+        }).done(function (response) {
             let results = response;
             console.log(results);
             for (let i = 0; i < Math.min(results.tracks.length, 5); i++) {
@@ -91,14 +90,11 @@ $(document).ready(function() {
                 console.log(image);
 
 
-                    document.getElementById('musicSample').innerHTML=`
-    <audio controls id='background_audio1' >
-        <source src='${audioPreview}' />
-         </audio>
-  
-  `;
 
-                     console.log(audioPreview)
+                document.getElementById('musicSample').innerHTML += `
+                     <audio controls> <source src='${audioPreview}'/></audio> `;
+
+                       console.log(audioPreview)
 
 
                 albumDiv.append(image);
@@ -106,7 +102,6 @@ $(document).ready(function() {
             }
         });
     }
-
 
 
     function spotifyRelatedArtist(accessToken, artistID) {
@@ -119,7 +114,7 @@ $(document).ready(function() {
             headers: {
                 "Authorization": "Bearer " + accessToken,
             }
-        }).done(function(response) {
+        }).done(function (response) {
             let results = response;
             console.log(results);
 
@@ -146,18 +141,17 @@ $(document).ready(function() {
     }
 
 
-    $("#add-artist").on("click", function(event) {
+    $("#add-artist").on("click", function (event) {
         event.preventDefault();
         getAccessToken(searchWithToken);
     });
-    $(document).on("click", ".search-keyword", function(event) {
+    $(document).on("click", ".search-keyword", function (event) {
         event.preventDefault();
         clickedKeyword = $(this).text();
         getAccessToken(reSearch);
         $("#displayArtist").text($(this).text());
 
     });
-
 
 
 });
