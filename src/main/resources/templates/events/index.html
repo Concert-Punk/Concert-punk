@@ -15,6 +15,9 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <title></title>
+    <style>#addForm {
+        display: none;
+    }</style>
 </head>
 
 <nav th:fragment="navbar">
@@ -49,21 +52,32 @@
             </div>
         </form>
     </div>
-<body>
+</nav>
 
 <h3>Viewing all events</h3>
 
 <div th:each="event : ${events}">
-
     <h3 th:text="${event.title}">Title</h3>
     <div th:text="${event.description}"></div>
     <div th:text="*{event.location}"></div>
     <div th:text="*{event.startTime}"></div>
     <div th:text="*{event.endTime}"></div>
-
     <p>Owner: <span th:text="${event.owner.username}"></span> </p>
-
+    <a href="#" id="showForm">Add comment</a>
+    <form  th:action="@{events/index}" id="addForm" th:method="post" th:object="${comment}">
+<textarea  name="comment" form="addForm"></textarea>
+        <input type="submit" class="commentBtn">
+    </form>
 </div>
-</body>
-</nav>
+
+
+
+
+
+
+<script>
+    $("#showForm").on("click", function() {
+        $("#addForm").toggle();
+    });
+</script>
 </html>

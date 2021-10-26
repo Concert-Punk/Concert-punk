@@ -1,5 +1,6 @@
 package com.example.capstoneproject.controllers;
 
+import com.example.capstoneproject.models.Comment;
 import com.example.capstoneproject.models.Roles;
 import com.example.capstoneproject.models.User;
 import com.example.capstoneproject.repos.UsersRepository;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -71,7 +74,13 @@ public class UserController {
 
     }
 
+    //    Route for adding comment
+    @PostMapping(value="/addComment/{postId}")
+    public String addComment(Comment comment) {
+        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+return "redirect:events/index";
+    }
 
 
 }
