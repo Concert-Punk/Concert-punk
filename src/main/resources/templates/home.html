@@ -90,8 +90,10 @@
                     cardMaker += `<div class='card-body'><h2> <strong>${concerts.title}</strong> </h2> </div>`;
                     cardMaker += `<div class='card-text'><h3> @${concerts.venue.name}</h3> </div>`;
                     //   cardMaker +=`<div class="card-text"><p>${concerts.performers.genres.name}</p>`
-                    cardMaker += `<div class='card-text'><p>${concerts.datetime_local}</p></div>
+                    cardMaker += `<div class='card-text'><p>${concerts.datetime_local}</p></div>`;
+                    cardMaker += `<button class="saveEvent" type="submit">Save</button>
 </div><br>`
+
                     cardMaker += "</div>";
                 }
                 $(".probablywontwork").html(cardMaker)
@@ -99,6 +101,47 @@
             error: function (xhr, status, err) {
             }
         });
+
+
+
+        function addListener() {
+            $('.saveEvent').mousedown(function (e) {
+
+                e.preventDefault();
+                var events_id = ($(this).prop("value"));
+
+
+                var token = $("meta[name='_csrf']").attr("content");
+                var header = $("meta[name='_csrf_header']").attr("content");
+                console.log(token);
+                console.log(header);
+                console.log(events_id);
+                var data = events_id;
+                //Remove all errors
+
+
+                $.post({
+                    url: '/SaveEvent/' + events_id,
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(data),
+                    beforeSend: function (jqXHR) {
+                        jqXHR.setRequestHeader('X-CSRF-Token', token,)
+                    },
+                    dataType: "json",
+                    success: function (html) {
+                        console.log(html);
+                    }
+                });
+                provider($)
+            });
+            $('.saveEvent').mouseup(function (e) {
+                e.preventDefault();
+                provider($);
+            })
+
+        }
+
+
 
 </script>
 </body>
