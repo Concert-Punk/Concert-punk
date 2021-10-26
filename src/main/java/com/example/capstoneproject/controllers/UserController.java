@@ -1,37 +1,41 @@
 package com.example.capstoneproject.controllers;
 
+import com.example.capstoneproject.models.Comment;
+import com.example.capstoneproject.models.Event;
 import com.example.capstoneproject.models.Roles;
 import com.example.capstoneproject.models.User;
+import com.example.capstoneproject.repos.CommentsRepository;
+import com.example.capstoneproject.repos.EventsRepository;
 import com.example.capstoneproject.repos.UsersRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
     private UsersRepository usersDao;
     private PasswordEncoder passwordEncoder;
+    private EventsRepository eventsDao;
+    private CommentsRepository commentsDao;
 
-    public UserController(UsersRepository usersDao, PasswordEncoder passwordEncoder) {
+    public UserController(UsersRepository usersDao, PasswordEncoder passwordEncoder, EventsRepository eventsDao, CommentsRepository commentsDao) {
         this.usersDao = usersDao;
         this.passwordEncoder = passwordEncoder;
+        this.eventsDao = eventsDao;
+        this.commentsDao = commentsDao;
     }
 
     @GetMapping("/sign-up")
-    public String showSignupForm(Model model){
+    public String showSignupForm(Model model) {
         model.addAttribute("user", new User());
         return "users/sign-up";
     }
 
 
-
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
+    public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setIsActive(true);
         user.setRole(Roles.user);
@@ -41,12 +45,20 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String currentUserProfile(Model model)
-    {
+    public String currentUserProfile(Model model) {
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userInDB = usersDao.getById(currentUserSession.getId());
         model.addAttribute("theCurrentUser", userInDB.getRole() == Roles.admin);
         return "users/currentUserProfile";
+    }
+
+    @GetMapping("/viewedprofile")
+    public String viewedUserProfile(Model model)
+    {
+        User viewedUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDB = usersDao.getById(viewedUserSession.getId());
+        model.addAttribute("viewedUser", userInDB.getRole() == Roles.admin);
+        return "users/viewedProfile";
     }
 
     @GetMapping("/users/edit")
@@ -71,6 +83,20 @@ public class UserController {
 
     }
 
+    //    Route for adding comment
+    @PostMapping(value = "/addComment/{postId}")
+    public String addComment(@PathVariable Long postId, @RequestParam(name="commentText") String comment ) {
+        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDB = usersDao.getById(currentUserSession.getId());
+        Event event = eventsDao.getById(postId);
+        Comment newComment = new Comment();
+      newComment.setComment_text(comment);
+      newComment.setUser(userInDB);
+      newComment.setEvent(event);
+        System.out.println(newComment);
+      commentsDao.save(newComment);
+        return "redirect:/events";
+    }
 
 
 

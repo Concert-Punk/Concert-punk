@@ -1,5 +1,6 @@
 package com.example.capstoneproject.controllers;
 
+import com.example.capstoneproject.models.Comment;
 import com.example.capstoneproject.models.Event;
 import com.example.capstoneproject.models.User;
 import com.example.capstoneproject.repos.EventsRepository;
@@ -28,9 +29,10 @@ public class EventController {
     }
 
     @GetMapping("/events")
-    public String showEvents(Model model) {
+    public String showEvents(Model model, Comment comment) {
         List<Event> allEvents = eventsDao.findAll();
         model.addAttribute("events", allEvents);
+        model.addAttribute("comment" ,comment);
         return "events/index";
     }
 

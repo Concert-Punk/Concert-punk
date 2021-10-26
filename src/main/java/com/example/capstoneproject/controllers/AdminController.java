@@ -35,8 +35,13 @@ public class AdminController {
         User userInDB = userDao.getById(currentUser.getId());
         if (userInDB.getRole() == Roles.admin) {
             return originalTemplate;
+<<<<<<< HEAD
         } else {
             return "redirect:/";
+=======
+        } else{
+            return "redirect:admin/AdminHome";
+>>>>>>> 08c3fdeac62c2b281014d0de9dbf609e7a816282
         }
     }
 
