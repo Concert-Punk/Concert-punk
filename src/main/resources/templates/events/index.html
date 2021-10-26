@@ -35,6 +35,9 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </div>
             <div class="nav-item">
+                <a class="nav-link" href="/events/edit">Edit Events</a>
+            </div>
+            <div class="nav-item">
                 <a class="nav-link" href="/profile">Profile</a>
             </div>
             <div class="nav-item">
@@ -69,10 +72,15 @@
         <input type="submit" class="commentBtn" name="commentTextInput">
     </form>
 
+
     <div th:each="comment:${event.getComments()}">
         <div th:text="${comment.comment_text}"></div>
 
     </div>
+
+    <a th:href="@{|/events/${event.id}|}">View Event</a>
+
+    <p>Owner: <span th:text="${event.owner.username}"></span> </p>
 
 
 <!--    <script>-->
