@@ -55,29 +55,32 @@
 </nav>
 
 <h3>Viewing all events</h3>
-
+<!--Form Model biNDING-->
 <div th:each="event : ${events}">
     <h3 th:text="${event.title}">Title</h3>
     <div th:text="${event.description}"></div>
     <div th:text="*{event.location}"></div>
     <div th:text="*{event.startTime}"></div>
     <div th:text="*{event.endTime}"></div>
-    <p>Owner: <span th:text="${event.owner.username}"></span> </p>
-    <a href="#" id="showForm">Add comment</a>
-    <form  th:action="@{events/index}" id="addForm" th:method="post" th:object="${comment}">
-<textarea  name="comment" form="addForm"></textarea>
-        <input type="submit" class="commentBtn">
+    <p>Owner: <span th:text="${event.owner.username}"></span></p>
+<!--    <a href="#" class="showForm" id="${event.id}">Add comment</a>-->
+    <form th:action="@{|/addComment/${event.id}|}" class="addForm" th:method="post">
+        <textarea name="commentText" ></textarea>
+        <input type="submit" class="commentBtn" name="commentTextInput">
     </form>
+
+    <div th:each="comment:${event.getComments()}">
+        <div th:text="${comment.comment_text}"></div>
+
+    </div>
+
+
+<!--    <script>-->
+<!--        $(".showForm").on("click", function () {-->
+<!--            $(".addForm").toggle();-->
+<!--        });-->
+<!--    </script>-->
 </div>
 
 
-
-
-
-
-<script>
-    $("#showForm").on("click", function() {
-        $("#addForm").toggle();
-    });
-</script>
 </html>
