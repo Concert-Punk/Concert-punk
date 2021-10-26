@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -91,12 +93,13 @@
                     cardMaker += `<div class='card-text'><h3> @${concerts.venue.name}</h3> </div>`;
                     //   cardMaker +=`<div class="card-text"><p>${concerts.performers.genres.name}</p>`
                     cardMaker += `<div class='card-text'><p>${concerts.datetime_local}</p></div>`;
-                    cardMaker += `<button class="saveEvent" type="submit">Save</button>
+                    cardMaker += `<button class="saveEvent" data-id="${concerts.id}" type="submit">Save</button>
 </div><br>`
 
                     cardMaker += "</div>";
                 }
                 $(".probablywontwork").html(cardMaker)
+                addListener();
             },
             error: function (xhr, status, err) {
             }
@@ -105,11 +108,11 @@
 
 
         function addListener() {
-            $('.saveEvent').mousedown(function (e) {
+            $('.saveEvent').click(function (e) {
 
                 e.preventDefault();
-                var events_id = ($(this).prop("value"));
-
+                var events_id = ($(this).data("id"));
+                console.log(events_id)
 
                 var token = $("meta[name='_csrf']").attr("content");
                 var header = $("meta[name='_csrf_header']").attr("content");
@@ -118,7 +121,15 @@
                 console.log(events_id);
                 var data = events_id;
                 //Remove all errors
-
+                $.ajax({
+                    type: "GET",
+                    url: `https://api.seatgeek.com/2/events/${events_id}?client_id=MjM5OTczOTd8MTYzNDY3MzY2Ni42ODE5ODE&geoip=true`,
+                    async: true,
+                    dataType: "json",
+                    success: function (html) {
+                        console.log(html)
+                    }
+                })
 
                 $.post({
                     url: '/SaveEvent/' + events_id,
