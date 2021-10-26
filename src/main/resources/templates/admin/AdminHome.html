@@ -119,7 +119,7 @@
             <p>Welcome to your Admin Dashboard</p>
         </div>
         <!-- MAIN CARDS STARTS HERE -->
-        <div class="main__cards">
+         <div class="main__cards">
             <div class="card stretched-link">
                 <i class="fa fa-user-o fa text-lightblue" aria-hidden="true"></i>
                 <div class="card_inner">
@@ -189,10 +189,11 @@
                             aria-haspopup="true" aria-expanded="false">
                         Active
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <form action="" id="adminAction">
-                        <a class="dropdown-item" href="#">Enable</a>
-                        <a class="dropdown-item" href="#">Disable</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                        <form th:action="@{/admin/profile/{id}(id=${user.id})}" th:method="post" th:object="${user}">
+                        <input type="radio" name="status" value="enable" >Enable</input>
+                        <input type="radio" name="status" value="disable" >Disable</input>
+                            <input type="submit" value="submit">
                     </form>
                     </div>
                 </div>
@@ -203,15 +204,7 @@
 
 
 </div>
-<script>
 
-
-    $(function () {
-        $(".dropdown-menu").on('click', 'a', function () {
-            $(this).parents('.dropdown').find('button').text($(this).text());
-        });
-
-    });</script>
 </body>
 
 </html>

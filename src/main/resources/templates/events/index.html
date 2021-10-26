@@ -15,6 +15,9 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <title></title>
+    <style>#addForm {
+        display: none;
+    }</style>
 </head>
 
 <nav th:fragment="navbar">
@@ -30,6 +33,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-link" href="/events/edit">Edit Events</a>
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="/profile">Profile</a>
@@ -49,23 +55,40 @@
             </div>
         </form>
     </div>
-<body>
+</nav>
 
 <h3>Viewing all events</h3>
-
+<!--Form Model biNDING-->
 <div th:each="event : ${events}">
-
     <h3 th:text="${event.title}">Title</h3>
     <div th:text="${event.description}"></div>
     <div th:text="*{event.location}"></div>
     <div th:text="*{event.startTime}"></div>
     <div th:text="*{event.endTime}"></div>
+    <p>Owner: <span th:text="${event.owner.username}"></span></p>
+<!--    <a href="#" class="showForm" id="${event.id}">Add comment</a>-->
+    <form th:action="@{|/addComment/${event.id}|}" class="addForm" th:method="post">
+        <textarea name="commentText" ></textarea>
+        <input type="submit" class="commentBtn" name="commentTextInput">
+    </form>
+
+
+    <div th:each="comment:${event.getComments()}">
+        <div th:text="${comment.comment_text}"></div>
+
+    </div>
 
     <a th:href="@{|/events/${event.id}|}">View Event</a>
 
     <p>Owner: <span th:text="${event.owner.username}"></span> </p>
 
+
+<!--    <script>-->
+<!--        $(".showForm").on("click", function () {-->
+<!--            $(".addForm").toggle();-->
+<!--        });-->
+<!--    </script>-->
 </div>
-</body>
-</nav>
+
+
 </html>
