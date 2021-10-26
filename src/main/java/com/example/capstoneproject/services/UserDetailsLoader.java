@@ -21,8 +21,12 @@ public class UserDetailsLoader implements UserDetailsService {
         User user = users.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("No user found for " + username);
-        }
 
+        } else if (!user.getIsActive()) {
+            System.out.println(username + " is banned");
+            throw new UsernameNotFoundException(username +"is banned");
+
+        }
         return new UserWithRoles(user);
     }
-}
+    }
