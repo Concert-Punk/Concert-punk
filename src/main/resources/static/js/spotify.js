@@ -1,9 +1,9 @@
 $(document).ready(function() {
-    var clickedKeyword = "";
+    let clickedKeyword = "";
 
 
     function createAccessToken(callback) {
-        var queryURL = "https://accounts.spotify.com/api/token";
+        let queryURL = "https://accounts.spotify.com/api/token";
         $.ajax({
             url: queryURL,
             method: "POST",
@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 
     function getAccessToken(callback) {
-        var accessToken = sessionStorage.getItem("accessToken");
+        let accessToken = sessionStorage.getItem("accessToken");
         if (accessToken !== null) {
             callback(accessToken);
         }
@@ -33,7 +33,7 @@ $(document).ready(function() {
     }
 
     function searchWithToken(accessToken) {
-        var artist = $("#search-input").val().trim();
+        let artist = $("#search-input").val().trim();
         spotifySearch(accessToken, artist);
         $("#displayArtist").text(titleCase(artist));
     }
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
     function spotifySearch(accessToken, artist) {
         console.log(accessToken);
-        var queryURL = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist&market=US&limit=10";
+        let queryURL = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist&market=US&limit=10";
         console.log(queryURL);
         console.log(artist);
         $.ajax({
@@ -54,9 +54,9 @@ $(document).ready(function() {
                 "Authorization": "Bearer " + accessToken,
             }
         }).done(function(response) {
-            var results = response;
+            let results = response;
             console.log(results);
-            var artistID = results.artists.items[0].id;
+            let artistID = results.artists.items[0].id;
             // console.log(results.artists.items[0]);
             spotifyTopTracks(accessToken, artistID);
             spotifyRelatedArtist(accessToken, artistID);
@@ -67,7 +67,7 @@ $(document).ready(function() {
 
     function spotifyTopTracks(accessToken, artistID) {
         $("#tracksContainer")
-        var queryURL = "https://api.spotify.com/v1/artists/" + artistID + "/top-tracks?country=US";
+        let queryURL = "https://api.spotify.com/v1/artists/" + artistID + "/top-tracks?country=US";
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -75,19 +75,31 @@ $(document).ready(function() {
                 "Authorization": "Bearer " + accessToken,
             }
         }).done(function(response) {
-            var results = response;
+            let results = response;
             console.log(results);
-            for (var i = 0; i < Math.min(results.tracks.length, 5); i++) {
+            for (let i = 0; i < Math.min(results.tracks.length, 5); i++) {
 
-                var trackName = results.tracks[i].name;
+                let trackName = results.tracks[i].name;
+                let audioPreview = results.tracks[i].preview_url;
 
-                var albumDiv = $("<a>");
+                let albumDiv = $("<a>");
                 albumDiv.addClass("music-item");
                 albumDiv.text(trackName);
 
-                var image = $("<img>");
+                let image = $("<img>");
                 image.attr("src", results.tracks[i].album.images[1].url);
                 console.log(image);
+
+
+                    document.getElementById('musicSample').innerHTML=`
+    <audio controls id='background_audio1' >
+        <source src='${audioPreview}' />
+         </audio>
+  
+  `;
+
+                     console.log(audioPreview)
+
 
                 albumDiv.append(image);
                 $("#tracksContainer").append(albumDiv);
@@ -100,7 +112,7 @@ $(document).ready(function() {
     function spotifyRelatedArtist(accessToken, artistID) {
         $("#relatedArtistContainer").empty();
         console.log(artistID);
-        var queryURL = "https://api.spotify.com/v1/artists/" + artistID + "/related-artists";
+        let queryURL = "https://api.spotify.com/v1/artists/" + artistID + "/related-artists";
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -108,13 +120,13 @@ $(document).ready(function() {
                 "Authorization": "Bearer " + accessToken,
             }
         }).done(function(response) {
-            var results = response;
+            let results = response;
             console.log(results);
 
-            for (var j = 0; j < 5; j++) {
-                var relatedArtist = results.artists[j].name;
+            for (let j = 0; j < 5; j++) {
+                let relatedArtist = results.artists[j].name;
 
-                var displayRelatedArtist = $('<li class="search-keyword">' + relatedArtist + '</li>').css("margin", "5px");
+                let displayRelatedArtist = $('<li class="search-keyword">' + relatedArtist + '</li>').css("margin", "5px");
 
                 $("#relatedArtistContainer").append(displayRelatedArtist);
             }
@@ -125,7 +137,7 @@ $(document).ready(function() {
 
     function titleCase(str) {
         str = str.toLowerCase().split(' ');
-        for (var i = 0; i < str.length; i++) {
+        for (let i = 0; i < str.length; i++) {
             str[i] = str[i].split('');
             str[i][0] = str[i][0].toUpperCase();
             str[i] = str[i].join('');
@@ -145,6 +157,7 @@ $(document).ready(function() {
         $("#displayArtist").text($(this).text());
 
     });
+
 
 
 });
