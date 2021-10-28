@@ -101,12 +101,12 @@ public class UserController {
 
 
 //    User Delete Account
-@PostMapping("/users/edit/{id}")
-public String changeStatus (@PathVariable long id, @RequestParam(name="status") String status){
-    User userInDB = usersDao.getById(id);
-    userInDB.setIsActive(status.equals();
-    usersDao.save(userInDB);
-    return  "redirect:/home";
+@PostMapping("/users/delete")
+public String deleteUser() {
+    User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User userInDB = usersDao.getById(currentUserSession.getId());
+  usersDao.delete(userInDB);
+    return  "redirect:/";
 }
 
 
