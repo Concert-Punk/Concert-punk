@@ -100,4 +100,14 @@ public class UserController {
 
 
 
+//    User Delete Account
+@PostMapping("/users/delete")
+public String deleteUser() {
+    User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User userInDB = usersDao.getById(currentUserSession.getId());
+  usersDao.delete(userInDB);
+    return  "redirect:/";
+}
+
+
 }

@@ -55,13 +55,6 @@ public class User {
     @Setter
     private List<Event> events;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    @Getter
-//    @Setter
-//    private User owner;
-
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @Getter
     @Setter
@@ -85,12 +78,6 @@ public class User {
     @Getter @Setter
     private Event event;
 
-//    @ManyToOne
-//    @JoinColumn(name="event_id")
-//    @Getter @Setter
-//    private Event event;
-
-
     @ManyToMany(mappedBy = "potentialAttendees")
     private List<Event> potentialEvents;
 
@@ -98,9 +85,6 @@ public class User {
     @Getter
     @Setter
     private List<EventPhoto> eventphoto;
-
-
-
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
