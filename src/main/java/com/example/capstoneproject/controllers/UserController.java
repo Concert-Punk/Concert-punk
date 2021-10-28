@@ -100,4 +100,14 @@ public class UserController {
 
 
 
+//    User Delete Account
+@PostMapping("/users/edit/{id}")
+public String changeStatus (@PathVariable long id, @RequestParam(name="status") String status){
+    User userInDB = usersDao.getById(id);
+    userInDB.setIsActive(status.equals();
+    usersDao.save(userInDB);
+    return  "redirect:/home";
+}
+
+
 }
