@@ -169,32 +169,37 @@
                     url: `https://api.seatgeek.com/2/events/${events_id}?client_id=MjM5OTczOTd8MTYzNDY3MzY2Ni42ODE5ODE&geoip=true`,
                     async: true,
                     dataType: "json",
-                    success: function (html) {
-                        console.log(html)
+                    success: function (res) {
+                        console.log(res)
+
+                        const savedEvent = {
+                            url: res.url,
+                            poster: res.performers[0].image,
+                            title: res.title,
+                            venue: res.venue.name,
+                            time: res.datetime_local,
+                        }
+                        saveEvent(savedEvent);
                     }
                 })
 
-                $.post({
-                    url: '/SaveEvent/' + events_id,
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(data),
-                    beforeSend: function (jqXHR) {
-                        jqXHR.setRequestHeader('X-CSRF-Token', token,)
-                    },
-                    dataType: "json",
-                    success: function (html) {
-                        console.log(html);
-                    }
-                });
-                provider($)
-            });
-            $('.saveEvent').mouseup(function (e) {
-                e.preventDefault();
-                provider($);
+
+                function saveEvent(eventFromAPI) {
+                    $.post({
+                        url: '/saveEvent/' + event_id,
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(eventFromAPI),
+                        beforeSend: function (jqXHR) {
+                            jqXHR.setRequestHeader('X-CSRF-Token', token,)
+                        },
+                        dataType: "json",
+                        success: function (html) {
+                            console.log(html);
+                        }
+                    });
+                }
             })
-
         }
-
 
 
 </script>

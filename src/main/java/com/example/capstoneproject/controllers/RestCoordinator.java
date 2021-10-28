@@ -4,10 +4,7 @@ import com.example.capstoneproject.models.Event;
 import com.example.capstoneproject.models.User;
 import com.example.capstoneproject.repos.EventsRepository;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RestCoordinator {
@@ -18,10 +15,11 @@ public class RestCoordinator {
         this.eventsDao = eventsDao;
     }
 
-//    @PostMapping(value="/saveEvent",
-//    produces = MediaType.APPLICATION_JSON_VALUE)
-//    public Event saveEvent(@RequestParam(required = false) Long events_id) {
-//        Event event = eventsDao.findOne(events_id);
-//        return eventsDao.save(event);
-//    }
+    @PostMapping(value="/saveEvent",
+    produces = MediaType.APPLICATION_JSON_VALUE)
+    public Event saveEvent(@RequestBody(required = false) Event event) {
+        System.out.println(event);
+//        Event event = eventsDao.getOne(events_id);
+        return eventsDao.save(event);
+    }
 }

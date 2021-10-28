@@ -67,6 +67,13 @@
         <h1>Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
     </div>
 
+<!--    <div th:each="event : ${user.events}">-->
+<!--        <h3 th:text="${event.title}">Title</h3>-->
+<!--        <div th:text="${event.description}"></div>-->
+<!--        <div th:text="*{event.location}"></div>-->
+<!--        <div th:text="*{event.startTime}"></div>-->
+<!--        <div th:text="*{event.endTime}"></div>-->
+
   <div th:if='${theCurrentUser}'>
       <form th:action="@{/admin/AdminHome}">
       <button class="btn btn-primary" type="submit">
