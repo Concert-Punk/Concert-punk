@@ -39,7 +39,7 @@
             </div>
             <div class="nav-item">
                 <div sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="/events"><span th:text="${#authentication.principal.username}"/> created Events</a>
+                <a class="nav-link" href="/events"><span th:text="${#authentication.principal.username}"/>'s created Events</a>
                 </div>
             </div>
             <div class="nav-item">
@@ -62,13 +62,13 @@
     </div>
 
     <div sec:authorize="isAuthenticated()">
-        <h1>Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
+        <h1>Welcome Administrator <span th:text="${#authentication.principal.username}"/>!</h1>
     </div>
 
   <div th:if='${theCurrentUser}'>
       <form th:action="@{/admin/AdminHome}">
       <button class="btn btn-primary" type="submit">
-          Hello
+          Admin Home
       </button>
           </form>
   </div>
