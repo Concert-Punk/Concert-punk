@@ -65,13 +65,6 @@
         <h1>Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
     </div>
 
-  <div th:if='${theCurrentUser}'>
-      <form th:action="@{/admin/AdminHome}">
-      <button class="btn btn-primary" type="submit">
-          Hello
-      </button>
-          </form>
-  </div>
 
 
 </nav>

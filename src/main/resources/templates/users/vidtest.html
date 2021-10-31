@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<form>
+    <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>
+    <input id="add-artist" type="submit" value="Search"/>
+</form>
+<div class="title">YouTube Video</div>
+<p><span id="youTube"></span></p>
+</body>
+</html>
+
+
+
+
+
+<h3 >Songs</h3>
+<table class="table table-hover table-dark">
+    <thead>
+    <tr>
+        <th scope="col"></th>
+        <th scope="col">Title</th>
+        <th scope="col">Artist</th>
+        <th scope="col">Dur</th>
+        <th scope="col">Plays</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row"><a href="">+</a></th>
+        <td id="description">16 Lines</td>
+        <td id="artist">Lil Peep</td>
+        <td id="duration">3:32</td>
+        <td>30,000</td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+
+<script>
+
+
+    var vidWidth = 400;
+    var vidHeight = 300;
+    var vidResults = 10;
+
+
+
+
+
+    //The q parameter specifies the query term to search for.
+    // run get request on api
+    function youtubeSearch(q) {
+        $.get(
+            "https://www.googleapis.com/youtube/v3/search", {
+                part: "snippet, id",
+                q: q,
+                type: "video",
+                maxResults: vidResults,
+                key: 'AIzaSyBylEuSlqvJ3UM2PPqrRkW2vNPZQo1ccuo',
+
+            },
+            function(data) {
+                var output;
+                $.each(data.items, function(i, item) {
+
+                    console.log(item);
+                    let videoId = item.id.videoId;
+                    document.getElementById('youTube').innerHTML  += '<li><iframe height="' + vidHeight + '" width="' + vidWidth + '" src=\"https://www.youtube.com/embed/' + videoId + '\"></li>';
+                    $("#youTube").html(output);
+                  //  console.log(item.snippet.description);
+                    document.getElementById('description').innerHTML = item.snippet.title;
+                    document.getElementById('artist').innerHTML = item.snippet.channelTitle
+
+
+                    let durationUrl = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' + videoId + '&key=AIzaSyBylEuSlqvJ3UM2PPqrRkW2vNPZQo1ccuo'
+
+                    axios.get(durationUrl).then(resp => {
+                    //    Need to match ids to append apprpriate durationtimes.
+                        let id2 = items[0].id
+                    //    Id2 needs to match the video Id for the1ST CALLL to match durations.
+                    document.getElementById('duration').innerHTML = resp.data.items[0].contentDetails.duration
+                        console.log(resp.data);
+                    });
+                });
+
+            }
+
+        );
+    }
+
+    $(document).on("click", "#add-artist", function(event) {
+        event.preventDefault();
+        var q = $("#search-input").val().trim();
+        youtubeSearch(q);
+
+
+    });
+
+    $(document).on("click", ".search-keyword", function() {
+        var q = $(this).text();
+        youtubeSearch(q);
+    });
+
+
+</script>
