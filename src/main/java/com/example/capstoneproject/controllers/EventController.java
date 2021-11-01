@@ -2,45 +2,66 @@ package com.example.capstoneproject.controllers;
 
 import com.example.capstoneproject.models.Comment;
 import com.example.capstoneproject.models.Event;
+import com.example.capstoneproject.models.Roles;
 import com.example.capstoneproject.models.User;
+import com.example.capstoneproject.repos.CommentsRepository;
 import com.example.capstoneproject.repos.EventsRepository;
 import com.example.capstoneproject.repos.UsersRepository;
 import com.example.capstoneproject.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 public class EventController {
     private final EventsRepository eventsDao;
-    private final UsersRepository usersDao;
-    private final EmailService emailService;
 
-    public EventController(EventsRepository eventsDao, UsersRepository usersDao, EmailService emailService) {
+    public EventController(EventsRepository eventsDao, UsersRepository usersDao, EmailService emailService, CommentsRepository commentsDao) {
         this.eventsDao = eventsDao;
         this.usersDao = usersDao;
         this.emailService = emailService;
+        this.commentsDao = commentsDao;
     }
+
+    private final UsersRepository usersDao;
+    private final EmailService emailService;
+    private CommentsRepository commentsDao;
+
+
 
     @GetMapping("/events")
     public String showEvents(Model model, Comment comment) {
         List<Event> allEvents = eventsDao.findAll();
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDB = usersDao.getById(currentUser.getId());
         model.addAttribute("events", allEvents);
         model.addAttribute("comment" ,comment);
+        model.addAttribute("theCurrentUser", userInDB);
+        model.addAttribute("adminCheck", userInDB.getRole() == Roles.admin);
         return "events/index";
     }
+
+    @PostMapping(value = "/deleteComment/{commentId}")
+    public String deleteComment(@PathVariable Long commentId, @RequestParam(name="deleteCommentText") String comment, Model model ) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDB = usersDao.getById(currentUser.getId());
+        commentsDao.deleteById(commentId);
+        model.addAttribute("theCurrentUser", userInDB);
+        return "redirect:/events";
+    }
+
 
     @GetMapping("/events/{id}")
     public String showOneEvent(@PathVariable long id, Model model) {
         Event event = eventsDao.getById(id);
         model.addAttribute("eventId", id);
         model.addAttribute("event", event);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDB = usersDao.getById(currentUser.getId());
+        model.addAttribute("theCurrentUser", userInDB);
         return "events/show";
     }
 

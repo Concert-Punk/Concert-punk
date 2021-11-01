@@ -13,9 +13,10 @@
     <div th:text="${event.startTime}">start time</div>
     <div th:text="${event.endTime}">end time</div>
 
-    <a th:href="@{|/events/edit/${eventId}|}">Edit Event</a>
+    <a th:if="${theCurrentUser.getId() == event.owner.getId()}" th:href="@{|/events/edit/${eventId}|}">Edit Event</a>
+
     <form th:action="@{|/events/delete/${eventId}|}" th:method="post">
-        <button type="submit">Delete</button>
+        <button  th:if="${theCurrentUser.getId() == event.owner.getId()}" type="submit">Delete</button>
     </form>
 </div>
 </body>
