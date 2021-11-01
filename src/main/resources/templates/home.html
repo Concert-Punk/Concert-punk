@@ -174,10 +174,11 @@
 
                         const savedEvent = {
                             url: res.url,
-                            poster: res.performers[0].image,
+                            image_url: res.performers[0].image,
                             title: res.title,
-                            venue: res.venue.name,
-                            time: res.datetime_local,
+                            location: res.venue.name,
+                            startTime: res.datetime_local,
+                            owner_id
                         }
                         saveEvent(savedEvent);
                     }
@@ -186,7 +187,7 @@
 
                 function saveEvent(eventFromAPI) {
                     $.post({
-                        url: '/saveEvent/' + event_id,
+                        url: '/saveEvent',
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify(eventFromAPI),
                         beforeSend: function (jqXHR) {
