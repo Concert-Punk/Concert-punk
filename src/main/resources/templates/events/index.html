@@ -76,6 +76,13 @@
     <div th:each="comment:${event.getComments()}">
         <div th:text="${comment.comment_text}"></div>
 
+        <div th:if='${theCurrentUser}'>
+            <form>
+                <button class="btn btn-danger" type="submit">
+                    Delete Comment
+                </button>
+            </form>
+        </div>
     </div>
 
     <a th:href="@{|/events/${event.id}|}">View Event</a>
@@ -83,11 +90,7 @@
     <p>Owner: <span th:text="${event.owner.username}"></span> </p>
 
 
-<!--    <script>-->
-<!--        $(".showForm").on("click", function () {-->
-<!--            $(".addForm").toggle();-->
-<!--        });-->
-<!--    </script>-->
+
 </div>
 
 
