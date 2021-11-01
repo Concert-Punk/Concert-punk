@@ -34,14 +34,8 @@
         <th scope="col">Plays</th>
     </tr>
     </thead>
-    <tbody>
-    <tr>
-        <th scope="row"><a href="">+</a></th>
-        <td id="description">16 Lines</td>
-        <td id="artist">Lil Peep</td>
-        <td id="duration">3:32</td>
-        <td>30,000</td>
-    </tr>
+    <tbody id="youtubeData">
+
     </tbody>
 </table>
 
@@ -72,28 +66,42 @@
                 key: 'AIzaSyBylEuSlqvJ3UM2PPqrRkW2vNPZQo1ccuo',
 
             },
-            function(data) {
+            function(youTubeBasicData) {
                 var output;
-                $.each(data.items, function(i, item) {
+                $.each(youTubeBasicData.items, function(i, item) {
 
                     console.log(item);
                     let videoId = item.id.videoId;
                     document.getElementById('youTube').innerHTML  += '<li><iframe height="' + vidHeight + '" width="' + vidWidth + '" src=\"https://www.youtube.com/embed/' + videoId + '\"></li>';
                     $("#youTube").html(output);
                   //  console.log(item.snippet.description);
-                    document.getElementById('description').innerHTML = item.snippet.title;
-                    document.getElementById('artist').innerHTML = item.snippet.channelTitle
+
 
 
                     let durationUrl = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' + videoId + '&key=AIzaSyBylEuSlqvJ3UM2PPqrRkW2vNPZQo1ccuo'
-
+                    let viewCountUrl = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + videoId + '&key=AIzaSyBylEuSlqvJ3UM2PPqrRkW2vNPZQo1ccuo'
                     axios.get(durationUrl).then(resp => {
-                    //    Need to match ids to append apprpriate durationtimes.
-                        let id2 = items[0].id
-                    //    Id2 needs to match the video Id for the1ST CALLL to match durations.
-                    document.getElementById('duration').innerHTML = resp.data.items[0].contentDetails.duration
+                    //1.Duration and plays dont always match appropriate track, will need to match everything by the videoID
+                    //2.I need to iterate through them not happening so far
+                        axios.get(viewCountUrl).then(response => {
+                            let dynamicBoii=    `   <tr>
+                        <th scope="row"><a href="">+</a></th>
+                        <td id="description">${item.snippet.title}</td>
+                        <td id="artist">${item.snippet.channelTitle}</td>
+                        <td id="duration">${resp.data.items[0].contentDetails.duration}</td>
+                        <td id="viewCount">${ response.data.items[0].statistics.viewCount}</td>
+                    </tr>`;
+                            document.getElementById('youtubeData').innerHTML += dynamicBoii;
+                            console.log(response.data)
+                            console.log(response.data.items[0].statistics.viewCount)
+
+                        })
+
+
                         console.log(resp.data);
                     });
+
+
                 });
 
             }

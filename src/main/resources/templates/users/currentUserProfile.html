@@ -62,7 +62,15 @@
     </div>
 
     <div sec:authorize="isAuthenticated()">
-        <h1>Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
+        <h1>Welcome Administrator <span th:text="${#authentication.principal.username}"/>!</h1>
+    </div>
+
+    <div th:if='${theCurrentUser}'>
+        <form th:action="@{/admin/AdminHome}">
+            <button class="btn btn-primary" type="submit">
+                Admin Home
+            </button>
+        </form>
     </div>
 
 
