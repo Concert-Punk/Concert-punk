@@ -16,6 +16,11 @@
     </form>
 </div>
 
+<div class="container">
+    <form th:action="@{|/profile/${id}/unfollow|}" class="unfollowBtn" th:method="post">
+        <button  type="submit" >Unfollow</button>
+    </form>
+</div>
 
 </body>
 </html>
