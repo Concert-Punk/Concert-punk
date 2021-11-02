@@ -78,7 +78,7 @@
         <div th:text="${comment.comment_text}"></div>
 
         <form th:action="@{|/deleteComment/${comment.id}|}" class="deleteBtn" th:method="post">
-            <button th:if="${theCurrentUser.getId() == event.owner.getId()}" class="btn btn-danger" type="submit" name="deleteCommentText">
+            <button th:if="${theCurrentUser.getId() == comment.user.id}" class="btn btn-danger" type="submit" name="deleteCommentText">
                 Delete Comment
             </button>
             <button th:if="${adminCheck}" class="btn btn-danger" type="submit" name="deleteCommentText">
