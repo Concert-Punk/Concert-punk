@@ -91,7 +91,7 @@ public class User {
     @Getter
     @Setter
     private List<user_photo_table>  userphotos;
-
+//
 //    @Getter
 //    @Setter
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "songs")
