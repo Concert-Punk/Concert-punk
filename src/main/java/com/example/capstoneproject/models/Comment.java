@@ -26,12 +26,6 @@ public class Comment {
     @Setter
     private String comment_text;
 
-//
-//    @Column(nullable = false, unique = false)
-//    @Getter
-//    @Setter
-//    @CreationTimestamp
-//    private Timestamp createdAt;
 
 
     @ManyToOne
