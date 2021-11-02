@@ -136,9 +136,11 @@ public String deleteUser() {
         List<User>following = userInDB.getFollowing();
         following.add(userToFollow);
         userInDB.setFollowing(following);
+        model.addAttribute("isFollowing",userInDB.getFollowing() == userToFollow);
         usersDao.save(userInDB);
         System.out.println("Works");
         return "redirect:/profile/" + id;
+
     }
 
 //User follow member
