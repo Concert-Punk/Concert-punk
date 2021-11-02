@@ -3,12 +3,9 @@ package com.example.capstoneproject.models;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name="Users_playlist_sharing")
@@ -27,10 +24,6 @@ public class User_playlist_sharing {
     @Id
     public Long getId() {
         return id;
-    }
-
-    public User_playlist_sharing(Long id) {
-        this.id = id;
     }
 
 }
