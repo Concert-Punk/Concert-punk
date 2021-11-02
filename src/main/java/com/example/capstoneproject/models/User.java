@@ -66,6 +66,8 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "followed_id")}
     )
+    @Getter
+    @Setter
     private List<User> following;
 
     @ManyToMany(mappedBy = "following")
