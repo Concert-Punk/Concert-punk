@@ -75,6 +75,7 @@
 
 
     <div th:each="comment:${event.getComments()}">
+        <a th:href="@{|/profile/${comment.user.id}|}">  <span th:text="${comment.user.username}"></span></a>
         <div th:text="${comment.comment_text}"></div>
 
         <form th:action="@{|/deleteComment/${comment.id}|}" class="deleteBtn" th:method="post">
