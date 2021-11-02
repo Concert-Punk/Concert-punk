@@ -92,6 +92,12 @@ public class User {
     @Setter
     private List<user_photo_table>  userphotos;
 
+//    @Getter
+//    @Setter
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "songs")
+//    private List<Song> songs;
+
+
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
         email = copy.email;
