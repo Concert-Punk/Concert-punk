@@ -141,6 +141,19 @@ public String deleteUser() {
         return "redirect:/profile/" + id;
     }
 
+//User follow member
+
+    @PostMapping("/profile/{id}/unfollow")
+    public String unfollowMember (@PathVariable Long id,Model model){
+        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDB = usersDao.getById(currentUserSession.getId());
+        User userToUnfollow = usersDao.getById(id);
+        List<User>following = userInDB.getFollowing();
+        following.remove(userToUnfollow);
+       // userInDB.setFollowing(following);
+        usersDao.save(userInDB);
+        return "redirect:/profile/" + id;
+    }
 
 
 
