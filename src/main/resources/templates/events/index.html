@@ -20,6 +20,15 @@
     }</style>
 </head>
 
+<style>
+    .nav-link{
+        color: black;
+    }
+    .btn-outline-success{
+        color: black;
+    }
+</style>
+
 <nav th:fragment="navbar">
     <div style="background-color: #f67f27">
         <div style="justify-content: center">
@@ -35,7 +44,7 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </div>
             <div class="nav-item">
-                <a class="nav-link" href="/events/edit">Edit Events</a>
+                <a class="nav-link" href="/events/edit/eventToEdit.id">Edit Events</a>
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="/profile">Profile</a>
@@ -76,6 +85,13 @@
     <div th:each="comment:${event.getComments()}">
         <div th:text="${comment.comment_text}"></div>
 
+        <div th:if='${theCurrentUser}'>
+            <form>
+                <button class="btn btn-danger" type="submit">
+                    Delete Comment
+                </button>
+            </form>
+        </div>
     </div>
 
     <a th:href="@{|/events/${event.id}|}">View Event</a>
@@ -83,11 +99,7 @@
     <p>Owner: <span th:text="${event.owner.username}"></span> </p>
 
 
-<!--    <script>-->
-<!--        $(".showForm").on("click", function () {-->
-<!--            $(".addForm").toggle();-->
-<!--        });-->
-<!--    </script>-->
+
 </div>
 
 

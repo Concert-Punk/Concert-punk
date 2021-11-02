@@ -92,7 +92,7 @@ $(document).ready(function () {
 
 
                 document.getElementById('musicSample').innerHTML += `
-                     <audio controls> <source src='${audioPreview}'/></audio> `;
+                     <audio controls id="musicSample"> <source src='${audioPreview}'/></audio> `;
 
                        console.log(audioPreview)
 

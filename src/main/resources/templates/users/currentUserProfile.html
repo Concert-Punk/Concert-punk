@@ -23,6 +23,15 @@
     <title></title>
 </head>
 
+<style>
+    .nav-link{
+        color: black;
+    }
+    .btn-outline-success{
+        color: black;
+    }
+</style>
+
 <nav th:fragment="navbar">
     <div style="background-color: #f67f27">
         <div style="justify-content: center">
@@ -62,7 +71,7 @@
     </div>
 
     <div sec:authorize="isAuthenticated()">
-        <h1>Welcome <span th:text="${#authentication.principal.getRole()}"></span><span th:text="${#authentication.principal.username}"/>!</h1>
+        <h1>Welcome <span sec:authentication="principal.authorities"></span> <span th:text="${#authentication.principal.username}"/>!</h1>
     </div>
 
   <div th:if='${theCurrentUser}'>
@@ -72,7 +81,5 @@
       </button>
           </form>
   </div>
-
-
 </nav>
 </html>
