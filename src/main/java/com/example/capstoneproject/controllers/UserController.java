@@ -115,4 +115,12 @@ public String deleteUser() {
 }
 
 
+
+@GetMapping("/profile/{id}")
+    public String viewProfiles(@PathVariable Long id, Model model){
+    User userInDB = usersDao.getById(id);
+    model.addAttribute("viewedUser", userInDB.getUsername());
+        return "users/viewedProfile";
+}
+
 }
