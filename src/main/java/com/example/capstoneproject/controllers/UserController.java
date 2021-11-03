@@ -160,6 +160,14 @@ public String deleteUser() {
         return "redirect:/profile/" + id;
     }
 
-
+//viewFollowers
+@GetMapping("/profile/{id}/viewFollowers")
+public String viewFollowers(Model model){
+    User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User userInDB = usersDao.getById(currentUserSession.getId());
+    List<User>following = userInDB.getFollowing();
+        model.addAttribute("following",following);
+    return "users/viewFollowers";
+}
 
 }
