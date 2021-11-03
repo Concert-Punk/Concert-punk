@@ -66,6 +66,8 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "followed_id")}
     )
+    @Getter
+    @Setter
     private List<User> following;
 
     @ManyToMany(mappedBy = "following")
@@ -91,6 +93,12 @@ public class User {
     @Getter
     @Setter
     private List<user_photo_table>  userphotos;
+
+//    @Getter
+//    @Setter
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "songs")
+//    private List<Song> songs;
+
 
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent

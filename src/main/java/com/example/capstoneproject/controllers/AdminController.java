@@ -1,8 +1,7 @@
 package com.example.capstoneproject.controllers;
 
 
-import com.example.capstoneproject.models.Comment;
-import com.example.capstoneproject.models.Event;
+
 import com.example.capstoneproject.models.Roles;
 import com.example.capstoneproject.models.User;
 import com.example.capstoneproject.repos.CommentsRepository;
@@ -59,11 +58,9 @@ public class AdminController {
         return  "redirect:/admin/AdminHome";
         }
 
-    @PostMapping(value = "/deleteComment/{postId}")
-    public String deleteComment() {
 
 
-        return "redirect:/events";
-    }
+
+
 
 }
