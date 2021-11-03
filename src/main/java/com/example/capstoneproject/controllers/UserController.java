@@ -120,8 +120,12 @@ public String deleteUser() {
 
 @GetMapping("/profile/{id}")
     public String viewProfiles(@PathVariable Long id, Model model){
-    User userInDB = usersDao.getById(id);
-    model.addAttribute("viewedUser", userInDB.getUsername());
+    User viewUser = usersDao.getById(id);
+    User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User userInDB = usersDao.getById(currentUserSession.getId());
+    boolean isFollowing = userInDB.getFollowing().contains(viewUser);
+    model.addAttribute("isFollowing", isFollowing);
+    model.addAttribute("viewedUser", viewUser);
     model.addAttribute("id",id );
         return "users/viewedProfile";
 }
@@ -136,13 +140,14 @@ public String deleteUser() {
         List<User>following = userInDB.getFollowing();
         following.add(userToFollow);
         userInDB.setFollowing(following);
+        model.addAttribute("isFollowing",userInDB.getFollowing() == userToFollow);
         usersDao.save(userInDB);
         System.out.println("Works");
         return "redirect:/profile/" + id;
+
     }
 
 //User follow member
-
     @PostMapping("/profile/{id}/unfollow")
     public String unfollowMember (@PathVariable Long id,Model model){
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
