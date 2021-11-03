@@ -1,8 +1,11 @@
 package com.example.capstoneproject.controllers;
 
 
+
 import com.example.capstoneproject.models.Roles;
 import com.example.capstoneproject.models.User;
+import com.example.capstoneproject.repos.CommentsRepository;
+import com.example.capstoneproject.repos.EventsRepository;
 import com.example.capstoneproject.repos.UsersRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,20 +16,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class AdminController {
     private final UsersRepository userDao;
+    private CommentsRepository commentsDao;
+    private EventsRepository eventsDao;
 
-    public AdminController(UsersRepository userDao) {
+    public AdminController(UsersRepository userDao, CommentsRepository commentsDao, EventsRepository eventsDao) {
         this.userDao = userDao;
+        this.commentsDao = commentsDao;
+        this.eventsDao = eventsDao;
     }
+
 
     @GetMapping("/admin/AdminHome")
     public String adminHome(Model model) {
         List<User> usersToShow = userDao.findAll();
         model.addAttribute("users", usersToShow);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDB = userDao.getById(currentUser.getId());
+        model.addAttribute("theCurrentUser", userInDB.getRole() == Roles.admin);
         return checkifAdmin("admin/AdminHome");
     }
 
@@ -47,6 +57,9 @@ public class AdminController {
         userDao.save(userInDB);
         return  "redirect:/admin/AdminHome";
         }
+
+
+
 
 
 

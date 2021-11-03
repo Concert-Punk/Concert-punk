@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class UserController {
     private UsersRepository usersDao;
@@ -96,6 +98,61 @@ public class UserController {
         System.out.println(newComment);
       commentsDao.save(newComment);
         return "redirect:/events";
+    }
+
+
+
+
+
+
+
+
+    //    User Delete Account
+@PostMapping("/users/delete")
+public String deleteUser() {
+    User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User userInDB = usersDao.getById(currentUserSession.getId());
+  usersDao.delete(userInDB);
+    return  "redirect:/";
+}
+
+
+
+@GetMapping("/profile/{id}")
+    public String viewProfiles(@PathVariable Long id, Model model){
+    User userInDB = usersDao.getById(id);
+    model.addAttribute("viewedUser", userInDB.getUsername());
+    model.addAttribute("id",id );
+        return "users/viewedProfile";
+}
+
+//User follow member
+
+    @PostMapping("/profile/{id}/follow")
+    public String followMember (@PathVariable Long id,Model model){
+        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDB = usersDao.getById(currentUserSession.getId());
+        User userToFollow = usersDao.getById(id);
+        List<User>following = userInDB.getFollowing();
+        following.add(userToFollow);
+        userInDB.setFollowing(following);
+        usersDao.save(userInDB);
+        System.out.println("Works");
+        return "redirect:/profile/" + id;
+    }
+
+//User follow member
+
+    @PostMapping("/profile/{id}/unfollow")
+    public String unfollowMember (@PathVariable Long id,Model model){
+        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDB = usersDao.getById(currentUserSession.getId());
+        User userToUnfollow = usersDao.getById(id);
+        List<User>following = userInDB.getFollowing();
+        following.remove(userToUnfollow);
+       // userInDB.setFollowing(following);
+        usersDao.save(userInDB);
+        return "redirect:/profile/" + id;
     }
 
 

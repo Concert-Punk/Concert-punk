@@ -73,21 +73,26 @@
     </form>
 
 
+
     <div th:each="comment:${event.getComments()}">
+        <a th:href="@{|/profile/${comment.user.id}|}">  <span th:text="${comment.user.username}"></span></a>
         <div th:text="${comment.comment_text}"></div>
 
-    </div>
+        <form th:action="@{|/deleteComment/${comment.id}|}" class="deleteBtn" th:method="post">
+            <button th:if="${theCurrentUser.getId() == comment.user.id}" class="btn btn-danger" type="submit" name="deleteCommentText">
+                Delete Comment
+            </button>
+            <button th:if="${adminCheck}" class="btn btn-danger" type="submit" name="deleteCommentText">
+                Delete Comment
+            </button>
+        </form>
 
     <a th:href="@{|/events/${event.id}|}">View Event</a>
 
-    <p>Owner: <span th:text="${event.owner.username}"></span> </p>
+<!--    <p>Owner: <span th:text="${event.owner.username}"></span> </p>-->
 
 
-<!--    <script>-->
-<!--        $(".showForm").on("click", function () {-->
-<!--            $(".addForm").toggle();-->
-<!--        });-->
-<!--    </script>-->
+
 </div>
 
 
