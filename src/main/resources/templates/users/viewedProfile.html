@@ -8,15 +8,15 @@
 
 </head>
 <body>
-<h1><span th:text="${viewedUser}"></span>'s Profile</h1>
+<h1><span th:text="${viewedUser.username}"></span>'s Profile</h1>
 
-<div class="container">
-    <form th:if='${isFollowing}' th:action="@{|/profile/${id}/follow|}" class="followBtn" th:method="post">
+<div th:if="${!isFollowing}" class="container">
+    <form th:action="@{|/profile/${id}/follow|}" class="followBtn" th:method="post">
     <button  type="submit" >Follow</button>
     </form>
 </div>
 
-<div class="container">
+<div th:if="${isFollowing}" class="container">
     <form th:action="@{|/profile/${id}/unfollow|}" class="unfollowBtn" th:method="post">
         <button  type="submit" >Unfollow</button>
     </form>
