@@ -51,6 +51,7 @@ public class UserController {
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userInDB = usersDao.getById(currentUserSession.getId());
         model.addAttribute("theCurrentUser", userInDB.getRole() == Roles.admin);
+        model.addAttribute("User", userInDB);
         return "users/currentUserProfile";
     }
 
@@ -62,6 +63,19 @@ public class UserController {
         model.addAttribute("viewedUser", userInDB.getRole() == Roles.admin);
         return "users/viewedProfile";
     }
+
+    @GetMapping("/user/{username}/events")
+    public String showUserEvents(
+            @PathVariable String username,
+            Model model
+    ){
+
+        User userToDisplay = usersDao.findByUsername(username);
+        model.addAttribute("user",userToDisplay);
+
+        return "users/currentUserProfile";
+    }
+
 
     @GetMapping("/users/edit")
     public String showEditUserForm(Model model) {
@@ -120,8 +134,12 @@ public String deleteUser() {
 
 @GetMapping("/profile/{id}")
     public String viewProfiles(@PathVariable Long id, Model model){
-    User userInDB = usersDao.getById(id);
-    model.addAttribute("viewedUser", userInDB.getUsername());
+    User viewUser = usersDao.getById(id);
+    User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User userInDB = usersDao.getById(currentUserSession.getId());
+    boolean isFollowing = userInDB.getFollowing().contains(viewUser);
+    model.addAttribute("isFollowing", isFollowing);
+    model.addAttribute("viewedUser", viewUser);
     model.addAttribute("id",id );
         return "users/viewedProfile";
 }
@@ -136,11 +154,12 @@ public String deleteUser() {
         List<User>following = userInDB.getFollowing();
         following.add(userToFollow);
         userInDB.setFollowing(following);
+        model.addAttribute("isFollowing",userInDB.getFollowing() == userToFollow);
         usersDao.save(userInDB);
         System.out.println("Works");
         return "redirect:/profile/" + id;
-    }
 
+<<<<<<< HEAD
 //User follow member
 
     @PostMapping("/profile/{id}/unfollow")
@@ -153,8 +172,31 @@ public String deleteUser() {
        // userInDB.setFollowing(following);
         usersDao.save(userInDB);
         return "redirect:/profile/" + id;
+=======
+>>>>>>> 09e28e1c4403770760470f1952956e33ba724a64
     }
 
+//User follow member
+    @PostMapping("/profile/{id}/unfollow")
+    public String unfollowMember (@PathVariable Long id,Model model){
+        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDB = usersDao.getById(currentUserSession.getId());
+        User userToUnfollow = usersDao.getById(id);
+        List<User>following = userInDB.getFollowing();
+        following.remove(userToUnfollow);
+       // userInDB.setFollowing(following);
+        usersDao.save(userInDB);
+        return "redirect:/profile/" + id;
+    }
 
+//viewFollowers
+@GetMapping("/profile/{id}/viewFollowers")
+public String viewFollowers(Model model){
+    User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User userInDB = usersDao.getById(currentUserSession.getId());
+    List<User>following = userInDB.getFollowing();
+        model.addAttribute("following",following);
+    return "users/viewFollowers";
+}
 
 }
