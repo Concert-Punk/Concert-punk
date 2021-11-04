@@ -23,7 +23,8 @@ public class RestCoordinator {
     produces = MediaType.APPLICATION_JSON_VALUE)
     public Event saveEvent(@RequestBody(required = false) Event event) {
         System.out.println(event);
-//        Event event = eventsDao.getOne(events_id);
+        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        event.setOwner(currentUserSession);
         return eventsDao.save(event);
     }
 }

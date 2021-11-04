@@ -75,12 +75,11 @@
         </form>
     </div>
 
-
-<!--    <div th:each="event : ${user.events}">-->
-<!--        <h3 th:text="${event.title}">Title</h3>-->
-<!--        <div th:text="*{event.location}"></div>-->
-<!--        <div th:text="*{event.startTime}"></div>-->
-
-
 </nav>
+<div th:each="event : ${User.events}">
+    <h3 th:text="${event.title}"></h3>
+    <div th:text="*{event.location}"></div>
+    <div th:text="*{event.startTime}"></div>
+</div>
+
 </html>
