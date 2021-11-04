@@ -51,6 +51,7 @@ public class UserController {
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userInDB = usersDao.getById(currentUserSession.getId());
         model.addAttribute("theCurrentUser", userInDB.getRole() == Roles.admin);
+        model.addAttribute("User", userInDB);
         return "users/currentUserProfile";
     }
 
@@ -62,6 +63,19 @@ public class UserController {
         model.addAttribute("viewedUser", userInDB.getRole() == Roles.admin);
         return "users/viewedProfile";
     }
+
+    @GetMapping("/user/{username}/events")
+    public String showUserEvents(
+            @PathVariable String username,
+            Model model
+    ){
+
+        User userToDisplay = usersDao.findByUsername(username);
+        model.addAttribute("user",userToDisplay);
+
+        return "users/currentUserProfile";
+    }
+
 
     @GetMapping("/users/edit")
     public String showEditUserForm(Model model) {
