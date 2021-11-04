@@ -21,15 +21,26 @@
             crossorigin="anonymous"></script>
     <title></title>
 </head>
+    <style>
+        .nav-link {
+            color: rgba(12, 105, 128, 0.99);
+        }
 
-<style>
-    .nav-link{
-        color: black;
-    }
-    .btn-outline-success{
-        color: black;
-    }
-</style>
+        .btn-outline-success {
+            color: rgba(12, 105, 128, 0.99);
+        }
+
+        h1 {
+            color: rgba(12, 105, 128, 0.99);
+        }
+        * { box-sizing: border-box; }
+        .video-background {
+            background: #000;
+            position: fixed;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -99;
+        }
+    </style>
 
 <nav th:fragment="navbar">
     <div style="background-color: #f67f27">

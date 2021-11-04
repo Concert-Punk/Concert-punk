@@ -7,6 +7,26 @@
             integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 
 </head>
+<style>
+    .nav-link {
+        color: rgba(12, 105, 128, 0.99);
+    }
+
+    .btn-outline-success {
+        color: rgba(12, 105, 128, 0.99);
+    }
+
+    h1 {
+        color: rgba(12, 105, 128, 0.99);
+    }
+    * { box-sizing: border-box; }
+    .video-background {
+        background: #000;
+        position: fixed;
+        top: 0; right: 0; bottom: 0; left: 0;
+        z-index: -99;
+    }
+</style>
 <body>
 <h1><span th:text="${viewedUser.username}"></span>'s Profile</h1>
 
