@@ -51,7 +51,13 @@
     </form>
 </div>
 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-
 </div>
+<br>
+<br>
+<br>
+<div class="nav-item">
+    <div sec:authorize="isAuthenticated()">
+        <a class="nav-link" href="/events">Concert Punk Member's Events</a>
+    </div>
 </body>
 </html>
