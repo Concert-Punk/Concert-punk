@@ -8,13 +8,22 @@
 
 </head>
 <body>
+
+<h1><span th:text="${viewedUser}"></span>'s Profile</h1>
+
+<div class="container">
+
 <h1><span th:text="${viewedUser.username}"></span>'s Profile</h1>
 
 <div th:if="${!isFollowing}" class="container">
+
     <form th:action="@{|/profile/${id}/follow|}" class="followBtn" th:method="post">
     <button  type="submit" >Follow</button>
     </form>
 </div>
+
+
+
 
 <div th:if="${isFollowing}" class="container">
     <form th:action="@{|/profile/${id}/unfollow|}" class="unfollowBtn" th:method="post">
@@ -22,5 +31,6 @@
     </form>
 </div>
 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+
 </body>
 </html>
