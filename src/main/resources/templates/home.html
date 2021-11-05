@@ -28,20 +28,34 @@
     h1 {
         color: rgba(12, 105, 128, 0.99);
     }
-    * { box-sizing: border-box; }
+
+    * {
+        box-sizing: border-box;
+    }
+
     .video-background {
         background: #000;
         position: fixed;
-        top: 0; right: 0; bottom: 0; left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         z-index: -99;
     }
 
-    .welcome{
+    .welcome {
         display: flex;
-         align-items: center;
-         justify-content: center;
-
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 6em;
     }
+
+    /*.local {*/
+    /*    display: flex;*/
+    /*    align-items: center;*/
+    /*    justify-content: center;*/
+
+    /*}*/
 </style>
 
 
@@ -86,17 +100,17 @@
 </nav>
 <body>
 <div class="welcome">
-<h1>Welcome To Concert Punk</h1>
+    <h1>Concert Punk Local Events</h1>
 </div>
-</body>
 
-<body>
-<h1>Local Events</h1>
-<!--Container-->
-<div class="container">
-    <!-- Images Container -->
-    <div class="probablywontwork"></div>
-</div>
+<!--<div class="local">-->
+<!--    <h1>Local Events</h1>-->
+<!--    &lt;!&ndash;Container&ndash;&gt;-->
+<!--    <div class="container">-->
+<!--        &lt;!&ndash; Images Container &ndash;&gt;-->
+<!--        <div class="probablywontwork"></div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <br>
 <br>
@@ -138,7 +152,9 @@
 <script type="text/javascript" src="/js/ticketMasterAPI.js"></script>
 
 <!--Moments JS is a framework that can parse,validate,manipulate and display dates-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="/isLoggedIn.js"></script>
 
@@ -178,7 +194,6 @@
         error: function (xhr, status, err) {
         }
     });
-
 
 
     function addListener() {
@@ -232,10 +247,7 @@
     }
 
 
-
 </script>
-
-
 
 
 </script>
