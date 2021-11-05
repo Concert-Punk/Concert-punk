@@ -68,7 +68,6 @@ public class User {
     )
     @Getter
     @Setter
-
     private List<User> following;
 
     @ManyToMany(mappedBy = "following")
