@@ -27,21 +27,22 @@
 
     h1 {
         color: rgba(12, 105, 128, 0.99);
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+
+    h2 {
+        color: rgba(12, 105, 128, 0.99);
+        display: flex;
+        align-content: center;
+        justify-content: center;
     }
 
     * {
         box-sizing: border-box;
     }
 
-    .video-background {
-        background: #000;
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: -99;
-    }
 
     .welcome {
         display: flex;
@@ -50,12 +51,26 @@
         margin-bottom: 6em;
     }
 
-    /*.local {*/
-    /*    display: flex;*/
-    /*    align-items: center;*/
-    /*    justify-content: center;*/
+    .local {
+        display: flex;
+        align-content: center;
+        justify-content: center;
 
-    /*}*/
+    }
+
+    .row {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        padding: 2em;
+    }
+
+    card{
+        display: flex;
+        align-content: center;
+    }
+
+
 </style>
 
 
@@ -103,39 +118,50 @@
     <h1>Concert Punk Local Events</h1>
 </div>
 
-<!--<div class="local">-->
+<div class="local">
 <!--    <h1>Local Events</h1>-->
-<!--    &lt;!&ndash;Container&ndash;&gt;-->
-<!--    <div class="container">-->
-<!--        &lt;!&ndash; Images Container &ndash;&gt;-->
-<!--        <div class="probablywontwork"></div>-->
-<!--    </div>-->
-<!--</div>-->
+    <!--Container-->
+    <div class="container">
+        <!-- Images Container -->
+        <div class="probablywontwork"></div>
+    </div>
+</div>
 
 <br>
 <br>
 <br>
 <br>
-<h1>search an artist</h1>
+<h2>Search Results</h2>
 
 <div class="container">
     <div class="row">
         <div class="col s12" id="mainContent">
             <span id="displayArtist"></span>
-            <div class="title">Top Tracks</div>
+            <div class="title"><h1><b>Top Tracks</b></h1></div>
         </div>
         <div id="tracksContainer">
         </div>
         <div id="musicSample">
         </div>
 
-        <div class="title">Concert Schedule</div>
+        <div class="title"><h1><b>Concert Schedule</b></h1></div>
     </div>
+    <br>
+
     <p id="concertSchedule">
     </p>
-    <div class="title">YouTube Video</div>
+    <br>
+    <br>
+    <br>
+
+    <div class="title"><h1><b>YouTube Video</b></h1></div>
     <p><span id="youTube"></span></p>
-    <div class="title">Related Artists</div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="title"><h1><b>Related Artists</b></h1></div>
     <div id="relatedArtistContainer"></div>
     <br>
 </div>
