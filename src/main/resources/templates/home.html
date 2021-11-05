@@ -15,6 +15,7 @@
 
     <title></title>
 </head>
+
 <style>
     .nav-link {
         color: rgba(12, 105, 128, 0.99);
@@ -76,54 +77,41 @@
 
 
 </nav>
-
 <body>
 
 <h1>Welcome Concert Punk</h1>
 
 
-<body>
-<h1><em>Local Events</em></h1>
+<h1>Local Events</h1>
 <!--Container-->
 <div class="container">
     <!-- Images Container -->
     <div class="probablywontwork"></div>
 </div>
 
-</body>
+<br>
+<br>
+<br>
+<br>
+<h1>search an artist</h1>
 
-<br>
-<br>
-<br>
-<br>
-
-<h1><em>Search Results</em></h1>
-<!--<form>-->
-<!--    <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>-->
-<!--    <input id="add-artist" type="submit" value="Search"/>-->
-<!--</form>-->
 <div class="container">
     <div class="row">
         <div class="col s12" id="mainContent">
-            <h1><em><span id="displayArtist"></span></em></h1>
-            <div class="title"><h1><em>Top Tracks</em></h1></div>
+            <span id="displayArtist"></span>
+            <div class="title">Top Tracks</div>
         </div>
         <div id="tracksContainer">
         </div>
         <div id="musicSample">
         </div>
-        <div class="title"><h1><em>Concert Schedule</em></h1></div>
+
+        <div class="title">Concert Schedule</div>
     </div>
-    <br>
-    <br>
-    <br>
     <p id="concertSchedule">
     </p>
-    <br>
-    <br>
     <div class="title">YouTube Video</div>
     <p><span id="youTube"></span></p>
-    <br>
     <div class="title">Related Artists</div>
     <div id="relatedArtistContainer"></div>
     <br>
@@ -172,35 +160,6 @@
     </div><br>`
                 }
 
-    $.ajax({
-        type: "GET",
-        url: "https://api.seatgeek.com/2/events?client_id=MjM5OTczOTd8MTYzNDY3MzY2Ni42ODE5ODE&geoip=true",
-        async: true,
-        dataType: "json",
-        success: function (data) {
-            let cardMaker = ''
-            let concerts = data.events.filter(element => element.type === 'concert');
-            console.log(concerts)
-            for (const concerts of data.events.filter(element => element.type === 'concert')) {
-                let image = concerts.performers[0].image
-                let ticketPurchaseUrl = concerts.url
-                let artistIndex = concerts.title
-                console.log(artistIndex);
-                cardMaker += "<div class='d-inline-block'>"
-                cardMaker += ` <div class='card' style='width: 18rem;'>`
-                cardMaker += `<a id="url" href="${ticketPurchaseUrl}"><img class="card-img-top" src='${image}' alt=' img'></a>`
-                cardMaker += `<div class='card-body'><h2> <strong>${concerts.title}</strong> </h2> </div>`;
-                cardMaker += `<div class='card-text'><h3> @${concerts.venue.name}</h3> </div>`;
-                //   cardMaker +=`<div class="card-text"><p>${concerts.performers.genres.name}</p>`
-                cardMaker += `<div class='card-text'><p>${concerts.datetime_local}</p></div>
-</div><br>`
-                cardMaker += "</div>";
-            }
-            $(".probablywontwork").html(cardMaker)
-        },
-        error: function (xhr, status, err) {
-        }
-    });
                 cardMaker += "</div>";
                 console.log(userIsLoggedIn);
             }
@@ -266,6 +225,7 @@
 
 
 </script>
+
 
 
 
