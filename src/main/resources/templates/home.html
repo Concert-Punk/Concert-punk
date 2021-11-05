@@ -35,6 +35,13 @@
         top: 0; right: 0; bottom: 0; left: 0;
         z-index: -99;
     }
+
+    .welcome{
+        display: flex;
+         align-items: center;
+         justify-content: center;
+
+    }
 </style>
 
 
@@ -62,7 +69,7 @@
                 <a class="nav-link" href="/profile">Profile</a>
             </div>
             <div class="nav-item">
-                <a class="nav-link" href="/users/viewFollowers">Following</a>
+                <a class="nav-link" href="/profile/{id}/viewFollowers">Following</a>
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="/events/create">Create new event</a>
@@ -78,10 +85,12 @@
 
 </nav>
 <body>
+<div class="welcome">
+<h1>Welcome To Concert Punk</h1>
+</div>
+</body>
 
-<h1>Welcome Concert Punk</h1>
-
-
+<body>
 <h1>Local Events</h1>
 <!--Container-->
 <div class="container">

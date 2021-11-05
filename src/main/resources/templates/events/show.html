@@ -102,17 +102,19 @@
             </div>
 
             <div class="nav-item">
-                <a class="nav-link" href="/users/viewFollowers">Following</a>
+                <a class="nav-link" href="/profile/{id}/viewFollowers">Following</a>
             </div>
             <div class="nav-item">
                 <div sec:authorize="isAuthenticated()">
                     <a class="nav-link" href="/events">Concert Punk Member's Events</a>
                 </div>
-
                 <form>
                     <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>
                     <input id="add-artist" type="submit" value="Search"/>
                 </form>
+                <div class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </div>
             </div>
         </form>
     </div>
