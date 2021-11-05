@@ -1,52 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-    <meta charset="UTF-8"/>
-    <title>Log In</title>
 
 
+    <head th:replace="partials :: partials"></head>
 
-    <th:block th:replace="partials :: partials"></th:block>
-</head>
+    <link rel="stylesheet" href="/css/sidebar.css">
 
-    <nav th:replace="partials :: navbar"></nav>
-    <div style="background-color: #f67f27">
-        <div style="justify-content: center">
-            <h1>Concert Punk</h1>
-        </div>
-        <form class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </div>
-            <div class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </div>
-        </form>
-    </div>
     <body>
-    <h1>Log In</h1>
+    <nav th:replace="partials :: navbar"></nav>
+    <h1 style="color:white">Log In</h1>
     <div th:if="${param.error}">
         Invalid Username and Password.
     </div>
     <div th:if="${param.logout}">
         You have been logged out.
     </div>
-
+    <br>
+    <br>
+    <br>
+    <br>
     <form th:action="@{/login}" method="post">
-        <label for="username">Username</label>
+        <label for="username" style="color:white">Username</label>
         <input id="username" name="username" type="text"/>
-        <label for="password">Password</label>
+        <label for="password" style="color:white">Password</label>
         <input id="password" name="password" type="password"/>
         <input type="submit" value="Log In"/>
     </form>
     </body>
-</nav>
+
 </html>
 
 
