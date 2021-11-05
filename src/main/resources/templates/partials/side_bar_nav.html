@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Collapsible sidebar using Bootstrap 4</title>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div id="dismiss">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+
+        <div class="sidebar-header">
+            <h3>ConcertPunk</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Welcome user</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Search</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#"><form>
+                            <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>
+                            <input id="add-artist" type="submit" value="Search"/>
+                        </form></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Browse</a>
+                <a href="#" data-toggle="collapse" aria-expanded="false">Your Songs</a>
+            </li>
+            <li>
+                <a href="#">Playlists</a>
+            </li>
+            <li>
+                <a href="#">Followers</a>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+            <li>
+                <a href="" class="download">Login</a>
+            </li>
+            <li>
+                <a href="" class="article">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Menu</span>
+                </button>
+
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <!--                        <li class="nav-item active">-->
+                        <!--                            <p>Stuff here</p>-->
+                        <!--                        </li>-->
+                        <!--                        <li class="nav-item">-->
+                        <!--                            <p>Stuff here</p>-->
+                        <!--                        </li>-->
+                        <!--                        <li class="nav-item">-->
+                        <!--                            <p>Stuff here</p>-->
+                        <!--                        </li>-->
+                        <li class="nav-item">
+                            <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header text-center">
+                                            <h4 class="modal-title w-100 font-weight-bold" id="Signup">Sign up</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body mx-3">
+                                            <div class="md-form mb-5">
+                                                <i class="fas fa-user prefix grey-text"></i>
+                                                <input type="text" id="orangeForm-name" class="form-control validate">
+                                                <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
+                                            </div>
+                                            <div class="md-form mb-5">
+                                                <i class="fas fa-envelope prefix grey-text"></i>
+                                                <input type="email" id="orangeForm-email" class="form-control validate">
+                                                <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
+                                            </div>
+
+                                            <div class="md-form mb-4">
+                                                <i class="fas fa-lock prefix grey-text"></i>
+                                                <input type="password" id="orangeForm-pass" class="form-control validate">
+                                                <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-center">
+                                            <button class="btn btn-deep-orange">Sign up</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">
+                                    Sign Up</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--Content here-->
+        <p><span id="youTube"></span></p>
+
+        <table class="table table-hover table-dark" id="tableId">
+            <thead>
+            <tr id="tableLinks" >
+
+                <th scope="col"></th>
+                <th scope="col">Title</th>
+                <th scope="col">Artist</th>
+                <th scope="col">Dur</th>
+                <th scope="col">Plays</th>
+            </tr>
+            </thead>
+            <tbody id="youtubeData">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="overlay"></div>
+
+
+
+
+</body>
+
+</html>
