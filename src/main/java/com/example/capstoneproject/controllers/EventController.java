@@ -32,17 +32,22 @@ public class EventController {
 
 
 
-    @GetMapping("/events")
+    @GetMapping("/eventspage")
     public String showEvents(Model model, Comment comment) {
         List<Event> allEvents = eventsDao.findAll();
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User userInDB = usersDao.getById(currentUser.getId());
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User userInDB = usersDao.getById(currentUser.getId());
         model.addAttribute("events", allEvents);
         model.addAttribute("comment" ,comment);
-        model.addAttribute("theCurrentUser", userInDB);
-        model.addAttribute("adminCheck", userInDB.getRole() == Roles.admin);
-        return "events/index";
+//        model.addAttribute("theCurrentUser", userInDB);
+//        model.addAttribute("adminCheck", userInDB.getRole() == Roles.admin);
+        return "events/usersViewEvents";
     }
+
+//    @GetMapping("/eventspage")
+//    public String viewEventsWithoutLogin(Model model, Comment comment) {
+//        return "events/usersViewEvents";
+//    }
 
     @PostMapping(value = "/deleteComment/{commentId}")
     public String deleteComment(@PathVariable Long commentId, @RequestParam(name="deleteCommentText") String comment, Model model ) {

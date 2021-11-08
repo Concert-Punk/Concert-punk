@@ -13,7 +13,7 @@
 
 
     <div sec:authorize="isAuthenticated()">
-        <h1>Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
+        <h1  style="color:white">Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
     </div>
 
     <div th:if='${theCurrentUser}'>
