@@ -25,8 +25,39 @@
     <title></title>
 </head>
 
+<style>
+    .nav-link {
+        color: rgba(12, 105, 128, 0.99);
+    }
+
+    .btn-outline-success {
+        color: rgba(12, 105, 128, 0.99);
+    }
+
+    h1 {
+        color: rgba(12, 105, 128, 0.99);
+    }
+    * { box-sizing: border-box; }
+    .video-background {
+        background: #000;
+        position: fixed;
+        top: 0; right: 0; bottom: 0; left: 0;
+        z-index: -99;
+    }
+    .video-foreground,
+    .video-background iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+</style>
+
 <nav th:fragment="navbar">
-    <div style="background-color: #f67f27">
+    <div style="background-color: rgb(0,0,0)">
         <div style="justify-content: center">
             <h1>Concert Punk</h1>
         </div>
@@ -41,7 +72,7 @@
             </div>
             <div class="nav-item">
                 <div sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="/events"><span th:text="${#authentication.principal.username}"/> created Events</a>
+                    <a class="nav-link" href="/events">Concert Punk Member's Events</a>
                 </div>
             </div>
             <div class="nav-item">
@@ -63,18 +94,23 @@
         </form>
     </div>
 
+    <body>
     <div sec:authorize="isAuthenticated()">
         <h1>Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
-    </div>
 
-    <div th:if='${theCurrentUser}'>
-        <form th:action="@{/admin/AdminHome}">
-            <button class="btn btn-primary" type="submit">
-                Admin Home
-            </button>
-        </form>
+        <div th:if='${theCurrentUser}'>
+            <form th:action="@{/admin/AdminHome}">
+                <button class="btn btn-primary" type="submit">
+                    Admin Home
+                </button>
+            </form>
+        </div>
     </div>
+<<<<<<< HEAD
 
+=======
+    </body>
+>>>>>>> 2c9adc71493ceabbcd10ce0b9b0284aa3c70ae19
 </nav>
 <div th:each="event : ${User.events}">
     <h3 th:text="${event.title}"></h3>

@@ -147,34 +147,33 @@ public String deleteUser() {
 //User follow member
 
     @PostMapping("/profile/{id}/follow")
-    public String followMember (@PathVariable Long id,Model model){
+    public String followMember (@PathVariable Long id,Model model) {
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userInDB = usersDao.getById(currentUserSession.getId());
         User userToFollow = usersDao.getById(id);
-        List<User>following = userInDB.getFollowing();
+        List<User> following = userInDB.getFollowing();
         following.add(userToFollow);
         userInDB.setFollowing(following);
-        model.addAttribute("isFollowing",userInDB.getFollowing() == userToFollow);
+        model.addAttribute("isFollowing", userInDB.getFollowing() == userToFollow);
         usersDao.save(userInDB);
         System.out.println("Works");
         return "redirect:/profile/" + id;
 
-<<<<<<< HEAD
+    }
 //User follow member
 
-    @PostMapping("/profile/{id}/unfollow")
-    public String unfollowMember (@PathVariable Long id,Model model){
-        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User userInDB = usersDao.getById(currentUserSession.getId());
-        User userToUnfollow = usersDao.getById(id);
-        List<User>following = userInDB.getFollowing();
-        following.remove(userToUnfollow);
-       // userInDB.setFollowing(following);
-        usersDao.save(userInDB);
-        return "redirect:/profile/" + id;
-=======
->>>>>>> 09e28e1c4403770760470f1952956e33ba724a64
-    }
+//    @PostMapping("/profile/{id}/unfollow")
+//    public String unfollowMember (@PathVariable Long id,Model model){
+//        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User userInDB = usersDao.getById(currentUserSession.getId());
+//        User userToUnfollow = usersDao.getById(id);
+//        List<User>following = userInDB.getFollowing();
+//        following.remove(userToUnfollow);
+//       // userInDB.setFollowing(following);
+//        usersDao.save(userInDB);
+//        return "redirect:/profile/" + id;
+//
+//    }
 
 //User follow member
     @PostMapping("/profile/{id}/unfollow")

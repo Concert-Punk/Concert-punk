@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+=======
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+>>>>>>> 2c9adc71493ceabbcd10ce0b9b0284aa3c70ae19
 
 <head>
     <meta charset="UTF-8">
@@ -15,9 +19,30 @@
 
     <title></title>
 </head>
+<style>
+    .nav-link {
+        color: rgba(12, 105, 128, 0.99);
+    }
+
+    .btn-outline-success {
+        color: rgba(12, 105, 128, 0.99);
+    }
+
+    h1 {
+        color: rgba(12, 105, 128, 0.99);
+    }
+    * { box-sizing: border-box; }
+    .video-background {
+        background: #000;
+        position: fixed;
+        top: 0; right: 0; bottom: 0; left: 0;
+        z-index: -99;
+    }
+</style>
+
 
 <nav th:fragment="navbar">
-    <div style="background-color: #f67f27">
+    <div style="background-color: rgb(0,0,0)">
         <div style="justify-content: center">
             <h1>Concert Punk</h1>
         </div>
@@ -40,16 +65,16 @@
                 <a class="nav-link" href="/profile">Profile</a>
             </div>
             <div class="nav-item">
-                <a class="nav-link" href="#">Following</a>
+                <a class="nav-link" href="/users/viewFollowers">Following</a>
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="/events/create">Create new event</a>
             </div>
 
-            <div class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </div>
+            <form>
+                <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>
+                <input id="add-artist" type="submit" value="Search"/>
+            </form>
         </form>
     </div>
 
@@ -61,39 +86,46 @@
 <h1>Welcome Concert Punk</h1>
 
 
-<h1>Local Events</h1>
+<body>
+<h1><em>Local Events</em></h1>
 <!--Container-->
- <div class="container">
+<div class="container">
     <!-- Images Container -->
     <div class="probablywontwork"></div>
 </div>
+
+</body>
 
 <br>
 <br>
 <br>
 <br>
-<h1>search an artist</h1>
-<form>
-    <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>
-    <input id="add-artist" type="submit" value="Search"/>
-</form>
+
+<h1><em>Search Results</em></h1>
+<!--<form>-->
+<!--    <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>-->
+<!--    <input id="add-artist" type="submit" value="Search"/>-->
+<!--</form>-->
 <div class="container">
     <div class="row">
         <div class="col s12" id="mainContent">
-            <span id="displayArtist"></span>
-            <div class="title">Top Tracks</div>
+            <h1><em><span id="displayArtist"></span></em></h1>
+            <div class="title"><h1><em>Top Tracks</em></h1></div>
         </div>
         <div id="tracksContainer">
         </div>
         <div id="musicSample">
         </div>
-
-        <div class="title">Concert Schedule</div>
+        <div class="title"><h1><em>Concert Schedule</em></h1></div>
     </div>
+
     <p id="concertSchedule">
     </p>
+    <br>
+    <br>
     <div class="title">YouTube Video</div>
     <p><span id="youTube"></span></p>
+    <br>
     <div class="title">Related Artists</div>
     <div id="relatedArtistContainer"></div>
     <br>
@@ -142,6 +174,7 @@
     </div><br>`
                 }
 
+<<<<<<< HEAD
                 cardMaker += "</div>";
                 console.log(userIsLoggedIn);
             }
@@ -210,6 +243,37 @@
 
 
 
+=======
+    $.ajax({
+        type: "GET",
+        url: "https://api.seatgeek.com/2/events?client_id=MjM5OTczOTd8MTYzNDY3MzY2Ni42ODE5ODE&geoip=true",
+        async: true,
+        dataType: "json",
+        success: function (data) {
+            let cardMaker = ''
+            let concerts = data.events.filter(element => element.type === 'concert');
+            console.log(concerts)
+            for (const concerts of data.events.filter(element => element.type === 'concert')) {
+                let image = concerts.performers[0].image
+                let ticketPurchaseUrl = concerts.url
+                let artistIndex = concerts.title
+                console.log(artistIndex);
+                cardMaker += "<div class='d-inline-block'>"
+                cardMaker += ` <div class='card' style='width: 18rem;'>`
+                cardMaker += `<a id="url" href="${ticketPurchaseUrl}"><img class="card-img-top" src='${image}' alt=' img'></a>`
+                cardMaker += `<div class='card-body'><h2> <strong>${concerts.title}</strong> </h2> </div>`;
+                cardMaker += `<div class='card-text'><h3> @${concerts.venue.name}</h3> </div>`;
+                //   cardMaker +=`<div class="card-text"><p>${concerts.performers.genres.name}</p>`
+                cardMaker += `<div class='card-text'><p>${concerts.datetime_local}</p></div>
+</div><br>`
+                cardMaker += "</div>";
+            }
+            $(".probablywontwork").html(cardMaker)
+        },
+        error: function (xhr, status, err) {
+        }
+    });
+>>>>>>> 2c9adc71493ceabbcd10ce0b9b0284aa3c70ae19
 
 </script>
 

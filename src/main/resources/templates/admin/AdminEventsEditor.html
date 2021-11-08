@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+  <style>
+
+    tbody {
+      counter-reset: row;
+      /* Set the row counter to 0 */
+    }
+
+    tbody tr::before {
+      counter-increment: row;
+      /* Increment the row counter*/
+      content: counter(row);
+      /* Display the row */
+    }
+
+    /*#tablenames{*/
+    /*    visibility: hidden*/
+    /*}*/
+    .font-bold {
+      font-weight: 700;
+    }
+
+    .text-title {
+      color: #2e4a66;
+    }
+
+    .text-lightblue {
+      color: #469cac;
+    }
+
+    .text-red {
+      color: #cc3d38;
+    }
+
+    .text-yellow {
+      color: #a98921;
+    }
+
+    .text-green {
+      color: #3b9668;
+    }
+
+    .container {
+
+      height: 100vh;
+      grid-template-columns: 0.8fr 1fr 1fr 1fr;
+      grid-template-rows: 0.2fr 3fr;
+      grid-template-areas:
+    "sidebar nav nav nav"
+    "sidebar main main main";
+      /* grid-gap: 0.2rem; */
+    }
+
+
+    main {
+      background: #f3f4f6;
+      grid-area: main;
+
+    }
+
+
+    .main__cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 30px;
+      margin: 20px 0;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 70px;
+      padding: 25px;
+      border-radius: 5px;
+      background: #ffffff;
+      box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;
+    }
+
+    .card_inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card_inner > span {
+      font-size: 25px;
+    }
+
+
+  </style>
+  <title>Admin Panel</title>
+</head>
+<body id="body">
+<div class="container">
+  <main>
+    <div class="main__container">
+      <!-- MAIN TITLE STARTS HERE -->
+      <div sec:authorize="isAuthenticated()">
+        <h1>Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
+      </div>
+      <p>Welcome to your Admin Dashboard</p>
+    </div>
+    <!-- MAIN CARDS STARTS HERE -->
+    <div class="main__cards">
+      <div class="card stretched-link">
+        <i class="fa fa-user-o fa text-lightblue" aria-hidden="true"></i>
+        <div class="card_inner">
+          <p class="text-primary-p"> Registered Users</p>
+          <span class="font-bold text-title">-100</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <i class="fa fa-calendar fa text-red" aria-hidden="true"></i>
+        <div class="card_inner">
+          <p class="text-primary-p">Number of Comments</p>
+          <span class="font-bold text-title">0</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <i
+                class="fa fa-video-camera fa text-yellow"
+                aria-hidden="true"
+        ></i>
+        <div class="card_inner">
+          <p class="text-primary-p">Number of Pictures</p>
+          <span class="font-bold text-title">0</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <i
+                class="fa fa-thumbs-up fa text-green"
+                aria-hidden="true"
+        ></i>
+        <div class="card_inner">
+          <p class="text-primary-p">Number of Likes</p>
+          <span class="font-bold text-title">0</span>
+        </div>
+      </div>
+    </div>
+    <!-- MAIN CARDS ENDS HERE -->
+    <form th:action="@{/profile}">
+      <button class="btn btn-primary" type="submit">
+        Profile
+      </button>
+    </form>
+  </main>
+
+  <br>
+
+  <table class="table table-hover" id="tablee">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.username}"></td>
+      <td th:text="${user.email}"></td>
+
+      <td>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+            Active
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+            <form th:action="@{/admin/profile/{id}(id=${user.id})}" th:method="post" th:object="${user}">
+              <input type="radio" name="status" value="enable" >Enable</input>
+              <input type="radio" name="status" value="disable" >Disable</input>
+              <input type="submit" value="submit">
+            </form>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+</div>
+
+</body>
+
+</html>
