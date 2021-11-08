@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <th:block th:replace="partials :: partials"></th:block>
     <style>
 
@@ -410,6 +409,7 @@
 <!--    <p>Posted By: <span th:text="${event.owner.username}"style="color:white"></span></p>-->
     <!--    <a href="#" class="showForm" id="${event.id}">Add comment</a>-->
     <div sec:authorize="isAuthenticated()">
+        User ID: <span th:text="${#authentication.principal.username}"/>
     <form th:action="@{|/addComment/${event.id}|}" class="addForm" th:method="post"style="color:white">
         <textarea name="commentText" ></textarea>
         <input type="submit" class="commentBtn" name="commentTextInput">
@@ -421,16 +421,16 @@
         <a th:href="@{|/profile/${comment.user.id}|}" style="color:white">  <span th:text="${comment.user.username}" style="color:white"></span></a>
         <div th:text="${comment.comment_text}" style="color:white"></div>
 
-<!--        <form th:action="@{|/deleteComment/${comment.id}|}" class="deleteBtn" th:method="post"style="color:white">-->
-<!--            <button th:text="${#authentication.principal.username}" class="btn btn-danger" type="submit" name="deleteCommentText"style="color:white">-->
-<!--                Delete Comment-->
-<!--            </button>-->
-<!--            <button th:if="${adminCheck}" class="btn btn-danger" type="submit" name="deleteCommentText"style="color:white">-->
-<!--                Delete Comment-->
-<!--            </button>-->
-<!--        </form>-->
+        <form th:action="@{|/deleteComment/${comment.id}|}" class="deleteBtn" th:method="post"style="color:white">
+            <button th:text="${#authentication.principal.username}" class="btn btn-danger" type="submit" name="deleteCommentText"style="color:white">
+                Delete Comment
+            </button>
+            <button th:if="${adminCheck}" class="btn btn-danger" type="submit" name="deleteCommentText"style="color:white">
+                Delete Comment
+            </button>
+        </form>
 
-        <a th:href="@{|/events/${event.id}|}"style="color:white">View Event</a>
+        <a th:href="@{|/events/${event.id}|}" style="color:white">View Event</a>
 
     </div>
 </div>
@@ -453,7 +453,9 @@
                 let image = concerts.performers[0].image
                 let ticketPurchaseUrl = concerts.url
                 let artistIndex = concerts.title
-                console.log(artistIndex);
+                let location = concerts.venue.display_location
+                let venue = concerts.venue.name
+                let time = concerts.datetime_local
                 cardMaker+=`  <div class="flip-card-container" style="--hue: 220">
   <div class="flip-card">
 
@@ -465,9 +467,9 @@
       </figure>
 
       <ul id="details">
-        <li id  ="detailItems">Detail 1</li>
-        <li>Detail 2</li>
-        <li>Detail 3</li>
+        <li id  ="detailItems">${location}</li>
+        <li>${venue}</li>
+        <li>${time}</li>
         <li>Detail 4</li>
         <li>Detail 5</li>
       </ul>
