@@ -24,15 +24,15 @@
         </div>
 
         <ul class="list-unstyled components">
-            <p>Welcome user</p>
+            <p>Welcome person</p>
             <li class="active">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Search</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="#"><form>
-                            <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>
+                       <form action="/search">
+                            <label for="search-input"></label><input id="search-input" type="text" name="searchTerm"/>
                             <input id="add-artist" type="submit" value="Search"/>
-                        </form></a>
+                        </form>
                     </li>
                 </ul>
             </li>
