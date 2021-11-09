@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 =======
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 >>>>>>> 2c9adc71493ceabbcd10ce0b9b0284aa3c70ae19
+=======
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>>>>>>> fb52f7021a8c160892363c064714241e55c9b43e
 
 <head>
     <meta charset="UTF-8">
@@ -19,6 +24,7 @@
 
     <title></title>
 </head>
+
 <style>
     .nav-link {
         color: rgba(12, 105, 128, 0.99);
@@ -30,14 +36,50 @@
 
     h1 {
         color: rgba(12, 105, 128, 0.99);
+        display: flex;
+        align-content: center;
+        justify-content: center;
     }
-    * { box-sizing: border-box; }
-    .video-background {
-        background: #000;
-        position: fixed;
-        top: 0; right: 0; bottom: 0; left: 0;
-        z-index: -99;
+
+    h2 {
+        color: rgba(12, 105, 128, 0.99);
+        display: flex;
+        align-content: center;
+        justify-content: center;
     }
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    .welcome {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 6em;
+    }
+
+    .local {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+
+    }
+
+    .row {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        padding: 2em;
+    }
+
+    card{
+        display: flex;
+        align-content: center;
+    }
+
+
 </style>
 
 
@@ -65,7 +107,7 @@
                 <a class="nav-link" href="/profile">Profile</a>
             </div>
             <div class="nav-item">
-                <a class="nav-link" href="/users/viewFollowers">Following</a>
+                <a class="nav-link" href="/profile/{id}/viewFollowers">Following</a>
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="/events/create">Create new event</a>
@@ -80,53 +122,55 @@
 
 
 </nav>
-
 <body>
-
-<h1>Welcome Concert Punk</h1>
-
-
-<body>
-<h1><em>Local Events</em></h1>
-<!--Container-->
-<div class="container">
-    <!-- Images Container -->
-    <div class="probablywontwork"></div>
+<div class="welcome">
+    <h1>Concert Punk Local Events</h1>
 </div>
 
-</body>
+<div class="local">
+<!--    <h1>Local Events</h1>-->
+    <!--Container-->
+    <div class="container">
+        <!-- Images Container -->
+        <div class="probablywontwork"></div>
+    </div>
+</div>
 
 <br>
 <br>
 <br>
 <br>
+<h2>Search Results</h2>
 
-<h1><em>Search Results</em></h1>
-<!--<form>-->
-<!--    <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>-->
-<!--    <input id="add-artist" type="submit" value="Search"/>-->
-<!--</form>-->
 <div class="container">
     <div class="row">
         <div class="col s12" id="mainContent">
-            <h1><em><span id="displayArtist"></span></em></h1>
-            <div class="title"><h1><em>Top Tracks</em></h1></div>
+            <span id="displayArtist"></span>
+            <div class="title"><h1><b>Top Tracks</b></h1></div>
         </div>
         <div id="tracksContainer">
         </div>
         <div id="musicSample">
         </div>
-        <div class="title"><h1><em>Concert Schedule</em></h1></div>
+
+        <div class="title"><h1><b>Concert Schedule</b></h1></div>
     </div>
+    <br>
 
     <p id="concertSchedule">
     </p>
     <br>
     <br>
-    <div class="title">YouTube Video</div>
+    <br>
+
+    <div class="title"><h1><b>YouTube Video</b></h1></div>
     <p><span id="youTube"></span></p>
     <br>
-    <div class="title">Related Artists</div>
+    <br>
+    <br>
+    <br>
+
+    <div class="title"><h1><b>Related Artists</b></h1></div>
     <div id="relatedArtistContainer"></div>
     <br>
 </div>
@@ -143,7 +187,9 @@
 <script type="text/javascript" src="/js/ticketMasterAPI.js"></script>
 
 <!--Moments JS is a framework that can parse,validate,manipulate and display dates-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="/isLoggedIn.js"></script>
 
@@ -175,6 +221,9 @@
                 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fb52f7021a8c160892363c064714241e55c9b43e
                 cardMaker += "</div>";
                 console.log(userIsLoggedIn);
             }
@@ -184,7 +233,6 @@
         error: function (xhr, status, err) {
         }
     });
-
 
 
     function addListener() {
@@ -238,10 +286,10 @@
     }
 
 
-
 </script>
 
 
+<<<<<<< HEAD
 
 =======
     $.ajax({
@@ -275,7 +323,10 @@
     });
 >>>>>>> 2c9adc71493ceabbcd10ce0b9b0284aa3c70ae19
 
+=======
+>>>>>>> fb52f7021a8c160892363c064714241e55c9b43e
 </script>
+
 
 </body>
 </html>
