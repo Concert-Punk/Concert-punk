@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
@@ -123,6 +124,14 @@
 <body>
 
 
+=======
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
 <div>
     <div th:text="${eventId}">Id</div>
     <div th:text="${event.title}">title</div>
@@ -134,9 +143,15 @@
     <a th:if="${theCurrentUser.getId() == event.owner.getId()}" th:href="@{|/events/edit/${eventId}|}">Edit Event</a>
 
     <form th:action="@{|/events/delete/${eventId}|}" th:method="post">
+<<<<<<< HEAD
         <button th:if="${theCurrentUser.getId() == event.owner.getId()}" type="submit">Delete</button>
     </form>
 </div>
 </div>
+=======
+        <button  th:if="${theCurrentUser.getId() == event.owner.getId()}" type="submit">Delete</button>
+    </form>
+</div>
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
 </body>
 </html>

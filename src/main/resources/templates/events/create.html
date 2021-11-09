@@ -24,6 +24,7 @@
     <title></title>
 </head>
 
+<<<<<<< HEAD
 <style>
     .nav-link {
         color: rgba(12, 105, 128, 0.99);
@@ -47,6 +48,10 @@
 
 <nav th:fragment="navbar">
     <div style="background-color: rgb(0,0,0)">
+=======
+<nav th:fragment="navbar">
+    <div style="background-color: #f67f27">
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
         <div style="justify-content: center">
             <h1>Concert Punk</h1>
         </div>
@@ -63,11 +68,15 @@
                 <a class="nav-link" href="/profile">Profile</a>
             </div>
             <div class="nav-item">
+<<<<<<< HEAD
                 <a class="nav-link" href="/events"> Event List</a>
 
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="/users/viewFollowers">Following</a>
+=======
+                <a class="nav-link" href="#">Following</a>
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="/events/create">Create new event</a>
@@ -105,6 +114,11 @@
         <input type="text" th:field="*{location}" placeholder="location">
         <input type="datetime-local" th:field="*{startTime}"/>
         <input type="datetime-local" th:field="*{endTime}"/>
+<<<<<<< HEAD
+=======
+<!--            <input type="time" th:field="*{startTime}" placeholder="hour/minutes">-->
+<!--            <input type="time" th:field="*{endTime}" placeholder="hour/minutes">-->
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
         <input type="submit">
 
     </form>

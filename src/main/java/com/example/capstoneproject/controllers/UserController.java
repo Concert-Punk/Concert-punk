@@ -51,7 +51,10 @@ public class UserController {
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userInDB = usersDao.getById(currentUserSession.getId());
         model.addAttribute("theCurrentUser", userInDB.getRole() == Roles.admin);
+<<<<<<< HEAD
         model.addAttribute("User", userInDB);
+=======
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
         return "users/currentUserProfile";
     }
 
@@ -64,6 +67,7 @@ public class UserController {
         return "users/viewedProfile";
     }
 
+<<<<<<< HEAD
     @GetMapping("/user/{username}/events")
     public String showUserEvents(
             @PathVariable String username,
@@ -77,6 +81,8 @@ public class UserController {
     }
 
 
+=======
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
     @GetMapping("/users/edit")
     public String showEditUserForm(Model model) {
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -121,7 +127,10 @@ public class UserController {
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
     //    User Delete Account
 @PostMapping("/users/delete")
 public String deleteUser() {

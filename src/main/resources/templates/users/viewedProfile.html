@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
@@ -80,20 +81,38 @@
 
 <div th:if="${!isFollowing}" class="container">
 
+=======
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<h1><span th:text="${viewedUser.username}"></span>'s Profile</h1>
+
+<div th:if="${!isFollowing}" class="container">
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
     <form th:action="@{|/profile/${id}/follow|}" class="followBtn" th:method="post">
     <button  type="submit" >Follow</button>
     </form>
 </div>
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
 <div th:if="${isFollowing}" class="container">
     <form th:action="@{|/profile/${id}/unfollow|}" class="unfollowBtn" th:method="post">
         <button  type="submit" >Unfollow</button>
     </form>
 </div>
 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+<<<<<<< HEAD
 </div>
 <br>
 <br>
@@ -102,5 +121,7 @@
     <div sec:authorize="isAuthenticated()">
         <a class="nav-link" href="/events">Concert Punk Member's Events</a>
     </div>
+=======
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
 </body>
 </html>

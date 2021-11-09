@@ -40,7 +40,11 @@ public class Event {
     @Setter
     private LocalDateTime startTime;
 
+<<<<<<< HEAD
     @Column(nullable = true, unique = false)
+=======
+    @Column(nullable = false, unique = false)
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Getter
     @Setter
