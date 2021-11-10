@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<<<<<<< HEAD
 <head>
     <meta charset="UTF-8">
     <meta name="_csrf" th:content="${_csrf.token}"/>
@@ -37,6 +36,12 @@
 
     h1 {
         color: rgba(12, 105, 128, 0.99);
+    }
+
+    .eventList {
+        display: flex;
+        align-content: center;
+        justify-content: center;
     }
 
 </style>
@@ -78,53 +83,52 @@
             </div>
         </form>
     </div>
+</nav>
 
-    <body>
+<div class="eventList">
     <div sec:authorize="isAuthenticated()">
-        <h1>Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
+        <h1>Welcome <span th:text="${#authentication.principal.username}"/>, saved events below</h1>
+        <br>
+        <br>
+        <div class="row">
+            <div th:if='${theCurrentUser}'>
+                <form th:action="@{/admin/AdminHome}">
+                    <button class="btn btn-primary" type="submit">
+                        Admin Home
+                    </button>
+                </form>
+            </div>
+        </div>
 
-        <div th:if='${theCurrentUser}'>
-            <form th:action="@{/admin/AdminHome}">
-                <button class="btn btn-primary" type="submit">
-                    Admin Home
-                </button>
-            </form>
+        <div th:each="event : ${User.events}">
+            <h3 th:text="${event.title}"></h3>
+            <div th:text="*{event.location}"></div>
+            <div th:text="*{event.startTime}"></div>
+        </div>
+        <!--<th:block th:replace="partials :: partials"></th:block>-->
+        <!--<body>  <nav th:replace="partials :: navbar"></nav>-->
+
+        <!--            <div class="nav-item">-->
+        <!--                <div sec:authorize="isAuthenticated()">-->
+        <!--                <a class="nav-link" href="/events"><span th:text="${#authentication.principal.username}"/> created Events</a>-->
+        <!--                </div>-->
+        <!--            </div>-->
+
+
+        <div sec:authorize="isAuthenticated()">
+            <h1 style="color:white">Welcome <span th:text="${#authentication.principal.username}"/>, saved events below
+            </h1>
         </div>
     </div>
-    </body>
-
-</nav>
-<div th:each="event : ${User.events}">
-    <h3 th:text="${event.title}"></h3>
-    <div th:text="*{event.location}"></div>
-    <div th:text="*{event.startTime}"></div>
 </div>
-=======
-<th:block th:replace="partials :: partials"></th:block>
-<body>  <nav th:replace="partials :: navbar"></nav>
-
-            <div class="nav-item">
-                <div sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="/events"><span th:text="${#authentication.principal.username}"/> created Events</a>
-                </div>
-            </div>
+<!--    <div th:if='${theCurrentUser}'>-->
+<!--        <form th:action="@{/admin/AdminHome}">-->
+<!--            <button class="btn btn-primary" type="submit">-->
+<!--                Admin Home-->
+<!--            </button>-->
+<!--        </form>-->
+<!--    </div>-->
 
 
-
-    <div sec:authorize="isAuthenticated()">
-        <h1  style="color:white">Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
-    </div>
-
-    <div th:if='${theCurrentUser}'>
-        <form th:action="@{/admin/AdminHome}">
-            <button class="btn btn-primary" type="submit">
-                Admin Home
-            </button>
-        </form>
-    </div>
 </body>
-
-
->>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
-
 </html>

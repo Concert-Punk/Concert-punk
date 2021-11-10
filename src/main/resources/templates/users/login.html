@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<<<<<<< HEAD
     <head>
     <meta charset="UTF-8"/>
     <title>Log In</title>
@@ -34,13 +33,11 @@
         h1 {
             color: rgba(12, 105, 128, 0.99);
         }
-        * { box-sizing: border-box; }
-        .video-background {
-            background: #000;
-            position: fixed;
-            top: 0; right: 0; bottom: 0; left: 0;
-            z-index: -99;
+
+        body {
+            background: rgba(0, 0, 0, 0.84);
         }
+
     </style>
 
     <nav th:fragment="navbar">
@@ -63,50 +60,35 @@
             </div>
         </form>
     </div>
+    </nav>
     <body>
     <h1>Log In</h1>
-=======
 
 
-    <head th:replace="partials :: partials"></head>
+<!--    <head th:replace="partials :: partials"></head>-->
 
-    <link rel="stylesheet" href="/css/sidebar.css">
+<!--    <link rel="stylesheet" href="/css/sidebar.css">-->
 
-    <body>
-    <nav th:replace="partials :: navbar"></nav>
-    <h1 style="color:white">Log In</h1>
->>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
-    <div th:if="${param.error}">
-        Invalid Username and Password.
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
-<<<<<<< HEAD
+<!--    <body>-->
+<!--    <nav th:replace="partials :: navbar"></nav>-->
+<!--    <h1 style="color:white">Log In</h1>-->
+<!--    <div th:if="${param.error}">-->
+<!--        Invalid Username and Password.-->
+<!--    </div>-->
+<!--    <div th:if="${param.logout}">-->
+<!--        You have been logged out.-->
+<!--    </div>-->
 
-    <form th:action="@{/login}" method="post">
-        <label for="username">Username</label>
-        <input id="username" name="username" type="text"/>
-        <label for="password">Password</label>
-=======
-    <br>
-    <br>
-    <br>
-    <br>
+
     <form th:action="@{/login}" method="post">
         <label for="username" style="color:white">Username</label>
         <input id="username" name="username" type="text"/>
         <label for="password" style="color:white">Password</label>
->>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
         <input id="password" name="password" type="password"/>
         <input type="submit" value="Log In"/>
     </form>
     </body>
-<<<<<<< HEAD
-</nav>
-=======
 
->>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
 </html>
 
 

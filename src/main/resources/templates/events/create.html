@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <head>
     <meta charset="UTF-8">
-    <title>Create Post</title>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>Title</title>
 </head>
 
 <head>
@@ -24,7 +25,6 @@
     <title></title>
 </head>
 
-<<<<<<< HEAD
 <style>
     .nav-link {
         color: rgba(12, 105, 128, 0.99);
@@ -37,21 +37,17 @@
     h1 {
         color: rgba(12, 105, 128, 0.99);
     }
-    * { box-sizing: border-box; }
-    .video-background {
-        background: #000;
-        position: fixed;
-        top: 0; right: 0; bottom: 0; left: 0;
-        z-index: -99;
+
+    .eventList {
+        display: flex;
+        align-content: center;
+        justify-content: center;
     }
+
 </style>
 
 <nav th:fragment="navbar">
     <div style="background-color: rgb(0,0,0)">
-=======
-<nav th:fragment="navbar">
-    <div style="background-color: #f67f27">
->>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
         <div style="justify-content: center">
             <h1>Concert Punk</h1>
         </div>
@@ -59,27 +55,24 @@
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                        aria-expanded="true" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </div>
             <div class="nav-item">
-                <a class="nav-link" href="/profile">Profile</a>
-            </div>
-            <div class="nav-item">
-<<<<<<< HEAD
-                <a class="nav-link" href="/events"> Event List</a>
-
-            </div>
-            <div class="nav-item">
-                <a class="nav-link" href="/users/viewFollowers">Following</a>
-=======
-                <a class="nav-link" href="#">Following</a>
->>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
+                <div sec:authorize="isAuthenticated()">
+                    <a class="nav-link" href="/events">Concert Punk Member's Events</a>
+                </div>
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="/events/create">Create new event</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-link" href="/profile/{id}/viewFollowers">Following</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-link" href="/users/edit">Edit Profile</a>
             </div>
             <div class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -90,7 +83,10 @@
             </div>
         </form>
     </div>
-    <body>
+</nav>
+
+
+<body>
     <div sec:authorize="isAuthenticated()">
         <h1><span th:text="${#authentication.principal.username}"/>, create your event below</h1>
         <a th:href="@{|/users/edit|}"></a>
@@ -114,11 +110,9 @@
         <input type="text" th:field="*{location}" placeholder="location">
         <input type="datetime-local" th:field="*{startTime}"/>
         <input type="datetime-local" th:field="*{endTime}"/>
-<<<<<<< HEAD
-=======
+
 <!--            <input type="time" th:field="*{startTime}" placeholder="hour/minutes">-->
 <!--            <input type="time" th:field="*{endTime}" placeholder="hour/minutes">-->
->>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b
         <input type="submit">
 
     </form>
