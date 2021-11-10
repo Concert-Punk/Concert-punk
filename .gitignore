@@ -32,6 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 src/main/resources/application.properties
+
+application.properties
 src/main/resources/application.properties
 keys.js
 js/keys.js
@@ -40,3 +42,4 @@ src/main/resources/static/js/keys.js
 
 
 src/main/resources/application.properties
+application.properties

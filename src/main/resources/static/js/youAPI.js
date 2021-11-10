@@ -44,3 +44,13 @@ $(document).on("click", ".search-keyword", function() {
     var q = $(this).text();
     youtubeSearch(q);
 });
+<<<<<<< HEAD
+=======
+
+$(document).on('click', function(){
+    $(".video-container").remove();
+});
+
+let element = document.getElementsByClassName(".video-container");
+element.parentNode.removeChild(element);
+>>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b

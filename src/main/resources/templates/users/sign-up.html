@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <th:block th:replace="partials :: partials"></th:block>
     <title>Sign up</title>
 </head>
 
@@ -81,3 +84,31 @@
     </body>
 </nav>
 </html>
+
+
+<!--    <title></title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav th:replace="partials :: navbar"></nav>-->
+<!--<div style="background-color: rgb(0,0,0)">-->
+<!--    <div style="justify-content: center">-->
+<!--        <h1 style="color:white">Concert Punk</h1>-->
+<!--    </div>-->
+
+<!--</div>-->
+<!--<h1 style="color:white">Create an account</h1>-->
+<!--<form th:action="@{/sign-up}" method="POST" th:object="${user}">-->
+<!--    <label for="username" style="color:white">Username</label>-->
+<!--    <input id="username" th:field="*{username}"/>-->
+
+<!--    <label for="email" style="color:white">Email</label>-->
+<!--    <input id="email" th:field="*{email}"/>-->
+
+<!--    <label for="password" style="color:white">Password</label>-->
+<!--    <input id="password" type="password" th:field="*{password}"/>-->
+
+<!--    <input value="Sign me up!" type="submit"/>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+<!--&gt;>>>>>> 84f9357dc6a6a675bac7c56f375dcefef212f36b-->

@@ -33,13 +33,11 @@
         h1 {
             color: rgba(12, 105, 128, 0.99);
         }
-        * { box-sizing: border-box; }
-        .video-background {
-            background: #000;
-            position: fixed;
-            top: 0; right: 0; bottom: 0; left: 0;
-            z-index: -99;
+
+        body {
+            background: rgba(0, 0, 0, 0.84);
         }
+
     </style>
 
     <nav th:fragment="navbar">
@@ -62,24 +60,35 @@
             </div>
         </form>
     </div>
+    </nav>
     <body>
     <h1>Log In</h1>
-    <div th:if="${param.error}">
-        Invalid Username and Password.
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
+
+
+<!--    <head th:replace="partials :: partials"></head>-->
+
+<!--    <link rel="stylesheet" href="/css/sidebar.css">-->
+
+<!--    <body>-->
+<!--    <nav th:replace="partials :: navbar"></nav>-->
+<!--    <h1 style="color:white">Log In</h1>-->
+<!--    <div th:if="${param.error}">-->
+<!--        Invalid Username and Password.-->
+<!--    </div>-->
+<!--    <div th:if="${param.logout}">-->
+<!--        You have been logged out.-->
+<!--    </div>-->
+
 
     <form th:action="@{/login}" method="post">
-        <label for="username">Username</label>
+        <label for="username" style="color:white">Username</label>
         <input id="username" name="username" type="text"/>
-        <label for="password">Password</label>
+        <label for="password" style="color:white">Password</label>
         <input id="password" name="password" type="password"/>
         <input type="submit" value="Log In"/>
     </form>
     </body>
-</nav>
+
 </html>
 
 
