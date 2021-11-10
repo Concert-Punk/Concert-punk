@@ -13,18 +13,11 @@
   <link rel="stylesheet" href="/static/css/sidebar.css">
   <!-- Scrollbar Custom CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-  <style>
-    #tableId,#tableLinks  {
-      display:none;
-    }
-    a{
-      color: white;
-    }
-  </style>
+
   <!-- Font Awesome JS -->
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-<!--Axios-->
+  <!--Axios-->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <!-- jQuery CDN - Slim version (=without AJAX) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -57,16 +50,16 @@
           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Search</a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
             <li>
-              <a href="#"><form>
-                <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>
+              <form action="/search">
+                <label for="search-input"></label><input id="search-input" type="text" name="searchTerm"/>
                 <input id="add-artist" type="submit" value="Search"/>
-              </form></a>
+              </form>
             </li>
           </ul>
         </li>
         <li>
           <a href="#">Browse</a>
-<!--          <a href="#" data-toggle="collapse" aria-expanded="false">Your Songs</a>-->
+          <!--          <a href="#" data-toggle="collapse" aria-expanded="false">Your Songs</a>-->
         </li>
         <li>
           <a href="/eventspage">Events</a>
@@ -110,34 +103,19 @@
               <!--                            <p>Stuff here</p>-->
               <!--                        </li>-->
               <li class="nav-item">
-                <a style="color: white" href="/sign-up" class="signup">Signup</a>
+                <a href="/sign-up" class="signup">Signup</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
       <!--Content here-->
-      <p><span id="youTube"></span></p>
 
-      <table class="table table-hover table-dark" id="tableId">
-        <thead>
-        <tr id="tableLinks" >
 
-          <th scope="col"></th>
-          <th scope="col">Title</th>
-          <th scope="col">Artist</th>
-          <th scope="col">Dur</th>
-          <th scope="col">Plays</th>
-        </tr>
-        </thead>
-        <tbody id="youtubeData">
 
-        </tbody>
-      </table>
     </div>
   </div>
   <div class="overlay"></div>
 </nav>
-<script></script>
 </body>
 </html>

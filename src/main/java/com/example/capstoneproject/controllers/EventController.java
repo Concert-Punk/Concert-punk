@@ -31,30 +31,18 @@ public class EventController {
     private CommentsRepository commentsDao;
 
 
-//
-//    @GetMapping("/events")
-//    public String showEvents(Model model, Comment comment) {
-//        List<Event> allEvents = eventsDao.findAll();
+
+    @GetMapping("/eventspage")
+    public String showEvents(Model model, Comment comment) {
+        List<Event> allEvents = eventsDao.findAll();
 //        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        User userInDB = usersDao.getById(currentUser.getId());
-//        model.addAttribute("events", allEvents);
-//        model.addAttribute("comment" ,comment);
+        model.addAttribute("events", allEvents);
+        model.addAttribute("comment" ,comment);
 //        model.addAttribute("theCurrentUser", userInDB);
 //        model.addAttribute("adminCheck", userInDB.getRole() == Roles.admin);
-//        return "events/index";
-//    }
-//
-//    @GetMapping("/eventspage")
-//    public String showEvents(Model model, Comment comment) {
-//        List<Event> allEvents = eventsDao.findAll();
-////        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-////        User userInDB = usersDao.getById(currentUser.getId());
-//        model.addAttribute("events", allEvents);
-//        model.addAttribute("comment" ,comment);
-////        model.addAttribute("theCurrentUser", userInDB);
-////        model.addAttribute("adminCheck", userInDB.getRole() == Roles.admin);
-//        return "events/usersViewEvents";
-//    }
+        return "events/usersViewEvents";
+    }
 
 //    @GetMapping("/eventspage")
 //    public String viewEventsWithoutLogin(Model model, Comment comment) {
