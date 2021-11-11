@@ -22,7 +22,7 @@ public class ProfilePage {
     private EventsRepository eventsDao;
     private CommentsRepository commentsDao;
 
-    public void UserController(UsersRepository usersDao, PasswordEncoder passwordEncoder, EventsRepository eventsDao, CommentsRepository commentsDao) {
+    public ProfilePage(UsersRepository usersDao, PasswordEncoder passwordEncoder, EventsRepository eventsDao, CommentsRepository commentsDao) {
         this.usersDao = usersDao;
         this.passwordEncoder = passwordEncoder;
         this.eventsDao = eventsDao;
