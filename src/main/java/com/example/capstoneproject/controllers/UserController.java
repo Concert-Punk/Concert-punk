@@ -52,6 +52,7 @@ public class UserController {
         User userInDB = usersDao.getById(currentUserSession.getId());
         model.addAttribute("theCurrentUser", userInDB.getRole() == Roles.admin);
         model.addAttribute("User", userInDB);
+
         return "users/currentUserProfile";
     }
 

@@ -49,7 +49,3 @@ $(document).on('click', '#add-artist', function (event) {
 
 
 });
-
-
-
-
