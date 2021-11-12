@@ -40,13 +40,14 @@ public class Event {
     @Setter
     private LocalDateTime startTime;
 
+//    @Column(nullable = true, unique = false)
     @Column(nullable = false, unique = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Getter
     @Setter
     private LocalDateTime endTime;
 
-    @Column(nullable = false, unique = false, columnDefinition = "TEXT")
+    @Column(nullable = true, unique = false, columnDefinition = "TEXT")
     @Getter
     @Setter
     private String description;

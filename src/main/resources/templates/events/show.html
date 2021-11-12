@@ -1,8 +1,14 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+    </style>
 </head>
 <body>
 <div>
@@ -16,8 +22,12 @@
     <a th:if="${theCurrentUser.getId() == event.owner.getId()}" th:href="@{|/events/edit/${eventId}|}">Edit Event</a>
 
     <form th:action="@{|/events/delete/${eventId}|}" th:method="post">
-        <button  th:if="${theCurrentUser.getId() == event.owner.getId()}" type="submit">Delete</button>
+        <button th:if="${theCurrentUser.getId() == event.owner.getId()}" type="submit">Delete</button>
     </form>
+</div>
+</div>
+<!--<button th:if="${theCurrentUser.getId() == event.owner.getId()}" type="submit">Delete</button>-->
+</form>
 </div>
 </body>
 </html>
