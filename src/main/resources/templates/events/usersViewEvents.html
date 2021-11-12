@@ -160,9 +160,11 @@
 
         /* hover state */
         .flip-card-container:hover .card-front .img-bg::before {
+            display: flex;
             width: 6px;
             border-left-color: var(--primary);
             border-right-color: var(--primary);
+
         }
 
         /* ul */
@@ -344,6 +346,12 @@
         button:focus+.design-container {
             --tr: 20;
             --op: .7;
+        }
+
+        body {
+            display: flex;
+            align-content: center;
+            justify-content: center;
         }
 
 
