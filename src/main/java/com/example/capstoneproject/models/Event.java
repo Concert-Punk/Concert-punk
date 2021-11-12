@@ -74,6 +74,11 @@ public class Event {
     @Setter
     private List<Comment> comments;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
+    @Getter
+    @Setter
+    private List<EventPhoto> photos;
+
     @Column(nullable = false, unique = true)
     @Getter
     @Setter

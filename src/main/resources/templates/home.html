@@ -177,12 +177,19 @@
                     console.log(res)
 
                     const savedEvent = {
-                        api_id: res.id,
-                        title: res.title,
-                        location: res.venue.name,
-                        startTime: res.datetime_local,
+                        event: {
+                            api_id: res.id,
+                            title: res.title,
+                            location: res.venue.name,
+                            startTime: res.datetime_local
+                        },
+                        images: res.performers.map(event => event.image),
+                        // ticketLinks: res.url.map(event => event.ticketLinks)
+
                     }
                     saveEvent(savedEvent);
+                    saveEventPhoto(savedEvent);
+                    // saveEventLink(savedEvent);
                 }
             })
 
@@ -200,6 +207,35 @@
                         console.log(html);
                     }
                 });
+            }
+
+            function saveEventPhoto(eventPhotoFromAPI) {
+                $.post({
+                    url: '/saveEvent',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(eventPhotoFromAPI),
+                    beforeSend: function (jqXHR) {
+                        jqXHR.setRequestHeader('X-CSRF-Token', token,)
+                    },
+                    dataType: "json",
+                    success: function (html) {
+                        console.log(html);
+                    }
+                });
+
+                // function saveEventLink(eventLinkFromAPI) {
+                //     $.post({
+                //         url: '/saveEvent',
+                //         contentType: "application/json; charset=utf-8",
+                //         data: JSON.stringify(eventLinkFromAPI),
+                //         beforeSend: function (jqXHR) {
+                //             jqXHR.setRequestHeader('X-CSRF-Token', token,)
+                //         },
+                //         dataType: "json",
+                //         success: function (html) {
+                //             console.log(html);
+                //         }
+                //     });
             }
         })
     }

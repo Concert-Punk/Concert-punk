@@ -76,10 +76,32 @@
     </div>
 
 </nav>
+<script>
+    $.ajax({
+        type: "GET",
+        url: `https://api.seatgeek.com/2/events/${api_id}?client_id=MjM5OTczOTd8MTYzNDY3MzY2Ni42ODE5ODE&geoip=true`,
+        async: true,
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+
+            const savedEvent = {
+                api_id: res.id,
+                title: res.title,
+                location: res.venue.name,
+                startTime: res.datetime_local,
+            }
+            saveEvent(savedEvent);
+        }
+    })
+</script>
 <div th:each="event : ${User.events}">
     <h3 th:text="${event.title}"></h3>
+    <img th:src="${event.getPhotos().get(0).imageUrl}">
     <div th:text="*{event.location}"></div>
     <div th:text="*{event.startTime}"></div>
+
+
 </div>
 
 </html>
