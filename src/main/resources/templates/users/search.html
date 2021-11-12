@@ -8,8 +8,18 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
 
+    <nav th:replace="partials :: navbar"></nav>
 
 </head>
+
+<style>
+    .searchResults {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+</style>
 
 
 <body>
@@ -26,24 +36,9 @@
     <input id="add-artist" type="submit" value="Search"/>
 </form>
 
-<p><span id="youTube"></span></p>
-<table class="table table-hover table-dark" id="tableId">
-    <thead>
-    <tr class="videoToggler">
-
-        <th scope="col"></th>
-        <th scope="col">Title</th>
-        <th scope="col">Artist</th>
-        <th scope="col">Dur</th>
-        <th scope="col">Plays</th>
-    </tr>
-    </thead>
-    <tbody id="youtubeData">
-
-    </tbody>
-</table>
-<p id="concertSchedule"></p>
-
+<div class="searchResults">
+    <p id="concertSchedule"></p>
+</div>
 
 <div id="relatedArtistContainer"></div>
 
@@ -201,11 +196,12 @@
                     let showState = evts[i]._embedded.venues[0].state.stateCode;
                     let buyLink = evts[i].url;
                     let results = `<p style="color:white">Artist/Tour Name:${tourName}</p>
+
                      <p style="color:white">Concert Date:${tourDate}</p>
                       <p style="color:white">Time:${tourTimeC}</p>
 <p style="color:white">Venue:${venue}</p>
 <p style="color:white">${showCity}</p><p style="color:white">${showState}</p>
-<p style="color:white">Ticket Link:</p><a href="${buyLink}"><p style="color:white">Click Here for Tickets</p></a>`
+<p style="color: rgba(12, 105, 128, 0.99)">Ticket Link:</p><a href="${buyLink}"><p style="color: rgba(12, 105, 128, 0.99)">Click Here for Tickets</p></a>`
 
                     // let results = $("<div class='searchResult'>").html("<strong>Artist/Tour Name: " + tourName + "</strong><br>" +
                     //     "Concert Date: " + tourDate + " Time: " + tourTimeC + "<br>" +
@@ -231,9 +227,29 @@ $(document).on('click', '#add-artist', function (event) {
     handleSearch(artist);
 })
 </script>
+<br>
+<br>
+<br>
+
+<p><span id="youTube"></span></p>
+<table class="table table-hover table-dark" id="tableId">
+    <thead>
+    <tr class="videoToggler">
+
+        <th scope="col"></th>
+        <th scope="col">Title</th>
+        <th scope="col">Artist</th>
+        <th scope="col">Dur</th>
+        <th scope="col">Plays</th>
+    </tr>
+    </thead>
+    <tbody id="youtubeData">
+
+    </tbody>
+</table>
+
 <script>$(document).ready(function () {
     let clickedKeyword = "";
-
 
     function createAccessToken(callback) {
         let queryURL = "https://accounts.spotify.com/api/token";
@@ -340,7 +356,6 @@ $(document).on('click', '#add-artist', function (event) {
         $("#displayArtist").text($(this).text());
 
     });
-
 
 
 });</script>
