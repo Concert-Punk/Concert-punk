@@ -4,6 +4,66 @@
   <meta charset="UTF-8">
   <title>Edit Event</title>
 </head>
+<style>
+  .nav-link {
+    color: rgba(12, 105, 128, 0.99);
+  }
+
+  .btn-outline-success {
+    color: rgba(12, 105, 128, 0.99);
+  }
+
+  h1 {
+    color: rgba(12, 105, 128, 0.99);
+  }
+  * { box-sizing: border-box; }
+  .video-background {
+    background: #000;
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: -99;
+  }
+</style>
+
+
+<nav th:fragment="navbar">
+  <div style="background-color: rgb(0,0,0)">
+    <div style="justify-content: center">
+      <h1>Concert Punk</h1>
+    </div>
+    <form class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="true" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="/events/edit/eventToEdit.id">Edit Events</a>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="/profile">Profile</a>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="/users/viewFollowers">Following</a>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="/events/create">Create new event</a>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </div>
+    </form>
+  </div>
+</nav>
+
+
 <body>
 
 <form th:action="@{|/events/edit/${eventToEdit.id}|}" th:method="post" th:object="${eventToEdit}">

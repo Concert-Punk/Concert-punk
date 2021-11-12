@@ -1,10 +1,13 @@
 package com.example.capstoneproject.controllers;
+
 import com.example.capstoneproject.models.User;
 import com.example.capstoneproject.repos.UsersRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,15 +59,16 @@ public class HomeController {
 
     @RequestMapping(path = "/isLoggedIn.js", produces = "application/javascript")
     @ResponseBody
-    public String isLoggedin(){
-        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser"){
+    public String isLoggedin() {
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser") {
             return "const userIsLoggedIn = false;";
-        }else{
+        } else {
             User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User userInDB = usersDao.getById(currentUserSession.getId());
-            return "const userIsLoggedIn = true; const owner_id = " + userInDB.getId() +";";
+            return "const userIsLoggedIn = true; const owner_id = " + userInDB.getId() + ";";
         }
+
     }
-
-
 }
+
+

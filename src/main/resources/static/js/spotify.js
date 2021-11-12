@@ -94,7 +94,7 @@ $(document).ready(function () {
                 document.getElementById('musicSample').innerHTML += `
                      <audio controls id="musicSample"> <source src='${audioPreview}'/></audio> `;
 
-                       console.log(audioPreview)
+                console.log(audioPreview)
 
 
                 albumDiv.append(image);
