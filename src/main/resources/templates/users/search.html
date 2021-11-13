@@ -195,14 +195,23 @@
                     let showCity = evts[i]._embedded.venues[0].city.name;
                     let showState = evts[i]._embedded.venues[0].state.stateCode;
                     let buyLink = evts[i].url;
-                    let results = `<p style="color:white">Artist/Tour Name:${tourName}</p>
+//                     let results = `<p style="color:white">Artist/Tour Name:${tourName}</p>
+//
+//                      <p style="color:white">Concert Date:${tourDate}</p>
+//                       <p style="color:white">Time:${tourTimeC}</p>
+// <p style="color:white">Venue:${venue}</p>
+// <p style="color:white">${showCity}</p><p style="color:white">${showState}</p>
+// <p style="color: rgba(12, 105, 128, 0.99)">Ticket Link:</p><a href="${buyLink}"><p style="color: rgba(12, 105, 128, 0.99)">Click Here for Tickets</p></a>`
+                    let results =`<div class='d-inline-block'>
+             <div class='card' style='width: 18rem;'>
+            <a id="url" href="<p style="color:white">Artist/Tour Name:${tourDate}</p>"><img class="card-img-top" src='${image}' alt=' img'><a>
+            <div class='card-body'><h2> <strong>${tourTimeC}</strong> </h2> </div>;
+            <div class='card-text'><h3> ${venue}</h3> </div>;
+            <div class="card-text"><p>${showCity}</p>
+<!--            <div class='card-text'><p>${concerts.datetime_local}</p></div>;-->
 
-                     <p style="color:white">Concert Date:${tourDate}</p>
-                      <p style="color:white">Time:${tourTimeC}</p>
-<p style="color:white">Venue:${venue}</p>
-<p style="color:white">${showCity}</p><p style="color:white">${showState}</p>
-<p style="color: rgba(12, 105, 128, 0.99)">Ticket Link:</p><a href="${buyLink}"><p style="color: rgba(12, 105, 128, 0.99)">Click Here for Tickets</p></a>`
-
+                <div><button class="saveEvent" data-id="${concerts.id}" type="submit">Save</button></div>
+    </div><br>`
                     // let results = $("<div class='searchResult'>").html("<strong>Artist/Tour Name: " + tourName + "</strong><br>" +
                     //     "Concert Date: " + tourDate + " Time: " + tourTimeC + "<br>" +
                     //     "Venue: " + venue + " - " + showCity + ", " + showState + "<br>" +
