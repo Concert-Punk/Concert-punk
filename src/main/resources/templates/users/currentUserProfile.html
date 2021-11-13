@@ -16,10 +16,10 @@
 
 
 <div th:each="event : ${User.events}">
-    <h3 th:text="${event.title}"></h3>
+    <h3 style="color:white" th:text="${event.title}"></h3>
     <img th:src="${event.getPhotos().get(0).imageUrl}">
-    <div th:text="*{event.location}"></div>
-    <div th:text="*{event.startTime}"></div>
+    <div style="color:white" th:text="*{event.location}"></div>
+    <div style="color:white" th:text="*{event.startTime}"></div>
 
 
 
