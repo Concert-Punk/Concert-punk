@@ -41,7 +41,7 @@ public class Event {
     private LocalDateTime startTime;
 
 //    @Column(nullable = true, unique = false)
-    @Column(nullable = false, unique = false)
+    @Column(nullable = true, unique = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Getter
     @Setter
@@ -74,6 +74,11 @@ public class Event {
     @Getter
     @Setter
     private List<Comment> comments;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
+    @Getter
+    @Setter
+    private List<EventPhoto> photos;
 
     @Column(nullable = false, unique = true)
     @Getter
