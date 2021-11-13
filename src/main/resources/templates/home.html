@@ -33,157 +33,14 @@
 </head>
 
 
-
-<script src="/keys.js"></script>
-
-<!--spotify script-->
-<script type="text/javascript" src="/js/spotify.js"></script>
-
-<!--youtube script-->
-<script type="text/javascript" src="/js/youAPI.js"></script>
-
-<!--ticketmaster script-->
-<script type="text/javascript" src="/js/ticketMasterAPI.js"></script>
-
-<!--Moments JS is a framework that can parse,validate,manipulate and display dates-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script src="/isLoggedIn.js"></script>
-
-<script>
-    $.ajax({
-        type: "GET",
-        url: "https://api.seatgeek.com/2/events?client_id=MjM5OTczOTd8MTYzNDY3MzY2Ni42ODE5ODE&geoip=true",
-        async: true,
-        dataType: "json",
-        success: function (data) {
-            let cardMaker = ''
-            let concerts = data.events.filter(element => element.type === 'concert');
-            console.log(concerts)
-            for (const concerts of data.events.filter(element => element.type === 'concert')) {
-                let image = concerts.performers[0].image
-                let ticketPurchaseUrl = concerts.url
-                let artistIndex = concerts.title
-                console.log(artistIndex);
-                cardMaker += "<div class='d-inline-block'>"
-                cardMaker += ` <div class='card' style='width: 18rem;'>`
-                cardMaker += `<a id="url" href="${ticketPurchaseUrl}"><img class="card-img-top" src='${image}' alt=' img'></a>`
-                cardMaker += `<div class='card-body'><h2> <strong>${concerts.title}</strong> </h2> </div>`;
-                cardMaker += `<div class='card-text'><h3> @${concerts.venue.name}</h3> </div>`;
-                //   cardMaker +=`<div class="card-text"><p>${concerts.performers.genres.name}</p>`
-                cardMaker += `<div class='card-text'><p>${concerts.datetime_local}</p></div>`;
-                if (userIsLoggedIn) {
-                    cardMaker += `<div><button class="saveEvent" data-id="${concerts.id}" type="submit">Save</button></div>
-    </div><br>`
-                }
-
-                cardMaker += "</div>";
-                console.log(userIsLoggedIn);
-            }
-            $(".probablywontwork").html(cardMaker)
-            addListener();
-        },
-        error: function (xhr, status, err) {
-        }
-    });
-
-
-
-    function addListener() {
-        $('.saveEvent').click(function (e) {
-
-            e.preventDefault();
-            var events_id = ($(this).data("id"));
-            console.log(events_id)
-
-            var token = $("meta[name='_csrf']").attr("content");
-            var header = $("meta[name='_csrf_header']").attr("content");
-            console.log(token);
-            console.log(header);
-            console.log(events_id);
-            var data = events_id;
-            //Remove all errors
-            $.ajax({
-                type: "GET",
-                url: `https://api.seatgeek.com/2/events/${events_id}?client_id=MjM5OTczOTd8MTYzNDY3MzY2Ni42ODE5ODE&geoip=true`,
-                async: true,
-                dataType: "json",
-                success: function (res) {
-                    console.log(res)
-
-                    const savedEvent = {
-                        event: {
-                            api_id: res.id,
-                            title: res.title,
-                            location: res.venue.name,
-                            startTime: res.datetime_local
-                        },
-                        images: res.performers.map(event => event.image),
-                        // ticketLinks: res.url.map(event => event.ticketLinks)
-
-                    }
-                    saveEvent(savedEvent);
-                    saveEventPhoto(savedEvent);
-                    // saveEventLink(savedEvent);
-                }
-            })
-
-
-            function saveEvent(eventFromAPI) {
-                $.post({
-                    url: '/saveEvent',
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(eventFromAPI),
-                    beforeSend: function (jqXHR) {
-                        jqXHR.setRequestHeader('X-CSRF-Token', token,)
-                    },
-                    dataType: "json",
-                    success: function (html) {
-                        console.log(html);
-                    }
-                });
-            }
-
-            function saveEventPhoto(eventPhotoFromAPI) {
-                $.post({
-                    url: '/saveEvent',
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(eventPhotoFromAPI),
-                    beforeSend: function (jqXHR) {
-                        jqXHR.setRequestHeader('X-CSRF-Token', token,)
-                    },
-                    dataType: "json",
-                    success: function (html) {
-                        console.log(html);
-                    }
-                });
-
-                // function saveEventLink(eventLinkFromAPI) {
-                //     $.post({
-                //         url: '/saveEvent',
-                //         contentType: "application/json; charset=utf-8",
-                //         data: JSON.stringify(eventLinkFromAPI),
-                //         beforeSend: function (jqXHR) {
-                //             jqXHR.setRequestHeader('X-CSRF-Token', token,)
-                //         },
-                //         dataType: "json",
-                //         success: function (html) {
-                //             console.log(html);
-                //         }
-                //     });
-            }
-        })
-    }
-
 <body>
 <nav th:replace="partials :: navbar"></nav>
-
 
 
 <div class="video-container">
     <video autoplay loop muted id="video-bg">
 
-        <source src="/video/concert.mp4" type="video/mp4"></source>
+        <source src="/video/concert.mp4" type="video/mp4">
 
     </video>
 
@@ -210,7 +67,8 @@
         </div>
     </section>
 
+
 </div>
+
 </body>
-</script>
 </html>
