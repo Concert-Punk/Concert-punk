@@ -10,11 +10,21 @@
     </div>
 </div>
 
-
-
 <div sec:authorize="isAuthenticated()">
     <h1  style="color:white">Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
 </div>
+
+
+<div th:each="event : ${User.events}">
+    <h3 style="color:white" th:text="${event.title}"></h3>
+    <img th:src="${event.getPhotos().get(0).imageUrl}">
+    <div style="color:white" th:text="*{event.location}"></div>
+    <div style="color:white" th:text="*{event.startTime}"></div>
+
+
+
+
+
 
 <div th:if='${theCurrentUser}'>
     <form th:action="@{/admin/AdminHome}">
@@ -22,9 +32,8 @@
             Admin Home
         </button>
     </form>
+
+</div>
 </div>
 </body>
-
-
-
 </html>

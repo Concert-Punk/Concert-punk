@@ -57,18 +57,18 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping(path = "/isLoggedIn.js", produces = "application/javascript")
-    @ResponseBody
-    public String isLoggedin() {
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser") {
-            return "const userIsLoggedIn = false;";
-        } else {
-            User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User userInDB = usersDao.getById(currentUserSession.getId());
-            return "const userIsLoggedIn = true; const owner_id = " + userInDB.getId() + ";";
-        }
-
-    }
+//    @RequestMapping(path = "/isLoggedIn.js", produces = "application/javascript")
+//    @ResponseBody
+//    public String isLoggedin() {
+//        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser") {
+//            return "const userIsLoggedIn = false;";
+//        } else {
+//            User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//            User userInDB = usersDao.getById(currentUserSession.getId());
+//            return "const userIsLoggedIn = true; const owner_id = " + userInDB.getId() + ";";
+//        }
+//
+//    }
 }
 
 

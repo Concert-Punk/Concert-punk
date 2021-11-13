@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="partials">
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
   <title>Home</title>
   <!-- include stylesheets, etc here -->
   <!--JQUERY-->
@@ -50,13 +53,13 @@
           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Search</a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
             <li>
-              <a href="/templates/users/search.html">Search</a>
+              <a href="/search">Search</a>
             </li>
           </ul>
         </li>
 
         <li>
-          <a href="/events">Events</a>
+          <a href="/eventspage">Events</a>
         </li>
         <li>
           <a href="/profile">Profile</a>

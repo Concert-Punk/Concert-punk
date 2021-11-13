@@ -26,8 +26,8 @@ public class SearchController {
 
 
     @GetMapping( "/search")
-    public String searchHome(@RequestParam(name="searchTerm")  String input,Model model ){
-        model.addAttribute("input",input);
+    public String searchHome(){
+//        model.addAttribute("input",input);
         return "users/search";
     }
 

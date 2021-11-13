@@ -23,11 +23,17 @@ public class EventPhoto {
     @Column(nullable = false)
     @Getter
     @Setter
-    private String image_url;
+    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     @Getter
     @Setter
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    @Getter
+    @Setter
+    private Event event;
 }
