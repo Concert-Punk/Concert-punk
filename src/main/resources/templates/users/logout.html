@@ -4,10 +4,23 @@
     <meta charset="UTF-8"/>
     <title>Logout</title>
 </head>
+<link rel="stylesheet" href="/css/sidebar.css">
+<head th:replace="partials :: partials"></head>
+
 <body>
 
-<div th:replace="partials/navigation.html :: navbar">
+<nav th:replace="partials :: navbar"></nav>
+<h1 style="color:white">Logout</h1>
+
 </div>
+
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+
+<!--<form th:action="@{/logout}" method="post">-->
+<!--    <input type="submit" value="Logout"/>-->
+<!--</form>-->
 
 <div th:if="${param.logout}">
     You have been logged out.
@@ -16,7 +29,5 @@
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Logout"/>
 </form>
-
-
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <th:block th:replace="partials :: partials"></th:block>
+
     <style>
 
         /* default */
@@ -160,9 +161,11 @@
 
         /* hover state */
         .flip-card-container:hover .card-front .img-bg::before {
+            display: flex;
             width: 6px;
             border-left-color: var(--primary);
             border-right-color: var(--primary);
+
         }
 
         /* ul */
@@ -346,6 +349,12 @@
             --op: .7;
         }
 
+        body {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+
 
 
     </style>
@@ -383,7 +392,7 @@
                     <img src="https://source.unsplash.com/random" alt="Brohm Lake">
                 </figure>
 
-                <button id="saveBtn">Save</button>
+
 
                 <div class="design-container">
                     <span class="design design--1"></span>
@@ -480,9 +489,7 @@
         <div class="img-bg"></div>
         <img src="${image}" alt="Brohm Lake">
       </figure>
-
-      <button id="saveBtn">Save</button>
-
+      <button class="saveEvent" data-id="${concerts.id}" type="submit" id="saveBtn">Save</button>
       <div class="design-container">
         <span class="design design--1"></span>
         <span class="design design--2"></span>
@@ -533,12 +540,19 @@
                     console.log(res)
 
                     const savedEvent = {
-                        api_id: res.id,
-                        title: res.title,
-                        location: res.venue.name,
-                        startTime: res.datetime_local,
+                        event: {
+                            api_id: res.id,
+                            title: res.title,
+                            location: res.venue.name,
+                            startTime: res.datetime_local
+                        },
+                        images: res.performers.map(event => event.image),
+                        // ticketLinks: res.url.map(event => event.ticketLinks)
+
                     }
                     saveEvent(savedEvent);
+                    saveEventPhoto(savedEvent);
+                    // saveEventLink(savedEvent);
                 }
             })
 
@@ -548,6 +562,21 @@
                     url: '/saveEvent',
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(eventFromAPI),
+                    beforeSend: function (jqXHR) {
+                        jqXHR.setRequestHeader('X-CSRF-Token', token,)
+                    },
+                    dataType: "json",
+                    success: function (html) {
+                        console.log(html);
+                    }
+                });
+            }
+
+            function saveEventPhoto(eventPhotoFromAPI) {
+                $.post({
+                    url: '/saveEvent',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(eventPhotoFromAPI),
                     beforeSend: function (jqXHR) {
                         jqXHR.setRequestHeader('X-CSRF-Token', token,)
                     },
