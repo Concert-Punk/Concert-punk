@@ -398,7 +398,7 @@
                 q: q,
                 type: "video",
                 maxResults: vidResults,
-                key: 'AIzaSyBylEuSlqvJ3UM2PPqrRkW2vNPZQo1ccuo',
+                key: 'AIzaSyBQg9LOBnyBOlvU4Ym-IdApfCI9mjPWIh4',
 
             },
             function (youTubeBasicData) {
@@ -412,8 +412,8 @@
                     //  console.log(item.snippet.description);
 
 
-                    let durationUrl = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' + videoId + '&key=AIzaSyBylEuSlqvJ3UM2PPqrRkW2vNPZQo1ccuo'
-                    let viewCountUrl = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + videoId + '&key=AIzaSyBylEuSlqvJ3UM2PPqrRkW2vNPZQo1ccuo'
+                    let durationUrl = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' + videoId + '&key=AIzaSyBQg9LOBnyBOlvU4Ym-IdApfCI9mjPWIh4'
+                    let viewCountUrl = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + videoId + '&key=AIzaSyBQg9LOBnyBOlvU4Ym-IdApfCI9mjPWIh4'
                     axios.get(durationUrl).then(resp => {
                         //1.Duration and plays dont always match appropriate track, will need to match everything by the videoID
                         //2.I need to iterate through them not happening so far
