@@ -384,6 +384,7 @@
 
 </head>
 <body>
+<nav th:replace="partials :: navbar"></nav>
 
 <!-- Images Container -->
 <div class="probablywontwork" style="display: flex; flex-wrap: wrap"></div>
@@ -460,12 +461,12 @@
                     <div th:each="comment:${event.getComments()}" style="color:white">
                         <a th:href="@{|/profile/${comment.user.id}|}" style="color:white"> <span
                                 th:text="${comment.user.username}"
-                                style="color:white"></span></a>
+                                style="color:deepskyblue"></span></a>
                         <div th:text="${comment.comment_text}" style="color:white"></div>
 
                         <form th:action="@{|/deleteComment/${comment.id}|}" class="deleteBtn" th:method="post"
                               style="color:white">
-                            <button th:text="${#authentication.principal.username}" class="btn btn-danger" type="submit"
+                            <button th:text="Delete" class="btn btn-danger" type="submit"
                                     name="deleteCommentText" style="color:white">
                                 Delete Comment
                             </button>

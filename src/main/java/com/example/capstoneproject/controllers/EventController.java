@@ -90,7 +90,7 @@ public class EventController {
         );
 
         eventsDao.save(eventToAdd);
-        return "redirect:/events";
+        return "redirect:/eventspage";
     }
 
     @GetMapping("/events/edit/{id}")

@@ -62,6 +62,8 @@ public class UserController {
         User viewedUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userInDB = usersDao.getById(viewedUserSession.getId());
         model.addAttribute("viewedUser", userInDB.getRole() == Roles.admin);
+        model.addAttribute("User", userInDB);
+
         return "users/viewedProfile";
     }
 
@@ -112,7 +114,7 @@ public class UserController {
       newComment.setEvent(event);
         System.out.println(newComment);
       commentsDao.save(newComment);
-        return "redirect:/events";
+        return "redirect:/eventspage";
     }
 
 
@@ -137,9 +139,9 @@ public String deleteUser() {
 @GetMapping("/profile/{id}")
     public String viewProfiles(@PathVariable Long id, Model model){
     User viewUser = usersDao.getById(id);
-    User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    User userInDB = usersDao.getById(currentUserSession.getId());
+    User userInDB = usersDao.getById(viewUser.getId());
     boolean isFollowing = userInDB.getFollowing().contains(viewUser);
+    model.addAttribute("User", userInDB);
     model.addAttribute("isFollowing", isFollowing);
     model.addAttribute("viewedUser", viewUser);
     model.addAttribute("id",id );
