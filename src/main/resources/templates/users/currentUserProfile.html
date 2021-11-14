@@ -4,11 +4,6 @@
 <th:block th:replace="partials :: partials"></th:block>
 <body>  <nav th:replace="partials :: navbar"></nav>
 
-<div class="nav-item">
-    <div sec:authorize="isAuthenticated()">
-        <a class="nav-link" href="/events"><span th:text="${#authentication.principal.username}"/> created Events</a>
-    </div>
-</div>
 
 <div sec:authorize="isAuthenticated()">
     <h1  style="color:white">Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
