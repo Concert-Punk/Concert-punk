@@ -6,6 +6,9 @@
     <title>Title</title>
     <th:block th:replace="partials :: partials"></th:block>
 
+    <h1 style="color:white">Local Events</h1>
+
+
     <style>
 
         /* default */
@@ -20,12 +23,34 @@
         /* body */
         body {
             background: black;
-
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
 
         }
 
+        h2 {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+
+
+
+
+        .communityevents {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center
+
+        }
+
+
         /* .flip-card-container */
         .flip-card-container {
+
             --hue: 150;
             --primary: hsl(var(--hue), 50%, 50%);
             --white-1: hsl(0, 0%, 90%);
@@ -38,6 +63,7 @@
             margin: 40px;
 
             perspective: 1000px;
+
         }
 
         /* .flip-card */
@@ -104,7 +130,7 @@
         /* img */
         img {
             height: 100%;
-            width:100%;
+            width: 100%;
             border-radius: 24px;
         }
 
@@ -343,107 +369,123 @@
         }
 
         /* states */
-        button:hover+.design-container,
-        button:active+.design-container,
-        button:focus+.design-container {
+        button:hover + .design-container,
+        button:active + .design-container,
+        button:focus + .design-container {
             --tr: 20;
             --op: .7;
         }
 
-        body {
-            display: flex;
-            align-content: center;
-            justify-content: center;
-        }
-
+        /*body {*/
+        /*    display: flex;*/
+        /*    align-content: center;*/
+        /*    justify-content: center;*/
+        /*}*/
 
 
     </style>
+    <!--    <nav th:replace="partials :: navbar"></nav>-->
+
 </head>
 <body>
-<nav th:replace="partials :: navbar"></nav>
 
 <!-- Images Container -->
-<h1 style="color:white">Local Events</h1>
-<div class="probablywontwork"></div>
+<div class="probablywontwork" style="display: flex; flex-wrap: wrap"></div>
 <!--Form Model biNDING-->
-<div th:each="event : ${events}">
-    <div class="flip-card-container" style="--hue: 220">
-        <div class="flip-card">
+<br>
+<br>
+<div>
+    <h2 style="color:white; display: flex; justify-content: center; align-content: center">Community Created Events</h2>
+    <br>
+    <br>
+    <div class="communityevents">
+        <div th:each="event : ${events}">
+            <div th:if="${event.api_id == null}">
+                <!--                <p th:text="${event.api_id == null}"></p>-->
+                <div class="flip-card-container" style="--hue: 220">
+                    <div class="flip-card">
 
-            <div class="card-front" id="card-front">
-                <figure>
-                    <div class="img-bg"></div>
-                    <img src="https://source.unsplash.com/random" alt="Brohm Lake">
-                    <h4 th:text="${event.title}" style="color:white" class="artistName"></h4>
-                </figure>
+                        <div class="card-front" id="card-front">
+                            <figure>
+                                <div class="img-bg"></div>
+                                <img src="https://source.unsplash.com/random" alt="Brohm Lake">
+                                <h4 th:text="${event.title}" style="color:white" class="artistName"></h4>
+                            </figure>
 
-                <ul id="details">
-                    <li th:text="${event.description}" style="color:white" id  ="detailItems">Detail 1</li>
-                    <li th:text="*{event.location}" style="color:white">Detail 2</li>
-                    <li th:text="*{event.startTime}"style="color:white">Detail 3</li>
-                    <li th:text="*{event.endTime}"style="color:white">Detail 4</li>
-                    <li><p>Posted By: <span th:text="${event.owner.username}" style="color:white"></span></p></li>
-                </ul>
-            </div>
+                            <ul id="details">
+                                <li th:text="${event.description}" style="color:white" id="detailItems">Detail 1</li>
+                                <li th:text="*{event.location}" style="color:white">Detail 2</li>
+                                <li th:text="*{event.startTime}" style="color:white">Detail 3</li>
+                                <li th:text="*{event.endTime}" style="color:white">Detail 4</li>
+                                <li><p>Posted By: <span th:text="${event.owner.username}" style="color:white"></span>
+                                </p>
+                                </li>
+                            </ul>
+                        </div>
 
-            <div class="card-back">
-                <figure>
-                    <div class="img-bg"></div>
-                    <img src="https://source.unsplash.com/random" alt="Brohm Lake">
-                </figure>
+                        <div class="card-back">
+                            <figure>
+                                <div class="img-bg"></div>
+                                <img src="https://source.unsplash.com/random" alt="Brohm Lake">
+                            </figure>
 
 
+                            <div class="design-container">
+                                <span class="design design--1"></span>
+                                <span class="design design--2"></span>
+                                <span class="design design--3"></span>
+                                <span class="design design--4"></span>
+                                <span class="design design--5"></span>
+                                <span class="design design--6"></span>
+                                <span class="design design--7"></span>
+                                <span class="design design--8"></span>
+                            </div>
+                        </div>
 
-                <div class="design-container">
-                    <span class="design design--1"></span>
-                    <span class="design design--2"></span>
-                    <span class="design design--3"></span>
-                    <span class="design design--4"></span>
-                    <span class="design design--5"></span>
-                    <span class="design design--6"></span>
-                    <span class="design design--7"></span>
-                    <span class="design design--8"></span>
+                    </div>
+                </div>
+
+
+                <!--    <h3 th:text="${event.title}"style="color:white">Title</h3>-->
+                <!--    <div th:text="${event.description}"style="color:white"></div>-->
+                <!--    <div th:text="*{event.location}"style="color:white"></div>-->
+                <!--    <div th:text="*{event.startTime}"style="color:white"></div>-->
+                <!--    <div th:text="*{event.endTime}"style="color:white"></div>-->
+                <!--    <p>Posted By: <span th:text="${event.owner.username}"style="color:white"></span></p>-->
+                <!--    <a href="#" class="showForm" id="${event.id}">Add comment</a>-->
+                <div sec:authorize="isAuthenticated()">
+                    User ID: <span th:text="${#authentication.principal.username}"/>
+                    <form th:action="@{|/addComment/${event.id}|}" class="addForm" th:method="post" style="color:white">
+                        <textarea name="commentText"></textarea>
+                        <input type="submit" class="commentBtn" name="commentTextInput">
+                    </form>
+
+
+                    <div th:each="comment:${event.getComments()}" style="color:white">
+                        <a th:href="@{|/profile/${comment.user.id}|}" style="color:white"> <span
+                                th:text="${comment.user.username}"
+                                style="color:white"></span></a>
+                        <div th:text="${comment.comment_text}" style="color:white"></div>
+
+                        <form th:action="@{|/deleteComment/${comment.id}|}" class="deleteBtn" th:method="post"
+                              style="color:white">
+                            <button th:text="${#authentication.principal.username}" class="btn btn-danger" type="submit"
+                                    name="deleteCommentText" style="color:white">
+                                Delete Comment
+                            </button>
+                            <button th:if="${adminCheck}" class="btn btn-danger" type="submit" name="deleteCommentText"
+                                    style="color:white">
+                                Delete Comment
+                            </button>
+                        </form>
+
+                        <a th:href="@{|/events/${event.id}|}" style="color:white">View Event</a>
+
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
-
-
-<!--    <h3 th:text="${event.title}"style="color:white">Title</h3>-->
-<!--    <div th:text="${event.description}"style="color:white"></div>-->
-<!--    <div th:text="*{event.location}"style="color:white"></div>-->
-<!--    <div th:text="*{event.startTime}"style="color:white"></div>-->
-<!--    <div th:text="*{event.endTime}"style="color:white"></div>-->
-<!--    <p>Posted By: <span th:text="${event.owner.username}"style="color:white"></span></p>-->
-    <!--    <a href="#" class="showForm" id="${event.id}">Add comment</a>-->
-    <div sec:authorize="isAuthenticated()">
-        User ID: <span th:text="${#authentication.principal.username}"/>
-    <form th:action="@{|/addComment/${event.id}|}" class="addForm" th:method="post"style="color:white">
-        <textarea name="commentText" ></textarea>
-        <input type="submit" class="commentBtn" name="commentTextInput">
-    </form>
-
-
-
-    <div th:each="comment:${event.getComments()}" style="color:white">
-        <a th:href="@{|/profile/${comment.user.id}|}" style="color:white">  <span th:text="${comment.user.username}" style="color:white"></span></a>
-        <div th:text="${comment.comment_text}" style="color:white"></div>
-
-        <form th:action="@{|/deleteComment/${comment.id}|}" class="deleteBtn" th:method="post"style="color:white">
-            <button th:text="${#authentication.principal.username}" class="btn btn-danger" type="submit" name="deleteCommentText"style="color:white">
-                Delete Comment
-            </button>
-            <button th:if="${adminCheck}" class="btn btn-danger" type="submit" name="deleteCommentText"style="color:white">
-                Delete Comment
-            </button>
-        </form>
-
-        <a th:href="@{|/events/${event.id}|}" style="color:white">View Event</a>
-
-    </div>
-</div>
 </div>
 
 </body>
@@ -466,7 +508,7 @@
                 let location = concerts.venue.display_location
                 let venue = concerts.venue.name
                 let time = concerts.datetime_local
-                cardMaker+=`  <div class="flip-card-container" style="--hue: 220">
+                cardMaker += `  <div class="flip-card-container" style="--hue: 220">
   <div class="flip-card">
 
     <div class="card-front" id="card-front">
@@ -507,7 +549,6 @@
 </div>`
 
 
-
             }
             $(".probablywontwork").html(cardMaker)
             addListener();
@@ -515,7 +556,6 @@
         error: function (xhr, status, err) {
         }
     });
-
 
 
     function addListener() {
@@ -589,7 +629,6 @@
             }
         })
     }
-
 
 
 </script>
