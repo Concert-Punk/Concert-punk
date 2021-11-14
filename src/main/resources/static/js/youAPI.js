@@ -22,7 +22,7 @@ function youtubeSearch(q) {
         function(data) {
             var output;
             $.each(data.items, function(i, item) {
-                console.log(item);
+                // console.log(item);
                 var videoId = item.id.videoId;
                 output = '<li><iframe height="' + vidHeight + '" width="' + vidWidth + '" src=\"https://www.youtube.com/embed/' + videoId + '\"></li>';
                 $("#youTube").html(output);
