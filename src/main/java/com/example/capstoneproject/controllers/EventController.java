@@ -55,7 +55,7 @@ public class EventController {
         User userInDB = usersDao.getById(currentUser.getId());
         commentsDao.deleteById(commentId);
         model.addAttribute("theCurrentUser", userInDB);
-        return "redirect:/events";
+        return "redirect:/eventspage";
     }
 
 

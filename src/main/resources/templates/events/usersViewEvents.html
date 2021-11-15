@@ -458,6 +458,31 @@
                 <!--    <div th:text="*{event.endTime}"style="color:white"></div>-->
                 <!--    <p>Posted By: <span th:text="${event.owner.username}"style="color:white"></span></p>-->
                 <!--    <a href="#" class="showForm" id="${event.id}">Add comment</a>-->
+
+<!--                <ul class="list-unstyled">-->
+<!--                    <li class="media">-->
+<!--                        <img src="..." class="mr-3" alt="...">-->
+<!--                        <div class="media-body">-->
+<!--                            <h5 class="mt-0 mb-1">List-based media object</h5>-->
+<!--                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="media my-4">-->
+<!--                        <img src="..." class="mr-3" alt="...">-->
+<!--                        <div class="media-body">-->
+<!--                            <h5 class="mt-0 mb-1">List-based media object</h5>-->
+<!--                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="media">-->
+<!--                        <img src="..." class="mr-3" alt="...">-->
+<!--                        <div class="media-body">-->
+<!--                            <h5 class="mt-0 mb-1">List-based media object</h5>-->
+<!--                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                </ul>-->
+
                 <div sec:authorize="isAuthenticated()">
                     User ID: <span th:text="${#authentication.principal.username}"/>'s comments
                     <form th:action="@{|/addComment/${event.id}|}" class="addForm" th:method="post" style="color:white">
@@ -466,11 +491,20 @@
                     </form>
 
                         <div class="userComments" style="justify-content: center; align-content: center">
-                            <div th:each="comment:${event.getComments()}" style="color:white">
-                                <h2><a th:href="@{|/profile/${comment.user.id}|}" style="color:white">
-                                    <span th:text="${comment.user.username}" style="color:deepskyblue;"></span>'s
-                                    Comments</a></h2>
+                            <ul class="list-unstyled" th:each="comment:${event.getComments()}" style="color:white">
+                                <li class="media">
+                                    <img src="https://p.kindpng.com/picc/s/541-5411865_illustration-hd-png-download.png" class="mr-3">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 mb-1">
+                                            <a th:text="${comment.user.username}" th:href="@{|/profile/${comment.user.id}|}"></a>
+                                        </h5>
+<!--                                    <h2><a th:href="@{|/profile/${comment.user.id}|}" style="color:white">-->
+<!--                                    <span th:text="${comment.user.username}" style="color:deepskyblue;"></span>'s-->
+<!--                                    Comments</a></h2>-->
                                 <div th:text="${comment.comment_text}" style="color:white"></div>
+                                    </div>
+                                </li>
+                            </ul>
 
                                 <br>
 
@@ -490,7 +524,6 @@
                                 <a th:href="@{|/events/${event.id}|}" style="color:white">View Event</a>
                                 <br>
                                 <br>
-                            </div>
                             <br>
                             <br>
                         </div>
