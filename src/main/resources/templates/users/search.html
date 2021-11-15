@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <th:block th:replace="partials :: partials"></th:block>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
-
-    <nav th:replace="partials :: navbar"></nav>
 
     <script src="/keys.js"></script>
 
@@ -30,7 +29,19 @@
     body {
         background: black;
 
+    }
 
+    .searchResults {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .searchBar {
+        display: flex;
+        justify-content: center;
+        align-content: center;
     }
 
     /* .flip-card-container */
@@ -361,6 +372,7 @@
 
 
 </style>
+<nav th:replace="partials :: navbar"></nav>
 
 <body>
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
@@ -368,13 +380,15 @@
 
 <!--<p class="videoToggler" data-id="uMyuSHewmks">Press here to play Naruto Intro</p>-->
 <!--<p class="videoToggler" data-id="tgbNymZ7vqY">Press here to play Muppets</p>-->
-<form>
-    <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>
-    <input id="add-artist" type="submit" value="Search"/>
-</form>
+<div class="searchBar">
+    <form>
+        <label for="search-input"></label><input id="search-input" type="text" name="Search Artist"/>
+        <input id="add-artist" type="submit" value="Search"/>
+    </form>
+</div>
 
-<div class=" container searchResults" style="display: flex; flex-wrap: wrap">
-    <p id="concertSchedule"></p>
+<div class="searchResults">
+    <p id="concertSchedule" style="display: flex; flex-wrap: wrap"></p>
 </div>
 
 
