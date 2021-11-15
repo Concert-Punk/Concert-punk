@@ -9,7 +9,354 @@
           rel="stylesheet">
 
     <nav th:replace="partials :: navbar"></nav>
-    <script src="/keys.js"></script>
+    <style>
+
+        /* default */
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* body */
+        body {
+            background: black;
+
+
+        }
+
+        /* .flip-card-container */
+        .flip-card-container {
+            --hue: 150;
+            --primary: hsl(var(--hue), 50%, 50%);
+            --white-1: hsl(0, 0%, 90%);
+            --white-2: hsl(0, 0%, 80%);
+            --dark: hsl(var(--hue), 25%, 10%);
+            --grey: hsl(0, 0%, 50%);
+
+            width: 310px;
+            height: 500px;
+            margin: 40px;
+
+            perspective: 1000px;
+        }
+
+        /* .flip-card */
+        .flip-card {
+            width: inherit;
+            height: inherit;
+
+            position: relative;
+            transform-style: preserve-3d;
+            transition: .6s .1s;
+        }
+
+        /* hover and focus-within states */
+        .flip-card-container:hover .flip-card,
+        .flip-card-container:focus-within .flip-card {
+            transform: rotateY(180deg);
+        }
+
+        /* .card-... */
+        #card-front,
+        .card-back {
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+
+            background: var(--dark);
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+
+            backface-visibility: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* .card-front */
+        .card-front {
+            transform: rotateY(0deg);
+            z-index: 2;
+        }
+
+        /* .card-back */
+        .card-back {
+            transform: rotateY(180deg);
+            z-index: 1;
+        }
+
+        /* figure */
+        figure {
+            z-index: -1;
+        }
+
+        /* figure, .img-bg */
+        figure,
+        .img-bg {
+            position: absolute;
+            width: 90%;
+            height: 90%;
+        }
+
+        /* img */
+        img {
+            height: 100%;
+            width:100%;
+            border-radius: 24px;
+        }
+
+        /* figcaption */
+        .artistName {
+            display: block;
+
+            width: auto;
+            margin-top: 12%;
+            padding: 8px 22px;
+
+            font-weight: bold;
+            line-height: 1.6;
+            letter-spacing: 2px;
+            word-spacing: 6px;
+            text-align: right;
+
+            position: absolute;
+            top: 0;
+            right: 12px;
+
+            color: var(--white-1);
+
+        }
+
+        /* .img-bg */
+        .img-bg {
+            background: hsla(var(--hue), 25%, 10%, .5);
+        }
+
+        .card-front .img-bg {
+            clip-path: polygon(0 20%, 100% 40%, 100% 100%, 0 100%);
+        }
+
+        .card-front .img-bg::before {
+            content: "";
+
+            position: absolute;
+            top: 34%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(18deg);
+
+            width: 100%;
+            height: 6px;
+            border: 1px solid var(--primary);
+            border-left-color: transparent;
+            border-right-color: transparent;
+
+            transition: .1s;
+        }
+
+        .card-back .img-bg {
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 0 60%);
+        }
+
+        /* hover state */
+        .flip-card-container:hover .card-front .img-bg::before {
+            display: flex;
+            width: 6px;
+            border-left-color: var(--primary);
+            border-right-color: var(--primary);
+
+        }
+
+        /* ul */
+        #details {
+            padding-top: 50%;
+            margin: 0 auto;
+            width: 70%;
+            height: 100%;
+
+            list-style: none;
+            color: var(--white-1);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* li */
+        #detailItems {
+            width: 100%;
+            margin-top: 12px;
+            padding-bottom: 12px;
+
+            font-size: 14px;
+            text-align: center;
+
+            position: relative;
+        }
+
+        #detailItems:nth-child(2n) {
+            color: var(--white-2);
+        }
+
+        #detailItems:not(:last-child)::after {
+            content: "";
+
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+            height: 1px;
+
+            background: currentColor;
+            opacity: .2;
+        }
+
+        /* button */
+        #saveBtn {
+            font-family: inherit;
+            font-weight: bold;
+            color: var(--white-1);
+
+            letter-spacing: 2px;
+
+            padding: 9px 20px;
+            border: 1px solid var(--grey);
+            border-radius: 1000px;
+            background: transparent;
+            transition: .3s;
+
+            cursor: pointer;
+        }
+
+        #saveBtn:hover,
+        #saveBtn:focus {
+            color: var(--primary);
+            background: hsla(var(--hue), 25%, 10%, .2);
+            border-color: currentColor;
+        }
+
+        #saveBtn:active {
+            transform: translate(2px);
+        }
+
+        /* .design-container */
+        .design-container {
+            --tr: 90;
+            --op: .5;
+
+            width: 100%;
+            height: 100%;
+
+            background: transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            pointer-events: none;
+        }
+
+        /* .design */
+        .design {
+            display: block;
+
+            background: var(--grey);
+            position: absolute;
+
+            opacity: var(--op);
+            transition: .3s;
+        }
+
+        .design--1,
+        .design--2,
+        .design--3,
+        .design--4 {
+            width: 1px;
+            height: 100%;
+        }
+
+        .design--1,
+        .design--2 {
+            top: 0;
+            transform: translateY(calc((var(--tr) - (var(--tr) * 2)) * 1%))
+        }
+
+        .design--1 {
+            left: 20%;
+        }
+
+        .design--2 {
+            left: 80%;
+        }
+
+        .design--3,
+        .design--4 {
+            bottom: 0;
+            transform: translateY(calc((var(--tr) + (var(--tr) - var(--tr))) * 1%))
+        }
+
+        .design--3 {
+            left: 24%;
+        }
+
+        .design--4 {
+            left: 76%;
+        }
+
+        .design--5,
+        .design--6,
+        .design--7,
+        .design--8 {
+            width: 100%;
+            height: 1px;
+        }
+
+        .design--5,
+        .design--6 {
+            left: 0;
+            transform: translateX(calc((var(--tr) - (var(--tr) * 2)) * 1%));
+        }
+
+        .design--5 {
+            top: 41%;
+        }
+
+        .design--6 {
+            top: 59%;
+        }
+
+        .design--7,
+        .design--8 {
+            right: 0;
+            transform: translateX(calc((var(--tr) + (var(--tr) - var(--tr))) * 1%))
+        }
+
+        .design--7 {
+            top: 44%;
+        }
+
+        .design--8 {
+            top: 56%;
+        }
+
+        /* states */
+        button:hover+.design-container,
+        button:active+.design-container,
+        button:focus+.design-container {
+            --tr: 20;
+            --op: .7;
+        }
+
+
+
+
+    </style>
 </head>
 
 
@@ -111,7 +458,7 @@
     /* img */
     img {
         height: 100%;
-        width: 100%;
+        width:100%;
         border-radius: 24px;
     }
 
@@ -350,18 +697,23 @@
     }
 
     /* states */
-    button:hover + .design-container,
-    button:active + .design-container,
-    button:focus + .design-container {
+    button:hover+.design-container,
+    button:active+.design-container,
+    button:focus+.design-container {
         --tr: 20;
         --op: .7;
     }
+
+
 
 
 </style>
 
 <body>
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+<div id="playerWrapper">
+    <div id="player"></div>
+</div>
 
 
 <!--<p class="videoToggler" data-id="uMyuSHewmks">Press here to play Naruto Intro</p>-->
@@ -375,60 +727,7 @@
     <p id="concertSchedule"></p>
 </div>
 
-
-<!--<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="detailsModel">-->
-
-
-<!--            ...-->
-
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-     aria-hidden="true" id="detailsModel">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                       aria-controls="home" aria-selected="true">Home</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                       aria-controls="profile" aria-selected="false">Similar Artists</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                       aria-controls="contact" aria-selected="false">Preview Tracks</a>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">1</div>
-
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <div id="relatedArtistContainer"></div>
-                </div>
-
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    <table class="table table-hover table-dark" id="tableId">
-                        <thead>
-                        <div id="playerWrapper">
-                            <div id="player"></div>
-                        </div>
-                        <tr class="videoToggler">
-
-                            <th scope="col"></th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Artist</th>
-                            <th scope="col">Dur</th>
-                            <th scope="col">Plays</th>
-                        </tr>
-                        </thead>
-                        <tbody id="youtubeData">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div id="relatedArtistContainer"></div>
 
 <script>
 
@@ -446,7 +745,7 @@
                 q: q,
                 type: "video",
                 maxResults: vidResults,
-                key: 'AIzaSyBRVWhRl1MNffyorvdDNoZIEcWIUSdoS-I',
+                key: 'AIzaSyBQg9LOBnyBOlvU4Ym-IdApfCI9mjPWIh4',
 
             },
             function (youTubeBasicData) {
@@ -460,8 +759,8 @@
                     //  console.log(item.snippet.description);
 
 
-                    let durationUrl = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' + videoId + '&key=AIzaSyBRVWhRl1MNffyorvdDNoZIEcWIUSdoS-I'
-                    let viewCountUrl = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + videoId + '&key=AIzaSyBRVWhRl1MNffyorvdDNoZIEcWIUSdoS-I'
+                    let durationUrl = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' + videoId + '&key=AIzaSyBQg9LOBnyBOlvU4Ym-IdApfCI9mjPWIh4'
+                    let viewCountUrl = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + videoId + '&key=AIzaSyBQg9LOBnyBOlvU4Ym-IdApfCI9mjPWIh4'
                     axios.get(durationUrl).then(resp => {
                         //1.Duration and plays dont always match appropriate track, will need to match everything by the videoID
                         //2.I need to iterate through them not happening so far
@@ -483,6 +782,8 @@
                             console.log(response.data.items[0].statistics.viewCount)
 
                         })
+
+
                         console.log(resp.data);
                     });
 
@@ -525,7 +826,7 @@
 
             player = new YT.Player('player', {
                 height: '390',
-                width: '800',
+                width: '640',
                 videoId: youTubeId,
                 playerVars: {
                     'playsinline': 1
@@ -536,46 +837,52 @@
             });
 
         })
+        // document.querySelectorAll("tr.videoToggler").forEach(function (e) {
+        //     e.addEventListener("click", function (e) {
+        //         console.log("Triggering channge");
+        //     })
+        // })
+
+
     }
 
 
     function onPlayerReady(event) {
         console.log(event.target)
 
-        // event.target.playVideo();
-        // event.target.setVolume(100);
+        event.target.playVideo();
+        event.target.setVolume(100);
     }
 
 
 </script>
-<script>
-    function handleSearch(artist) {
-        let queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?&countryCode=US&sort'date,asc'&keyword=" +
-            artist + "&apikey=oiPygQlAdZyxwwtbOi99vUDR8HTGkuV8"
-        $.ajax({
-            type: "GET",
-            url: queryURL,
-            async: true,
-            dataType: "json",
-            success: function (response) {
-                if (response.hasOwnProperty('_embedded')) {
-                    console.log("It has property embedded");
-                    console.log(response)
-                    let evts = response._embedded.events;
-                    let concertHeader;
-                    for (let i = 0; i < 5; i++) {
-                        console.log(response._embedded.events[i]);
-                        let concertDiv = $("<div class='item'>");
-                        // let images = evts[i]_embedded.events[0].images[0]
-                        let tourName = evts[i].name;
-                        let tourDate = evts[i].dates.start.localDate;
-                        let tourTime = evts[i].dates.start.localTime;
-                        let tourTimeC = moment(tourTime, "HH:mm").format('hh:mm a');
-                        let venue = evts[i]._embedded.venues[0].name;
-                        let showCity = evts[i]._embedded.venues[0].city.name;
-                        let showState = evts[i]._embedded.venues[0].state.stateCode;
-                        let buyLink = evts[i].url;
-                        let results = `  <div class="flip-card-container" style="--hue: 220 ">
+<script>function handleSearch(artist) {
+    let queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?&countryCode=US&sort'date,asc'&keyword=" +
+        artist + "&apikey=oiPygQlAdZyxwwtbOi99vUDR8HTGkuV8"
+    $.ajax({
+        type: "GET",
+        url: queryURL,
+        async: true,
+        dataType: "json",
+        success: function (response) {
+            if (response.hasOwnProperty('_embedded')) {
+                console.log("It has property embedded");
+                console.log(response)
+                let evts = response._embedded.events;
+                let concertHeader;
+                for (let i = 0; i < 5; i++) {
+                    console.log(response._embedded.events[i]);
+                    let concertDiv = $("<div class='item'>");
+                    // let images = evts[i]_embedded.events[0].images[0]
+                    let tourName = evts[i].name;
+                    let tourDate = evts[i].dates.start.localDate;
+                    let tourTime = evts[i].dates.start.localTime;
+                    let tourTimeC = moment(tourTime, "HH:mm").format('hh:mm a');
+                    let venue = evts[i]._embedded.venues[0].name;
+                    let showCity = evts[i]._embedded.venues[0].city.name;
+                    let showState = evts[i]._embedded.venues[0].state.stateCode;
+                    let buyLink = evts[i].url;
+                    let results =`  <div class="flip-card-container" style="--hue: 220 ">
   <div class="flip-card">
 
     <div class="card-front" id="card-front">
@@ -599,7 +906,7 @@
         <div class="img-bg"></div>
         <img src="" alt="Brohm Lake">
       </figure>
-      <button class="details"  type="submit" data-artistName="${tourName}" id="saveBtn">Details</button>
+      <button class="saveEvent"  type="submit" id="saveBtn">Save</button>
       <div class="design-container">
         <span class="design design--1"></span>
         <span class="design design--2"></span>
@@ -615,59 +922,174 @@
   </div>
 </div>
 `
-                        concertDiv.prepend(results);
-                        $("#concertSchedule").append(concertDiv);
-                    }
-                } else {
-                    $("#concertSchedule").html("<em>" + "There currently isn't any event information for " + artist + ".</em>");
-                }
-            },
-            error: function (xhr, status, err) {
-                // This time, we do not end up here!
-            }
-        });
-    }
 
-    $(document).on('click', '#add-artist', function (event) {
-        event.preventDefault();
-        let artist = $("#search-input").val().trim();
-        console.log(artist);
-        handleSearch(artist);
-    })
+//                     `<p style="color:white">Artist/Tour Name:${tourName}</p>
+//
+//                      <p style="color:white">Concert Date:${tourDate}</p>
+//                       <p style="color:white">Time:${tourTimeC}</p>
+// <p style="color:white">Venue:${venue}</p>
+// <p style="color:white">${showCity}</p><p style="color:white">${showState}</p>
+// <p style="color: rgba(12, 105, 128, 0.99)">Ticket Link:</p><a href="${buyLink}"><p style="color: rgba(12, 105, 128, 0.99)">Click Here for Tickets</p></a>`
+
+                    // let results = $("<div class='searchResult'>").html("<strong>Artist/Tour Name: " + tourName + "</strong><br>" +
+                    //     "Concert Date: " + tourDate + " Time: " + tourTimeC + "<br>" +
+                    //     "Venue: " + venue + " - " + showCity + ", " + showState + "<br>" +
+                    //     "Ticket Link: " + "<a href='" + buyLink + "' target=_'blank'>Click Here for Tickets</a>" + "<br>");
+                    concertDiv.prepend(results);
+                    $("#concertSchedule").append(concertDiv);
+                }
+            } else {
+                $("#concertSchedule").html("<em>" + "There currently isn't any event information for " + artist + ".</em>");
+            }
+        },
+        error: function (xhr, status, err) {
+            // This time, we do not end up here!
+        }
+    });
+}
+
+$(document).on('click', '#add-artist', function (event) {
+    event.preventDefault();
+    let artist = $("#search-input").val().trim();
+    console.log(artist);
+    handleSearch(artist);
+})
 </script>
 <br>
 <br>
 <br>
 
 <p><span id="youTube"></span></p>
+<table class="table table-hover table-dark" id="tableId">
+    <thead>
+    <tr class="videoToggler">
+
+        <th scope="col"></th>
+        <th scope="col">Title</th>
+        <th scope="col">Artist</th>
+        <th scope="col">Dur</th>
+        <th scope="col">Plays</th>
+    </tr>
+    </thead>
+    <tbody id="youtubeData">
+
+    </tbody>
+</table>
+
+<script>$(document).ready(function () {
+    let clickedKeyword = "";
+
+    function createAccessToken(callback) {
+        let queryURL = "https://accounts.spotify.com/api/token";
+        $.ajax({
+            url: queryURL,
+            method: "POST",
+            data: {
+                "grant_type": "client_credentials"
+            },
+            headers: {
+                "Authorization": "Basic " + btoa("e81f9ea2e64e43cb834bd3488f779729" + ":" + "3850ad8ffc3c46babb2c6526acb943da")
+            }
+        }).done(function (response) {
+            console.log(response.access_token);
+            sessionStorage.setItem("accessToken", response.access_token);
+            callback(response.access_token);
+        });
+
+    }
 
 
-<script>
+    function getAccessToken(callback) {
+        let accessToken = sessionStorage.getItem("accessToken");
+        if (accessToken !== null) {
+            callback(accessToken);
+        } else {
+            createAccessToken(callback);
+        }
+    }
+
+    function searchWithToken(accessToken) {
+        let artist = $("#search-input").val().trim();
+        spotifySearch(accessToken, artist);
+        $("#displayArtist").text(titleCase(artist));
+    }
+
+    function reSearch(accessToken) {
+        spotifySearch(accessToken, encodeURI(clickedKeyword));
+    }
+
+    function spotifySearch(accessToken, artist) {
+        console.log(accessToken);
+        let queryURL = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist&market=US&limit=10";
+        console.log(queryURL);
+        console.log(artist);
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + accessToken,
+            }
+        }).done(function (response) {
+            let results = response;
+            console.log(results);
+            let artistID = results.artists.items[0].id;
+            // console.log(results.artists.items[0]);
+            spotifyRelatedArtist(accessToken, artistID);
+        });
+
+    }
+
+
+    function spotifyRelatedArtist(accessToken, artistID) {
+        let queryURL = "https://api.spotify.com/v1/artists/" + artistID + "/related-artists";
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + accessToken,
+            }
+        }).done(function (response) {
+            let results = response;
+            for (let j = 0; j < 5; j++) {
+                let relatedArtist = results.artists[j].name;
+
+                let displayRelatedArtist = $('<li style="color:white" class="search-keyword">' + relatedArtist + '</li>');
+
+                $("#relatedArtistContainer").append(displayRelatedArtist);
+            }
+
+        });
+
+    }
+
+    function titleCase(str) {
+        str = str.toLowerCase().split(' ');
+        for (let i = 0; i < str.length; i++) {
+            str[i] = str[i].split('');
+            str[i][0] = str[i][0].toUpperCase();
+            str[i] = str[i].join('');
+        }
+        return str.join(' ');
+    }
 
 
     $("#add-artist").on("click", function (event) {
         event.preventDefault();
-
+        getAccessToken(searchWithToken);
     });
     $(document).on("click", ".search-keyword", function (event) {
         event.preventDefault();
         clickedKeyword = $(this).text();
-        console.log("about to get acces token")
-
+        getAccessToken(reSearch);
         $("#displayArtist").text($(this).text());
 
     });
 
-    $(document).on("click", '.details', function () {
-        let name = $(this).attr("data-artistName")
 
-    });
-
-</script>
+});</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
         integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 
 </body>
 </html>
