@@ -10,6 +10,9 @@
           rel="stylesheet">
 
     <nav th:replace="partials :: navbar"></nav>
+
+</head>
+
     <style>
 
         /* default */
@@ -24,8 +27,13 @@
         /* body */
         body {
             background: black;
+        }
 
-
+        .profile-card {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
         }
 
         /* .flip-card-container */
@@ -358,7 +366,6 @@
 
 
     </style>
-</head>
 <!--<html lang="en" xmlns:th="http://www.thymeleaf.org"-->
 <!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
 
@@ -374,7 +381,7 @@
 
 
 
-
+<div class="profile-card">
     <div th:each="event : ${User.events}" class="flip-card-container" style="--hue: 220 ">
         <div class="flip-card">
 
@@ -414,6 +421,7 @@
 
         </div>
     </div>
+</div>
 
 
 

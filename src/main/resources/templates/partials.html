@@ -50,12 +50,12 @@
       <ul class="list-unstyled components">
         <p>Welcome user(When Logged in)</p>
         <li class="active">
-          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Search</a>
-          <ul class="collapse list-unstyled" id="homeSubmenu">
+<!--          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Search</a>-->
+<!--          <ul class="collapse list-unstyled" id="homeSubmenu">-->
             <li>
               <a href="/search">Search</a>
             </li>
-          </ul>
+<!--          </ul>-->
         </li>
 
         <li>
@@ -101,6 +101,8 @@
               <!--                        </li>-->
               <li class="nav-item">
                 <a style="color: white" href="/sign-up" class="signup">Signup</a>
+                                <p th:text="${signup == null}"></p>
+
               </li>
             </ul>
           </div>
