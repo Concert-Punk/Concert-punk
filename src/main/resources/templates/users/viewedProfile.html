@@ -17,11 +17,24 @@
         /* body */
         body {
             background: black;
+
+        }
+
+        .nav-link {
             display: flex;
-            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .follow {
+            display: flex;
             justify-content: center;
             align-content: center;
+            align-items: center;
+        }
 
+        .full-card {
+            display: flex;
+            justify-content: center;
         }
 
         /* .flip-card-container */
@@ -38,6 +51,8 @@
             margin: 40px;
 
             perspective: 1000px;
+
+
         }
 
         /* .flip-card */
@@ -355,6 +370,8 @@
     <nav th:replace="partials :: navbar"></nav>
 </head>
 
+<br>
+<br>
 
 <div class="container">
 
@@ -362,71 +379,77 @@
 
 
         <body>
-        <h1><span th:text="${viewedUser.username}"></span>'s Profile</h1>
+        <h1 style="display: flex; justify-content: center">Welcome to <span th:text="${viewedUser.username}"></span>'s Profile & Saved Events</h1>
 
-        <div th:if="${!isFollowing}" class="container">
+        <br>
+
+
+        <!--        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>-->
+
+<!--        <div class="nav-item">-->
+<!--            <div sec:authorize="isAuthenticated()">-->
+<!--                <a class="nav-link" href="/events">Concert Punk Member's Events</a>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <br>
+        <br>
+        <div th:if="${!isFollowing}" class="follow">
             <form th:action="@{|/profile/${id}/follow|}" class="followBtn" th:method="post">
                 <button type="submit">Follow</button>
             </form>
         </div>
 
-        <div th:if="${isFollowing}" class="container">
+        <div th:if="${isFollowing}" class="follow">
             <form th:action="@{|/profile/${id}/unfollow|}" class="unfollowBtn" th:method="post">
                 <button type="submit">Unfollow</button>
             </form>
         </div>
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         <br>
-        <br>
-        <br>
-        <div class="nav-item">
-            <div sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="/events">Concert Punk Member's Events</a>
-            </div>
-        </div>
 
+        <div class="full-card">
+            <div th:each="event : ${User.events}" class="flip-card-container" style="--hue: 220">
+                <div class="flip-card">
 
-        <div th:each="event : ${User.events}" class="flip-card-container" style="--hue: 220 ">
-            <div class="flip-card">
+                    <div class="card-front" id="card-front">
+                        <figure>
+                            <div th:if="${event.getPhotos().size() != 0}" class="img-bg"></div>
+                            <img th:src="${event.getPhotos().get(0).imageUrl}">
+                            <h4 class="artistName" th:text="${event.title}"></h4>
+                        </figure>
 
-                <div class="card-front" id="card-front">
-                    <figure>
-                        <div th:if="${event.getPhotos().size() != 0}" class="img-bg"></div>
-                        <img th:src="${event.getPhotos().get(0).imageUrl}">
-                        <h4 class="artistName" th:text="${event.title}"></h4>
-                    </figure>
-
-                    <ul id="details">
-                        <li id="detailItems">${tourDate}</li>
-                        <li th:text="*{event.location}"></li>
-                        <li th:text="*{event.startTime}"></li>
-                        <li>Detail 4</li>
-                        <li>Detail 5</li>
-                    </ul>
-                </div>
-
-                <div class="card-back">
-                    <figure>
-                        <div class="img-bg"></div>
-                        <img src="" alt="Brohm Lake">
-                    </figure>
-                    <button class="saveEvent" type="submit" id="saveBtn">Save</button>
-                    <div class="design-container">
-                        <span class="design design--1"></span>
-                        <span class="design design--2"></span>
-                        <span class="design design--3"></span>
-                        <span class="design design--4"></span>
-                        <span class="design design--5"></span>
-                        <span class="design design--6"></span>
-                        <span class="design design--7"></span>
-                        <span class="design design--8"></span>
+                        <ul id="details">
+                            <li id="detailItems">${tourDate}</li>
+                            <li th:text="*{event.location}"></li>
+                            <li th:text="*{event.startTime}"></li>
+                            <li>Detail 4</li>
+                            <li>Detail 5</li>
+                        </ul>
                     </div>
-                </div>
 
+                    <div class="card-back">
+                        <figure>
+                            <div class="img-bg"></div>
+                            <img src="" alt="Brohm Lake">
+                        </figure>
+                        <button class="saveEvent" type="submit" id="saveBtn">Save</button>
+                        <div class="design-container">
+                            <span class="design design--1"></span>
+                            <span class="design design--2"></span>
+                            <span class="design design--3"></span>
+                            <span class="design design--4"></span>
+                            <span class="design design--5"></span>
+                            <span class="design design--6"></span>
+                            <span class="design design--7"></span>
+                            <span class="design design--8"></span>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-
         </body>
+    </div>
 </div>
 </div>
 </html>
