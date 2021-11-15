@@ -660,8 +660,11 @@
 
     $(document).on("click", '.details', function () {
         let name = $(this).attr("data-artistName")
-
+        $('#detailsModel').modal('show')
+    //    getAccessToken(reSearch);
+        // $('.modal-content').html(`<h1>${name}</h1>`)
     });
+
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
