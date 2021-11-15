@@ -10,6 +10,8 @@
 
     <nav th:replace="partials :: navbar"></nav>
 
+    <script src="/keys.js"></script>
+
 </head>
 
 
@@ -111,7 +113,7 @@
     /* img */
     img {
         height: 100%;
-        width:100%;
+        width: 100%;
         border-radius: 24px;
     }
 
@@ -350,23 +352,18 @@
     }
 
     /* states */
-    button:hover+.design-container,
-    button:active+.design-container,
-    button:focus+.design-container {
+    button:hover + .design-container,
+    button:active + .design-container,
+    button:focus + .design-container {
         --tr: 20;
         --op: .7;
     }
-
-
 
 
 </style>
 
 <body>
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-<div id="playerWrapper">
-    <div id="player"></div>
-</div>
 
 
 <!--<p class="videoToggler" data-id="uMyuSHewmks">Press here to play Naruto Intro</p>-->
@@ -380,7 +377,60 @@
     <p id="concertSchedule"></p>
 </div>
 
-<div id="relatedArtistContainer"></div>
+
+<!--<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="detailsModel">-->
+
+
+<!--            ...-->
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true" id="detailsModel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                       aria-controls="home" aria-selected="true">Home</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                       aria-controls="profile" aria-selected="false">Similar Artists</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                       aria-controls="contact" aria-selected="false">Preview Tracks</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">1</div>
+
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div id="relatedArtistContainer"></div>
+                </div>
+
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    <table class="table table-hover table-dark" id="tableId">
+                        <thead>
+                        <div id="playerWrapper">
+                            <div id="player"></div>
+                        </div>
+                        <tr class="videoToggler">
+
+                            <th scope="col"></th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Artist</th>
+                            <th scope="col">Dur</th>
+                            <th scope="col">Plays</th>
+                        </tr>
+                        </thead>
+                        <tbody id="youtubeData">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
 
@@ -398,7 +448,7 @@
                 q: q,
                 type: "video",
                 maxResults: vidResults,
-                key: 'AIzaSyBQg9LOBnyBOlvU4Ym-IdApfCI9mjPWIh4',
+                key: 'AIzaSyBRVWhRl1MNffyorvdDNoZIEcWIUSdoS-I',
 
             },
             function (youTubeBasicData) {
@@ -412,8 +462,8 @@
                     //  console.log(item.snippet.description);
 
 
-                    let durationUrl = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' + videoId + '&key=AIzaSyBQg9LOBnyBOlvU4Ym-IdApfCI9mjPWIh4'
-                    let viewCountUrl = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + videoId + '&key=AIzaSyBQg9LOBnyBOlvU4Ym-IdApfCI9mjPWIh4'
+                    let durationUrl = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' + videoId + '&key=AIzaSyBRVWhRl1MNffyorvdDNoZIEcWIUSdoS-I'
+                    let viewCountUrl = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + videoId + '&key=AIzaSyBRVWhRl1MNffyorvdDNoZIEcWIUSdoS-I'
                     axios.get(durationUrl).then(resp => {
                         //1.Duration and plays dont always match appropriate track, will need to match everything by the videoID
                         //2.I need to iterate through them not happening so far
@@ -435,8 +485,6 @@
                             console.log(response.data.items[0].statistics.viewCount)
 
                         })
-
-
                         console.log(resp.data);
                     });
 
@@ -479,7 +527,7 @@
 
             player = new YT.Player('player', {
                 height: '390',
-                width: '640',
+                width: '800',
                 videoId: youTubeId,
                 playerVars: {
                     'playsinline': 1
@@ -490,52 +538,46 @@
             });
 
         })
-        // document.querySelectorAll("tr.videoToggler").forEach(function (e) {
-        //     e.addEventListener("click", function (e) {
-        //         console.log("Triggering channge");
-        //     })
-        // })
-
-
     }
 
 
     function onPlayerReady(event) {
         console.log(event.target)
 
-        event.target.playVideo();
-        event.target.setVolume(100);
+        // event.target.playVideo();
+        // event.target.setVolume(100);
     }
 
 
 </script>
-<script>function handleSearch(artist) {
-    let queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?&countryCode=US&sort'date,asc'&keyword=" +
-        artist + "&apikey=oiPygQlAdZyxwwtbOi99vUDR8HTGkuV8"
-    $.ajax({
-        type: "GET",
-        url: queryURL,
-        async: true,
-        dataType: "json",
-        success: function (response) {
-            if (response.hasOwnProperty('_embedded')) {
-                console.log("It has property embedded");
-                console.log(response)
-                let evts = response._embedded.events;
-                let concertHeader;
-                for (let i = 0; i < 5; i++) {
-                    console.log(response._embedded.events[i]);
-                    let concertDiv = $("<div class='item'>");
-                    // let images = evts[i]_embedded.events[0].images[0]
-                    let tourName = evts[i].name;
-                    let tourDate = evts[i].dates.start.localDate;
-                    let tourTime = evts[i].dates.start.localTime;
-                    let tourTimeC = moment(tourTime, "HH:mm").format('hh:mm a');
-                    let venue = evts[i]._embedded.venues[0].name;
-                    let showCity = evts[i]._embedded.venues[0].city.name;
-                    let showState = evts[i]._embedded.venues[0].state.stateCode;
-                    let buyLink = evts[i].url;
-                    let results =`  <div class="flip-card-container" style="--hue: 220 ">
+<script>
+    function handleSearch(artist) {
+        let queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?&countryCode=US&sort'date,asc'&keyword=" +
+            artist + "&apikey=oiPygQlAdZyxwwtbOi99vUDR8HTGkuV8"
+        $.ajax({
+            type: "GET",
+            url: queryURL,
+            async: true,
+            dataType: "json",
+            success: function (response) {
+                if (response.hasOwnProperty('_embedded')) {
+                    console.log("It has property embedded");
+                    console.log(response)
+                    let evts = response._embedded.events;
+                    let concertHeader;
+                    for (let i = 0; i < 5; i++) {
+                        console.log(response._embedded.events[i]);
+                        let concertDiv = $("<div class='item'>");
+                        // let images = evts[i]_embedded.events[0].images[0]
+                        let tourName = evts[i].name;
+                        let tourDate = evts[i].dates.start.localDate;
+                        let tourTime = evts[i].dates.start.localTime;
+                        let tourTimeC = moment(tourTime, "HH:mm").format('hh:mm a');
+                        let venue = evts[i]._embedded.venues[0].name;
+                        let showCity = evts[i]._embedded.venues[0].city.name;
+                        let showState = evts[i]._embedded.venues[0].state.stateCode;
+                        let buyLink = evts[i].url;
+                        let results = `  <div class="flip-card-container" style="--hue: 220 ">
   <div class="flip-card">
 
     <div class="card-front" id="card-front">
@@ -559,7 +601,7 @@
         <div class="img-bg"></div>
         <img src="" alt="Brohm Lake">
       </figure>
-      <button class="saveEvent"  type="submit" id="saveBtn">Save</button>
+      <button class="details"  type="submit" data-artistName="${tourName}" id="saveBtn">Details</button>
       <div class="design-container">
         <span class="design design--1"></span>
         <span class="design design--2"></span>
@@ -575,59 +617,31 @@
   </div>
 </div>
 `
-
-//                     `<p style="color:white">Artist/Tour Name:${tourName}</p>
-//
-//                      <p style="color:white">Concert Date:${tourDate}</p>
-//                       <p style="color:white">Time:${tourTimeC}</p>
-// <p style="color:white">Venue:${venue}</p>
-// <p style="color:white">${showCity}</p><p style="color:white">${showState}</p>
-// <p style="color: rgba(12, 105, 128, 0.99)">Ticket Link:</p><a href="${buyLink}"><p style="color: rgba(12, 105, 128, 0.99)">Click Here for Tickets</p></a>`
-
-                    // let results = $("<div class='searchResult'>").html("<strong>Artist/Tour Name: " + tourName + "</strong><br>" +
-                    //     "Concert Date: " + tourDate + " Time: " + tourTimeC + "<br>" +
-                    //     "Venue: " + venue + " - " + showCity + ", " + showState + "<br>" +
-                    //     "Ticket Link: " + "<a href='" + buyLink + "' target=_'blank'>Click Here for Tickets</a>" + "<br>");
-                    concertDiv.prepend(results);
-                    $("#concertSchedule").append(concertDiv);
+                        concertDiv.prepend(results);
+                        $("#concertSchedule").append(concertDiv);
+                    }
+                } else {
+                    $("#concertSchedule").html("<em>" + "There currently isn't any event information for " + artist + ".</em>");
                 }
-            } else {
-                $("#concertSchedule").html("<em>" + "There currently isn't any event information for " + artist + ".</em>");
+            },
+            error: function (xhr, status, err) {
+                // This time, we do not end up here!
             }
-        },
-        error: function (xhr, status, err) {
-            // This time, we do not end up here!
-        }
-    });
-}
+        });
+    }
 
-$(document).on('click', '#add-artist', function (event) {
-    event.preventDefault();
-    let artist = $("#search-input").val().trim();
-    console.log(artist);
-    handleSearch(artist);
-})
+    $(document).on('click', '#add-artist', function (event) {
+        event.preventDefault();
+        let artist = $("#search-input").val().trim();
+        console.log(artist);
+        handleSearch(artist);
+    })
 </script>
 <br>
 <br>
 <br>
 
 <p><span id="youTube"></span></p>
-<table class="table table-hover table-dark" id="tableId">
-    <thead>
-    <tr class="videoToggler">
-
-        <th scope="col"></th>
-        <th scope="col">Title</th>
-        <th scope="col">Artist</th>
-        <th scope="col">Dur</th>
-        <th scope="col">Plays</th>
-    </tr>
-    </thead>
-    <tbody id="youtubeData">
-
-    </tbody>
-</table>
 
 <script>$(document).ready(function () {
     let clickedKeyword = "";
@@ -706,7 +720,7 @@ $(document).on('click', '#add-artist', function (event) {
             for (let j = 0; j < 5; j++) {
                 let relatedArtist = results.artists[j].name;
 
-                let displayRelatedArtist = $('<li style="color:white" class="search-keyword">' + relatedArtist + '</li>');
+                let displayRelatedArtist = $('<li style="color:#1e1d1d" class="search-keyword">' + relatedArtist + '</li>');
 
                 $("#relatedArtistContainer").append(displayRelatedArtist);
             }
@@ -739,10 +753,17 @@ $(document).on('click', '#add-artist', function (event) {
     });
 
 
-});</script>
+});
+
+$(document).on("click", '.details', function () {
+    $('#detailsModel').modal('show')
+});
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
         integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 </body>
 </html>
