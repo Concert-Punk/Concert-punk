@@ -484,16 +484,15 @@
 <!--                </ul>-->
 
                 <div sec:authorize="isAuthenticated()">
-                    User ID: <span th:text="${#authentication.principal.username}"/>'s comments
                     <form th:action="@{|/addComment/${event.id}|}" class="addForm" th:method="post" style="color:white">
-                        <textarea name="commentText"></textarea>
+                        <textarea name="commentText" placeholder="add a comment"></textarea>
                         <input type="submit" class="commentBtn" name="commentTextInput">
                     </form>
 
                         <div class="userComments" style="justify-content: center; align-content: center">
                             <ul class="list-unstyled" th:each="comment:${event.getComments()}" style="color:white">
                                 <li class="media">
-                                    <img src="https://p.kindpng.com/picc/s/541-5411865_illustration-hd-png-download.png" class="mr-3">
+                                    <img src="http://www.pstalent.com/files/avatars/49/MAsterShake.jpg" style="height: 30px; width:30px;" class="mr-3">
                                     <div class="media-body">
                                         <h5 class="mt-0 mb-1">
                                             <a th:text="${comment.user.username}" th:href="@{|/profile/${comment.user.id}|}"></a>
