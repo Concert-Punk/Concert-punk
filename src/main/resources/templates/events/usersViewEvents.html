@@ -6,7 +6,8 @@
     <title>Title</title>
     <th:block th:replace="partials :: partials"></th:block>
 
-    <h1 style="color:white">Local Events</h1>
+    <nav th:replace="partials :: navbar"></nav>
+
 
 
     <style>
@@ -21,7 +22,7 @@
         }
 
         /* body */
-        body {
+        .probablywontwork {
             background: black;
             display: flex;
             flex-wrap: wrap;
@@ -384,11 +385,17 @@
 
 
     </style>
-    <!--    <nav th:replace="partials :: navbar"></nav>-->
+
 
 </head>
+
+
+<br>
 <body>
-<nav th:replace="partials :: navbar"></nav>
+<h1 style="color:white; display: flex; justify-content: center; align-content: center">Local Events</h1>
+
+<br>
+<br>
 
 <!-- Images Container -->
 <div class="probablywontwork" style="display: flex; flex-wrap: wrap"></div>
