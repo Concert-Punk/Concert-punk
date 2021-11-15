@@ -25,12 +25,35 @@
         box-sizing: border-box;
     }
 
+
     /* body */
     body {
         background: black;
 
     }
 
+    .buyTicketBtn{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        /*background: linear-gradient(to bottom, rgb(208, 146, 106), rgb(187, 115, 89));*/
+        /*font-size: 2rem;*/
+        /*font-family: -apple-system, BlinkMacSystemFont, sans-serif;*/
+        /*padding: 2rem;*/
+        /*border-radius: 9999px;*/
+        /*box-shadow: 3px 5px 20px rgb(250, 125, 41);*/
+        /*transition-property: box-shadow;*/
+        /*transition-duration: 0.75s;*/
+        /*-webkit-transition-property: box-shadow;*/
+        /*-webkit-transition-duration: 0.75s;*/
+
+
+
+    }
+
+    .buyTicketBtn.hover{
+        box-shadow: 0 0 0 #fff
+    }
     .searchResults {
         display: flex;
         flex-wrap: wrap;
@@ -43,7 +66,12 @@
         justify-content: center;
         align-content: center;
     }
-
+.relatedArtistImage{
+    display:flex;
+    flex-wrap:wrap;
+    width:250px;
+    height:250px
+}
     /* .flip-card-container */
     .flip-card-container {
         --hue: 150;
@@ -122,11 +150,11 @@
     }
 
     /* img */
-    img {
-        height: 100%;
-        width: 100%;
-        border-radius: 24px;
-    }
+    /*img {*/
+    /*    height: 100%;*/
+    /*    width: 100%;*/
+    /*    border-radius: 24px;*/
+    /*}*/
 
     /* figcaption */
     .artistName {
@@ -402,13 +430,13 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                       aria-controls="home" aria-selected="true">Home</a>
-                </li>
+<!--                <li class="nav-item" role="presentation">-->
+<!--                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"-->
+<!--                       aria-controls="home" aria-selected="true">Tickets</a>-->
+<!--                </li>-->
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                       aria-controls="profile" aria-selected="false">Similar Artists</a>
+                       aria-controls="profile" aria-selected="true">Similar Artists</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
@@ -416,9 +444,9 @@
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">1</div>
+<!--                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">1</div>-->
 
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div id="relatedArtistContainer"></div>
                 </div>
 
@@ -469,7 +497,7 @@
                 let output;
                 $.each(youTubeBasicData.items, function (i, item) {
 
-                    console.log(item);
+                    // console.log(item);
                     let videoId = item.id.videoId;
                     // document.getElementById('youTube').innerHTML  += '<li><iframe height="' + vidHeight + '" width="' + vidWidth + '" src=\"https://www.youtube.com/embed/' + videoId + '\"></li>';
                     $("#youTube").html(output);
@@ -494,12 +522,12 @@
                         <td id="viewCount">${response.data.items[0].statistics.viewCount}</td>
                     </tr>`;
                             document.getElementById('youtubeData').innerHTML += dynamicBoii;
-
-                            console.log(response.data)
-                            console.log(response.data.items[0].statistics.viewCount)
+                            //
+                            // console.log(response.data)
+                            // console.log(response.data.items[0].statistics.viewCount)
 
                         })
-                        console.log(resp.data);
+                        // console.log(resp.data);
                     });
 
 
@@ -532,7 +560,7 @@
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     function onYouTubeIframeAPIReady() {
-        console.log("youTube is ready")
+        // console.log("youTube is ready")
         $(document).on("click", 'tr.videoToggler', function () {
             let youTubeId = $(this).attr('data-id');
 
@@ -556,7 +584,7 @@
 
 
     function onPlayerReady(event) {
-        console.log(event.target)
+        // console.log(event.target)
 
         // event.target.playVideo();
         // event.target.setVolume(100);
@@ -575,12 +603,12 @@
             dataType: "json",
             success: function (response) {
                 if (response.hasOwnProperty('_embedded')) {
-                    console.log("It has property embedded");
-                    console.log(response)
+                    // console.log("It has property embedded");
+                    // console.log(response)
                     let evts = response._embedded.events;
                     let concertHeader;
                     for (let i = 0; i < 5; i++) {
-                        console.log(response._embedded.events[i]);
+                        // console.log(response._embedded.events[i]);
                         let concertDiv = $("<div class='item'>");
                         // let images = evts[i]_embedded.events[0].images[0]
                         let tourName = evts[i].name;
@@ -591,6 +619,7 @@
                         let showCity = evts[i]._embedded.venues[0].city.name;
                         let showState = evts[i]._embedded.venues[0].state.stateCode;
                         let buyLink = evts[i].url;
+                        console.log(buyLink)
                         let results = `  <div class="flip-card-container" style="--hue: 220 ">
   <div class="flip-card">
 
@@ -605,8 +634,8 @@
         <li id  ="detailItems">${tourDate}</li>
         <li>${venue}</li>
         <li>${tourTime}</li>
-        <li>Detail 4</li>
-        <li>Detail 5</li>
+        <li>${showState}</li>
+        <li>${showCity}</li>
       </ul>
     </div>
 
@@ -627,8 +656,10 @@
         <span class="design design--8"></span>
       </div>
     </div>
-
   </div>
+</div>
+<div class="buyTicketBtn">
+<a class="buyTicketBtnHref" href="${buyLink}"><i class="fas fa-ticket-alt" style="display-flex; flex-wrap:wrap"></i> TICKETS</a>
 </div>
 `
                         concertDiv.prepend(results);
@@ -647,7 +678,7 @@
     $(document).on('click', '#add-artist', function (event) {
         event.preventDefault();
         let artist = $("#search-input").val().trim();
-        console.log(artist);
+        // console.log(artist);
         handleSearch(artist);
     })
 </script>
@@ -672,7 +703,7 @@
                 "Authorization": "Basic " + btoa("e81f9ea2e64e43cb834bd3488f779729" + ":" + "3850ad8ffc3c46babb2c6526acb943da")
             }
         }).done(function (response) {
-            console.log(response.access_token);
+            // console.log(response.access_token);
             sessionStorage.setItem("accessToken", response.access_token);
             callback(response.access_token);
         });
@@ -700,10 +731,10 @@
     }
 
     function spotifySearch(accessToken, artist) {
-        console.log(accessToken);
+        // console.log(accessToken);
         let queryURL = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist&market=US&limit=10";
-        console.log(queryURL);
-        console.log(artist);
+        // console.log(queryURL);
+        // console.log(artist);
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -712,7 +743,7 @@
             }
         }).done(function (response) {
             let results = response;
-            console.log(results);
+            // console.log(results);
             let artistID = results.artists.items[0].id;
             // console.log(results.artists.items[0]);
             spotifyRelatedArtist(accessToken, artistID);
@@ -731,12 +762,40 @@
             }
         }).done(function (response) {
             let results = response;
+            // console.log(response)
             for (let j = 0; j < 5; j++) {
                 let relatedArtist = results.artists[j].name;
+                let relatedArtistImagePath = response.artists[j].images[0].url
+                // let displayRelatedArtistImage = `<img class="relatedArtistImage" src="${relatedArtistImagePath}"  > `
+                // let displayRelatedArtist = $(' <li style="color:#1e1d1d list-style:none" class="search-keyword">' + relatedArtist + '</li> ');
 
-                let displayRelatedArtist = $('<li style="color:#1e1d1d" class="search-keyword">' + relatedArtist + '</li>');
+                // let RelatedArtistList = `<div class="media">
+                //     <img width="200px" height="200px" src="${relatedArtistImagePath}" class="mr-3" alt="...">
+                //         <div class="media-body">
+                //
+                //             <h3><em>${relatedArtist}</em></h3>
+                //         </div>
+                // </div>`
 
-                $("#relatedArtistContainer").append(displayRelatedArtist);
+                let RelatedArtistList =` <div class="card mb-3" >
+                    <div class="row no-gutters" style="background:black">
+                        <div class="col-md-4">
+                            <img width="200px" height="200px" src="${relatedArtistImagePath}" class="mr-3" alt="...">
+                            </img>
+
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:white">${relatedArtist}</h5>
+                           <p class="card-text">${relatedArtist}</p>
+<!--                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>-->
+<!--                                </p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+
+                $("#relatedArtistContainer").append(RelatedArtistList);
             }
 
         });
