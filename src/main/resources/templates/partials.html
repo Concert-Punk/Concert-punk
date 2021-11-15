@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="partials">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -100,8 +100,10 @@
               <!--                            <p>Stuff here</p>-->
               <!--                        </li>-->
               <li class="nav-item">
+                <div sec:authorize="isAnonymous()">
                 <a style="color: white" href="/sign-up" class="signup">Signup</a>
-                                <p th:text="${signup == null}"></p>
+                </div>
+<!--                                <p th:text="${signup == null}"></p>-->
 
               </li>
             </ul>
