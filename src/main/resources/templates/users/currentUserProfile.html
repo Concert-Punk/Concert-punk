@@ -5,11 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <th:block th:replace="partials :: partials"></th:block>
+    <th:block th:replace="partials :: partials">
+    </th:block>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
 
-    <nav th:replace="partials :: navbar"></nav>
+    <nav th:replace="partials :: navbar">
+    </nav>
 
 </head>
 
@@ -375,7 +377,7 @@
 <body>
 
 <div sec:authorize="isAuthenticated()">
-    <h1  style="color:white">Welcome <span th:text="${#authentication.principal.username}"/>!</h1>
+    <h1  style="color:white; display: flex; justify-content: center"><span th:text="${#authentication.principal.username}"/>'s Home Page</h1>
 </div>
 
 
@@ -434,6 +436,10 @@
     </form>
 
 </div>
+
+<br>
+<br>
+
 
 </body>
 </html>

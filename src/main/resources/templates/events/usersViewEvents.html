@@ -9,7 +9,6 @@
     <nav th:replace="partials :: navbar"></nav>
 
 
-
     <style>
 
         /* default */
@@ -36,8 +35,6 @@
             justify-content: center;
             align-content: center;
         }
-
-
 
 
         .communityevents {
@@ -462,34 +459,41 @@
                 <!--    <p>Posted By: <span th:text="${event.owner.username}"style="color:white"></span></p>-->
                 <!--    <a href="#" class="showForm" id="${event.id}">Add comment</a>-->
                 <div sec:authorize="isAuthenticated()">
-                    User ID: <span th:text="${#authentication.principal.username}"/>
+                    User ID: <span th:text="${#authentication.principal.username}"/>'s comments
                     <form th:action="@{|/addComment/${event.id}|}" class="addForm" th:method="post" style="color:white">
                         <textarea name="commentText"></textarea>
                         <input type="submit" class="commentBtn" name="commentTextInput">
                     </form>
 
+                        <div class="userComments" style="justify-content: center; align-content: center">
+                            <div th:each="comment:${event.getComments()}" style="color:white">
+                                <h2><a th:href="@{|/profile/${comment.user.id}|}" style="color:white">
+                                    <span th:text="${comment.user.username}" style="color:deepskyblue;"></span>'s
+                                    Comments</a></h2>
+                                <div th:text="${comment.comment_text}" style="color:white"></div>
 
-                    <div th:each="comment:${event.getComments()}" style="color:white">
-                        <a th:href="@{|/profile/${comment.user.id}|}" style="color:white"> <span
-                                th:text="${comment.user.username}"
-                                style="color:deepskyblue"></span></a>
-                        <div th:text="${comment.comment_text}" style="color:white"></div>
+                                <br>
 
-                        <form th:action="@{|/deleteComment/${comment.id}|}" class="deleteBtn" th:method="post"
-                              style="color:white">
-                            <button th:text="Delete" class="btn btn-danger" type="submit"
-                                    name="deleteCommentText" style="color:white">
-                                Delete Comment
-                            </button>
-                            <button th:if="${adminCheck}" class="btn btn-danger" type="submit" name="deleteCommentText"
-                                    style="color:white">
-                                Delete Comment
-                            </button>
-                        </form>
+                                <form th:action="@{|/deleteComment/${comment.id}|}" class="deleteBtn" th:method="post"
+                                      style="color:white">
+                                    <button th:text="Delete" class="btn btn-danger" type="submit"
+                                            name="deleteCommentText" style="color:white">
+                                        Delete Comment
+                                    </button>
+                                    <button th:if="${adminCheck}" class="btn btn-danger" type="submit"
+                                            name="deleteCommentText"
+                                            style="color:white">
+                                        Delete Comment
+                                    </button>
+                                </form>
 
-                        <a th:href="@{|/events/${event.id}|}" style="color:white">View Event</a>
-
-                    </div>
+                                <a th:href="@{|/events/${event.id}|}" style="color:white">View Event</a>
+                                <br>
+                                <br>
+                            </div>
+                            <br>
+                            <br>
+                        </div>
                 </div>
             </div>
         </div>
