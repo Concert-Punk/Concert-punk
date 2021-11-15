@@ -641,32 +641,123 @@
 
 <p><span id="youTube"></span></p>
 
+<script>$(document).ready(function () {
+    let clickedKeyword = "";
 
-<script>
+    function createAccessToken(callback) {
+        let queryURL = "https://accounts.spotify.com/api/token";
+        $.ajax({
+            url: queryURL,
+            method: "POST",
+            data: {
+                "grant_type": "client_credentials"
+            },
+            headers: {
+                "Authorization": "Basic " + btoa("e81f9ea2e64e43cb834bd3488f779729" + ":" + "3850ad8ffc3c46babb2c6526acb943da")
+            }
+        }).done(function (response) {
+            console.log(response.access_token);
+            sessionStorage.setItem("accessToken", response.access_token);
+            callback(response.access_token);
+        });
+
+    }
+
+
+    function getAccessToken(callback) {
+        let accessToken = sessionStorage.getItem("accessToken");
+        if (accessToken !== null) {
+            callback(accessToken);
+        } else {
+            createAccessToken(callback);
+        }
+    }
+
+    function searchWithToken(accessToken) {
+        let artist = $("#search-input").val().trim();
+        spotifySearch(accessToken, artist);
+        $("#displayArtist").text(titleCase(artist));
+    }
+
+    function reSearch(accessToken) {
+        spotifySearch(accessToken, encodeURI(clickedKeyword));
+    }
+
+    function spotifySearch(accessToken, artist) {
+        console.log(accessToken);
+        let queryURL = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist&market=US&limit=10";
+        console.log(queryURL);
+        console.log(artist);
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + accessToken,
+            }
+        }).done(function (response) {
+            let results = response;
+            console.log(results);
+            let artistID = results.artists.items[0].id;
+            // console.log(results.artists.items[0]);
+            spotifyRelatedArtist(accessToken, artistID);
+        });
+
+    }
+
+
+    function spotifyRelatedArtist(accessToken, artistID) {
+        let queryURL = "https://api.spotify.com/v1/artists/" + artistID + "/related-artists";
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + accessToken,
+            }
+        }).done(function (response) {
+            let results = response;
+            for (let j = 0; j < 5; j++) {
+                let relatedArtist = results.artists[j].name;
+
+                let displayRelatedArtist = $('<li style="color:#1e1d1d" class="search-keyword">' + relatedArtist + '</li>');
+
+                $("#relatedArtistContainer").append(displayRelatedArtist);
+            }
+
+        });
+
+    }
+
+    function titleCase(str) {
+        str = str.toLowerCase().split(' ');
+        for (let i = 0; i < str.length; i++) {
+            str[i] = str[i].split('');
+            str[i][0] = str[i][0].toUpperCase();
+            str[i] = str[i].join('');
+        }
+        return str.join(' ');
+    }
 
 
     $("#add-artist").on("click", function (event) {
         event.preventDefault();
-
+        getAccessToken(searchWithToken);
     });
     $(document).on("click", ".search-keyword", function (event) {
         event.preventDefault();
         clickedKeyword = $(this).text();
-        console.log("about to get acces token")
-
+        getAccessToken(reSearch);
         $("#displayArtist").text($(this).text());
 
     });
 
-    $(document).on("click", '.details', function () {
-        let name = $(this).attr("data-artistName")
-        $('#detailsModel').modal('show')
-    //    getAccessToken(reSearch);
-        // $('.modal-content').html(`<h1>${name}</h1>`)
-    });
 
+});
 
+$(document).on("click", '.details', function () {
+    $('#detailsModel').modal('show')
+});
 </script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
         integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
