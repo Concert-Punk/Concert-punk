@@ -150,11 +150,11 @@
     }
 
     /* img */
-    img {
-        height: 100%;
-        width: 100%;
-        border-radius: 24px;
-    }
+    /*img {*/
+    /*    height: 100%;*/
+    /*    width: 100%;*/
+    /*    border-radius: 24px;*/
+    /*}*/
 
     /* figcaption */
     .artistName {
@@ -634,8 +634,8 @@
         <li id  ="detailItems">${tourDate}</li>
         <li>${venue}</li>
         <li>${tourTime}</li>
-        <li>Detail 4</li>
-        <li>Detail 5</li>
+        <li>${showState}</li>
+        <li>${showCity}</li>
       </ul>
     </div>
 
@@ -766,10 +766,36 @@
             for (let j = 0; j < 5; j++) {
                 let relatedArtist = results.artists[j].name;
                 let relatedArtistImagePath = response.artists[j].images[0].url
-                let displayRelatedArtistImage = `<img class="relatedArtistImage" src="${relatedArtistImagePath}"  > `
-                let displayRelatedArtist = $('<li style="color:#1e1d1d" class="search-keyword">' + relatedArtist + '</li>');
+                // let displayRelatedArtistImage = `<img class="relatedArtistImage" src="${relatedArtistImagePath}"  > `
+                // let displayRelatedArtist = $(' <li style="color:#1e1d1d list-style:none" class="search-keyword">' + relatedArtist + '</li> ');
 
-                $("#relatedArtistContainer").append(displayRelatedArtist,displayRelatedArtistImage);
+                // let RelatedArtistList = `<div class="media">
+                //     <img width="200px" height="200px" src="${relatedArtistImagePath}" class="mr-3" alt="...">
+                //         <div class="media-body">
+                //
+                //             <h3><em>${relatedArtist}</em></h3>
+                //         </div>
+                // </div>`
+
+                let RelatedArtistList =` <div class="card mb-3" >
+                    <div class="row no-gutters" style="background:black">
+                        <div class="col-md-4">
+                            <img width="200px" height="200px" src="${relatedArtistImagePath}" class="mr-3" alt="...">
+                            </img>
+
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:white">${relatedArtist}</h5>
+                           <p class="card-text">${relatedArtist}</p>
+<!--                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>-->
+<!--                                </p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+
+                $("#relatedArtistContainer").append(RelatedArtistList);
             }
 
         });
