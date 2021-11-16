@@ -10,6 +10,14 @@
         box-sizing: border-box;
     }
 
+    p {
+        color: rgba(12, 105, 128, 0.99);
+    }
+
+    a {
+        color: white;
+    }
+
 
     video {
         width: 100%;
@@ -22,10 +30,10 @@
         padding: 20px 0
     }
 
-    .section-b {
-        background: #333;
-        color: white;
-    }
+    /*.section-b {*/
+    /*    background: #333;*/
+    /*    color: white;*/
+    /*}*/
     </style>
 
 
@@ -36,6 +44,15 @@
 <body>
 <nav th:replace="partials :: navbar"></nav>
 
+<br>
+
+<section class="section section-a">
+    <h1 style="color: rgba(12, 105, 128, 0.99)"><p><b>Reviving Human Interaction Through The Power Of Music</b></p></h1>
+<!--    <div class="container">-->
+<!--    </div>-->
+</section>
+
+<br>
 
 <div class="video-container">
     <video autoplay loop muted id="video-bg">
@@ -44,31 +61,29 @@
 
     </video>
 
+
+
     <section class="section section-b">
         <div class="container">
             <a style="color: white" href="/eventspage"><h1>Click Here To Find Local Music Events</h1></a>
-            <!--            <a style="color: rgba(12, 105, 128, 0.99)" href="/eventspage"> Local Events</a>-->
-        </div>
-    </section>
 
-    <section class="section section-a">
-        <h1 style="color: white"><p><b> Concert Punk Services </b></p></h1>
-        <div class="container">
 
-            <h1 style="color: rgba(12, 105, 128, 0.99)" href="/sign-up">Member Profile Pages</h1>
+            <h1 style="color: rgba(12, 105, 128, 0.99)">Create A Member Profile</h1>
             <br>
-            <h1 style="color: rgba(12, 105, 128, 0.99)">The Ability To Save Upcoming Events</h1>
+            <h1 style="color: rgba(12, 105, 128, 0.99)"> Browse Save & Comment On Upcoming Events</h1>
             <br>
-            <h1 style="color: rgba(12, 105, 128, 0.99)">Follow Fellow Concert Punk Members</h1>
+            <h1 style="color: rgba(12, 105, 128, 0.99)"> Purchase Music Event Tickets</h1>
             <br>
-            <h1 style="color:rgba(12, 105, 128, 0.99)">Music Streaming </h1>
+            <h1 style="color: rgba(12, 105, 128, 0.99)">Follow Concert Punk Members</h1>
+            <br>
+            <h1 style="color:rgba(12, 105, 128, 0.99)">Stream Music While Searching Artist  </h1>
             <!--            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et-->
             <!--                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip-->
             <!--                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum-->
             <!--                dolore eu fugiat nulla pariatur.-->
             <!--                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est-->
             <!--                laborum.</p>-->
-            <h1 style="color:rgba(12, 105, 128, 0.99)">Viewing Related Artist </h1>
+            <h1 style="color:rgba(12, 105, 128, 0.99)">Discover Related Artist </h1>
 
         </div>
     </section>

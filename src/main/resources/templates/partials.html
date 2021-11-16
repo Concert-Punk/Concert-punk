@@ -71,8 +71,13 @@
 
             <ul class="list-unstyled components">
                 <div sec:authorize="isAuthenticated()">
-                    <p><span th:text="${#authentication.principal.username}" , you are currently logged in./></p>
+                    <p><h3 style="color: rgba(12, 105, 128, 0.99)"><span th:text="${#authentication.principal.username}"/> is logged in</h3></p>
                 </div>
+
+                <li>
+                    <a href="/">Home </a>
+                </li>
+
                 <li class="active">
                     <!--          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Search</a>-->
                     <!--          <ul class="collapse list-unstyled" id="homeSubmenu">-->
@@ -106,6 +111,7 @@
 
         <!-- Page Content  -->
         <div id="content">
+
             <nav class="navbar navbar-expand-lg navbar-light bg-dark">
                 <div class="container-fluid">
 
@@ -114,9 +120,7 @@
                         <span>Menu</span>
                     </button>
 
-                    <div class="home"><h1><a href="/">Home</a></h1>
-
-                    </div>
+<!--                    <h1><a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a></h1>-->
 
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -148,7 +152,6 @@
         </div>
     </div>
     <div class="overlay"></div>
-
 </nav>
 </body>
 </html>
