@@ -47,7 +47,7 @@
                         let dynamicBoii = `   <tr  >
                         <th scope="row">
                         <span class="material-icons playerButton videoToggler" data-id="${item.id.videoId}"  onclick="playVideo()" id="playBtn"> play_circle </span>
-                      <i class="fas fa-pause" style="hidden"></i>
+<!--                      <i class="fas fa-pause" style="hidden"></i>-->
  </th>
                         <td id="description">${item.snippet.title}</td>
                         <td id="artist">${item.snippet.channelTitle}</td>
