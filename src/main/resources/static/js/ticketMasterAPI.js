@@ -48,7 +48,7 @@
     <div class="card-back">
       <figure>
         <div class="img-bg"></div>
-        <img src="" alt="Brohm Lake">
+        <img src=".../static/images/sky.jpeg" >
       </figure>
       <button class="details"  type="submit" data-artistName="${tourName}" id="saveBtn">More Info</button>
       <div class="design-container">
@@ -69,6 +69,7 @@
 </div>
 `
     concertDiv.prepend(results);
+
     $("#concertSchedule").append(concertDiv);
 }
 } else {

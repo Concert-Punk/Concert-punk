@@ -52,7 +52,7 @@ $(document).ready(function () {
     "Authorization": "Bearer " + accessToken,
 }
 }).done(function (response) {
-    var infourl = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist='+ artist +'&api_key=ac83636465b06e3626587c01f7d85bba&format=json'
+    var infourl = 'https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist='+ artist +'&api_key=ac83636465b06e3626587c01f7d85bba&format=json'
 
 
 
@@ -64,6 +64,7 @@ $(document).ready(function () {
     let artistGenre = response.artists.items[0].genres[0]
     axios.get(infourl).then(response => {
     let artistBio = response.data.artist.bio.content
+        console.log(response)
     console.log(artistGenre)
     console.log(spotifyArtistImage)
     let moreArtistInfoContainer = `<div class="media">

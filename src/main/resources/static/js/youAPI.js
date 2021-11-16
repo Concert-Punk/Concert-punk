@@ -47,7 +47,7 @@
                         let dynamicBoii = `   <tr  >
                         <th scope="row">
                         <span class="material-icons playerButton videoToggler" data-id="${item.id.videoId}"  onclick="playVideo()" id="playBtn"> play_circle </span>
-                      
+                      <i class="fas fa-pause" style="hidden"></i>
  </th>
                         <td id="description">${item.snippet.title}</td>
                         <td id="artist">${item.snippet.channelTitle}</td>
@@ -94,7 +94,7 @@
 
     function onYouTubeIframeAPIReady() {
     $(document).on("click", 'span.videoToggler', function () {
-        $(this).html("play_pause")
+        // $(this).html(`<i class="fas fa-pause"></i>`)
         let youTubeId = $(this).attr('data-id');
 
         document.querySelector("#playerWrapper").innerHTML = `<div id="player"></div>`
