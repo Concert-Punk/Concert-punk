@@ -36,6 +36,21 @@
             align-content: center;
         }
 
+        .comment-container{
+            color: white;
+            padding: 5px;
+            border: 1px solid;
+            border-radius: 10px;
+            background-color: grey;
+        }
+
+        .inner-comments{
+            margin: 0 0 10px;
+            background-color: black;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
 
         .communityevents {
             display: flex;
@@ -408,8 +423,6 @@
             <div th:if="${event.api_id == null}">
                 <!--                <p th:text="${event.api_id == null}"></p>-->
                 <div class="flip-card-container" style="--hue: 220">
-                    <div class="flip-card">
-
                         <div class="card-front" id="card-front">
                             <figure>
                                 <div class="img-bg"></div>
@@ -427,27 +440,6 @@
                                 </li>
                             </ul>
                         </div>
-
-                        <div class="card-back">
-                            <figure>
-                                <div class="img-bg"></div>
-                                <img src="https://source.unsplash.com/random" alt="Brohm Lake">
-                            </figure>
-
-
-                            <div class="design-container">
-                                <span class="design design--1"></span>
-                                <span class="design design--2"></span>
-                                <span class="design design--3"></span>
-                                <span class="design design--4"></span>
-                                <span class="design design--5"></span>
-                                <span class="design design--6"></span>
-                                <span class="design design--7"></span>
-                                <span class="design design--8"></span>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
 
 
@@ -458,19 +450,52 @@
                 <!--    <div th:text="*{event.endTime}"style="color:white"></div>-->
                 <!--    <p>Posted By: <span th:text="${event.owner.username}"style="color:white"></span></p>-->
                 <!--    <a href="#" class="showForm" id="${event.id}">Add comment</a>-->
-                <div sec:authorize="isAuthenticated()">
-                    User ID: <span th:text="${#authentication.principal.username}"/>'s comments
-                    <form th:action="@{|/addComment/${event.id}|}" class="addForm" th:method="post" style="color:white">
-                        <textarea name="commentText"></textarea>
-                        <input type="submit" class="commentBtn" name="commentTextInput">
-                    </form>
 
+<!--                <ul class="list-unstyled">-->
+<!--                    <li class="media">-->
+<!--                        <img src="..." class="mr-3" alt="...">-->
+<!--                        <div class="media-body">-->
+<!--                            <h5 class="mt-0 mb-1">List-based media object</h5>-->
+<!--                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="media my-4">-->
+<!--                        <img src="..." class="mr-3" alt="...">-->
+<!--                        <div class="media-body">-->
+<!--                            <h5 class="mt-0 mb-1">List-based media object</h5>-->
+<!--                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="media">-->
+<!--                        <img src="..." class="mr-3" alt="...">-->
+<!--                        <div class="media-body">-->
+<!--                            <h5 class="mt-0 mb-1">List-based media object</h5>-->
+<!--                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                </ul>-->
+
+                <div sec:authorize="isAuthenticated()">
                         <div class="userComments" style="justify-content: center; align-content: center">
-                            <div th:each="comment:${event.getComments()}" style="color:white">
-                                <h2><a th:href="@{|/profile/${comment.user.id}|}" style="color:white">
-                                    <span th:text="${comment.user.username}" style="color:deepskyblue;"></span>'s
-                                    Comments</a></h2>
+                            <ul class="list-unstyled comment-container" th:each="comment:${event.getComments()}" style="color:white">
+                                <li class="media inner-comments">
+                                    <img src="http://www.pstalent.com/files/avatars/49/MAsterShake.jpg" style="height: 30px; width:30px;" class="mr-3">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 mb-1">
+                                            <a th:text="${comment.user.username}" th:href="@{|/profile/${comment.user.id}|}"></a>
+                                        </h5>
+<!--                                    <h2><a th:href="@{|/profile/${comment.user.id}|}" style="color:white">-->
+<!--                                    <span th:text="${comment.user.username}" style="color:deepskyblue;"></span>'s-->
+<!--                                    Comments</a></h2>-->
                                 <div th:text="${comment.comment_text}" style="color:white"></div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <form th:action="@{|/addComment/${event.id}|}" class="addForm" th:method="post" style="color:white">
+                                <textarea name="commentText" placeholder="add a comment"></textarea>
+                                <input type="submit" class="commentBtn" name="commentTextInput">
+                            </form>
 
                                 <br>
 
@@ -490,7 +515,6 @@
                                 <a th:href="@{|/events/${event.id}|}" style="color:white">View Event</a>
                                 <br>
                                 <br>
-                            </div>
                             <br>
                             <br>
                         </div>
