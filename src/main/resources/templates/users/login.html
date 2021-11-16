@@ -20,12 +20,12 @@
     <nav th:replace="partials :: navbar"></nav>
     <h1 style="color:white">Log In</h1>
     <div th:if="${param.error}">
-        Invalid Username and Password.
+        <h3><p style="color: white"> Invalid Username and Password.</p></h3>
     </div>
     <br>
     <br>
     <div th:if="${param.logout}">
-        <p style="color: white">You have been logged out.</p>
+        <h3><p style="color: white">You have been logged out.</p></h3>
     </div>
     <br>
     <br>

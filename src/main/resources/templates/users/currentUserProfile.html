@@ -378,6 +378,8 @@
 
 <div sec:authorize="isAuthenticated()">
     <h1  style="color:white; display: flex; justify-content: center"><span th:text="${#authentication.principal.username}"/>'s Home Page</h1>
+    <a style="color:white; display: flex; justify-content: center" href="/events/create"> Create Event</a>
+
 </div>
 
 
@@ -423,7 +425,9 @@
                 </div>
             </div>
         </div>
+
     </div>
+
 </div>
 
 
@@ -434,6 +438,7 @@
         <button class="btn btn-primary" type="submit">
             Admin Home
         </button>
+
     </form>
 
 </div>
