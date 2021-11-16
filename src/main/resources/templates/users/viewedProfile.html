@@ -406,6 +406,7 @@
             </form>
         </div>
         <br>
+<<<<<<< HEAD
 
         <div class="full-card">
             <div th:each="event : ${User.events}" class="flip-card-container" style="--hue: 220">
@@ -447,6 +448,29 @@
 
                 </div>
             </div>
+=======
+        <br>
+        <br>
+
+        <div th:each="event : ${User.events}" class="flip-card-container" style="--hue: 220 ">
+                <div class="card-front" id="card-front">
+                    <figure>
+                        <div th:if="${event.getPhotos().size() != 0}" class="img-bg">
+                            <img th:src="${event.getPhotos().get(0).imageUrl}">
+                        </div>
+                        <div th:if="${event.getPhotos().size() == 0}" class="img-bg">
+                            <img src="https://source.unsplash.com/random" alt="Brohm Lake">
+                        </div>
+                        <h4 class="artistName" th:text="${event.title}"></h4>
+                    </figure>
+
+                    <ul id="details">
+                        <li th:text="*{event.description}"></li>
+                        <li th:text="*{event.startTime}"></li>
+                        <li th:text="*{event.location}"></li>
+                    </ul>
+                </div>
+>>>>>>> origin
         </div>
         </body>
     </div>

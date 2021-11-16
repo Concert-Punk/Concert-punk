@@ -385,21 +385,23 @@
 
 <div class="profile-card">
     <div th:each="event : ${User.events}" class="flip-card-container" style="--hue: 220 ">
-        <div class="flip-card">
 
+        <div class="flip-card">
             <div class="card-front" id="card-front">
                 <figure>
-                    <div th:if="${event.getPhotos().size() != 0}" class="img-bg"></div>
+                    <div th:if="${event.getPhotos().size() != 0}" class="img-bg">
                     <img th:src="${event.getPhotos().get(0).imageUrl}">
+                    </div>
+                    <div th:if="${event.getPhotos().size() == 0}" class="img-bg">
+                        <img src="https://source.unsplash.com/random" alt="Brohm Lake">
+                    </div>
                     <h4 class="artistName" th:text="${event.title}"></h4>
                 </figure>
 
                 <ul id="details">
-                    <li id  ="detailItems">${tourDate}</li>
-                    <li th:text="*{event.location}"></li>
+                    <li th:text="*{event.description}"></li>
                     <li th:text="*{event.startTime}"></li>
-                    <li>Detail 4</li>
-                    <li>Detail 5</li>
+                    <li th:text="*{event.location}"></li>
                 </ul>
             </div>
 
@@ -420,7 +422,6 @@
                     <span class="design design--8"></span>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

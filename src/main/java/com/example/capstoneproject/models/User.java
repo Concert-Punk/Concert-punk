@@ -1,9 +1,6 @@
 package com.example.capstoneproject.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +9,7 @@ import java.util.List;
 @Table(name="users")
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class User {
 
     @Id
@@ -106,6 +104,25 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", role=" + role +
+                ", isActive=" + isActive +
+                ", location=" + location +
+                ", comments=" + comments +
+                ", following=" + following +
+                ", followers=" + followers +
+                ", potentialEvents=" + potentialEvents +
+                ", eventphoto=" + eventphoto +
+                ", userphotos=" + userphotos +
+                '}';
     }
 }
 
