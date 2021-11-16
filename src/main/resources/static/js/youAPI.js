@@ -93,7 +93,6 @@
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     function onYouTubeIframeAPIReady() {
-    // console.log("youTube is ready")
     $(document).on("click", 'span.videoToggler', function () {
         $(this).html("play_pause")
         let youTubeId = $(this).attr('data-id');
