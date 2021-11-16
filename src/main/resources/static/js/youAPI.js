@@ -14,7 +14,7 @@
             q: q,
             type: "video",
             maxResults: vidResults,
-            key: 'AIzaSyC0wIOwWh6wV4cRxWb1F8cApvRWkuqxZbQ',
+            key: 'AIzaSyBQg9LOBnyBOlvU4Ym-IdApfCI9mjPWIh4',
 
         },
         function (youTubeBasicData) {
@@ -28,8 +28,8 @@
                 //  console.log(item.snippet.description);
 
 
-                let durationUrl = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' + videoId + '&key=AIzaSyC0wIOwWh6wV4cRxWb1F8cApvRWkuqxZbQ'
-                let viewCountUrl = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + videoId + '&key=AIzaSyC0wIOwWh6wV4cRxWb1F8cApvRWkuqxZbQ'
+                let durationUrl = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' + videoId + '&key=AIzaSyBQg9LOBnyBOlvU4Ym-IdApfCI9mjPWIh4'
+                let viewCountUrl = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + videoId + '&key=AIzaSyBQg9LOBnyBOlvU4Ym-IdApfCI9mjPWIh4'
                 axios.get(durationUrl).then(resp => {
                     let videoDuration = resp.data.items[0].contentDetails.duration
 
