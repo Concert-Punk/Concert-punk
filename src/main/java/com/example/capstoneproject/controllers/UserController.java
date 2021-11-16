@@ -111,6 +111,7 @@ public class UserController {
         Comment newComment = new Comment();
       newComment.setComment_text(comment);
       newComment.setUser(userInDB);
+        System.out.println(userInDB);
       newComment.setEvent(event);
         System.out.println(newComment);
       commentsDao.save(newComment);
