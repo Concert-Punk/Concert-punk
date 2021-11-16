@@ -47,6 +47,15 @@
     <script src="/js/sideBarJs.js"></script>
     <link rel="stylesheet" href="/css/sidebar.css">
 
+    <style>
+
+        h1 {
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
+
 </head>
 <body>
 <nav th:fragment="navbar">
@@ -62,8 +71,13 @@
 
             <ul class="list-unstyled components">
                 <div sec:authorize="isAuthenticated()">
-                    <p><span th:text="${#authentication.principal.username}", you are currently logged in./></p>
+                    <p><h3 style="color: rgba(12, 105, 128, 0.99)"><span th:text="${#authentication.principal.username}"/> is logged in</h3></p>
                 </div>
+
+                <li>
+                    <a href="/">Home </a>
+                </li>
+
                 <li class="active">
                     <!--          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Search</a>-->
                     <!--          <ul class="collapse list-unstyled" id="homeSubmenu">-->
@@ -82,12 +96,16 @@
             </ul>
 
             <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="/login" class="login">Login</a>
-                </li>
-                <li>
-                    <a href="/logout" class="logout">Logout</a>
-                </li>
+                <div sec:authorize="isAnonymous()">
+                    <li>
+                        <a href="/login" class="login">Login</a>
+                    </li>
+                </div>
+                <div sec:authorize="isAuthenticated()">
+                    <li>
+                        <a href="/logout" class="logout">Logout</a>
+                    </li>
+                </div>
             </ul>
         </nav>
 
@@ -102,32 +120,32 @@
                         <span>Menu</span>
                     </button>
 
-                   <h1> <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a></h1>
+<!--                    <h1><a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a></h1>-->
 
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav ml-auto">
-              <!--                        <li class="nav-item active">-->
-              <!--                            <p>Stuff here</p>-->
-              <!--                        </li>-->
-              <!--                        <li class="nav-item">-->
-              <!--                            <p>Stuff here</p>-->
-              <!--                        </li>-->
-              <!--                        <li class="nav-item">-->
-              <!--                            <p>Stuff here</p>-->
-              <!--                        </li>-->
-              <li class="nav-item">
-                <div sec:authorize="isAnonymous()">
-                <a style="color: white" href="/sign-up" class="signup">Signup</a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <!--                        <li class="nav-item active">-->
+                            <!--                            <p>Stuff here</p>-->
+                            <!--                        </li>-->
+                            <!--                        <li class="nav-item">-->
+                            <!--                            <p>Stuff here</p>-->
+                            <!--                        </li>-->
+                            <!--                        <li class="nav-item">-->
+                            <!--                            <p>Stuff here</p>-->
+                            <!--                        </li>-->
+                            <li class="nav-item">
+                                <div sec:authorize="isAnonymous()">
+                                    <a style="color: white" href="/sign-up" class="signup">Signup</a>
+                                </div>
+                                <!--                                <p th:text="${signup == null}"></p>-->
+
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-<!--                                <p th:text="${signup == null}"></p>-->
-
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!--Content here-->
+            </nav>
+            <!--Content here-->
             <!--Content here-->
 
 

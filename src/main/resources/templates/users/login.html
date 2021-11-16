@@ -2,30 +2,42 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 
-<head th:replace="partials :: partials"></head>
+<head th:replace="partials :: partials">
+
+    <style>
+        .login-page {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+
+</head>
 
 <link rel="stylesheet" href="/css/sidebar.css">
 
-<body>
-<nav th:replace="partials :: navbar"></nav>
-<h1 style="color:white">Log In</h1>
-<div th:if="${param.error}">
-    Invalid Username and Password.
+
+<div class="login-page">
+    <nav th:replace="partials :: navbar"></nav>
+    <h1 style="color:white">Log In</h1>
+    <div th:if="${param.error}">
+        <h3><p style="color: white"> Invalid Username and Password.</p></h3>
+    </div>
+    <br>
+    <br>
+    <div th:if="${param.logout}">
+        <h3><p style="color: white">You have been logged out.</p></h3>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form th:action="@{/login}" method="post">
+        <label for="username" style="color:white">Username</label>
+        <input id="username" name="username" type="text"/>
+        <label for="password" style="color:white">Password</label>
+        <input id="password" name="password" type="password"/>
+        <input type="submit" value="Log In"/>
+    </form>
 </div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<br>
-<br>
-<br>
-<br>
-<form th:action="@{/login}" method="post">
-    <label for="username" style="color:white">Username</label>
-    <input id="username" name="username" type="text"/>
-    <label for="password" style="color:white">Password</label>
-    <input id="password" name="password" type="password"/>
-    <input type="submit" value="Log In"/>
-</form>
-</body>
 
 </html>

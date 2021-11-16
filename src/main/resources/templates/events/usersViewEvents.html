@@ -44,6 +44,14 @@
             background-color: grey;
         }
 
+        .userComments{
+            justify-content: center;
+            align-content: center;
+            border: solid 2px white;
+            padding: 15px;
+            background-color: dimgray;
+        }
+
         .inner-comments{
             margin: 0 0 10px;
             background-color: black;
@@ -415,7 +423,7 @@
 <br>
 <br>
 <div>
-    <h2 style="color:white; display: flex; justify-content: center; align-content: center">Community Created Events</h2>
+    <h2 style="color:white; display: flex; justify-content: center; align-content: center">Support The Local Small Business Community</h2>
     <br>
     <br>
     <div class="communityevents">
@@ -423,23 +431,23 @@
             <div th:if="${event.api_id == null}">
                 <!--                <p th:text="${event.api_id == null}"></p>-->
                 <div class="flip-card-container" style="--hue: 220">
-                        <div class="card-front" id="card-front">
-                            <figure>
-                                <div class="img-bg"></div>
-                                <img src="https://source.unsplash.com/random" alt="Brohm Lake">
-                                <h4 th:text="${event.title}" style="color:white" class="artistName"></h4>
-                            </figure>
+                    <div class="card-front" id="card-front">
+                        <figure>
+                            <div class="img-bg"></div>
+                            <img src="https://source.unsplash.com/random" alt="Brohm Lake">
+                            <h4 th:text="${event.title}" style="color:white" class="artistName"></h4>
+                        </figure>
 
-                            <ul id="details">
-                                <li th:text="${event.description}" style="color:white" id="detailItems">Detail 1</li>
-                                <li th:text="*{event.location}" style="color:white">Detail 2</li>
-                                <li th:text="*{event.startTime}" style="color:white">Detail 3</li>
-                                <li th:text="*{event.endTime}" style="color:white">Detail 4</li>
-                                <li><p>Posted By: <span th:text="${event.owner.username}" style="color:white"></span>
-                                </p>
-                                </li>
-                            </ul>
-                        </div>
+                        <ul id="details">
+                            <li th:text="${event.description}" style="color:white" id="detailItems">Detail 1</li>
+                            <li th:text="*{event.location}" style="color:white">Detail 2</li>
+                            <li th:text="*{event.startTime}" style="color:white">Detail 3</li>
+                            <li th:text="*{event.endTime}" style="color:white">Detail 4</li>
+                            <li><p>Posted By: <span th:text="${event.owner.username}" style="color:white"></span>
+                            </p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
 
@@ -451,73 +459,74 @@
                 <!--    <p>Posted By: <span th:text="${event.owner.username}"style="color:white"></span></p>-->
                 <!--    <a href="#" class="showForm" id="${event.id}">Add comment</a>-->
 
-<!--                <ul class="list-unstyled">-->
-<!--                    <li class="media">-->
-<!--                        <img src="..." class="mr-3" alt="...">-->
-<!--                        <div class="media-body">-->
-<!--                            <h5 class="mt-0 mb-1">List-based media object</h5>-->
-<!--                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="media my-4">-->
-<!--                        <img src="..." class="mr-3" alt="...">-->
-<!--                        <div class="media-body">-->
-<!--                            <h5 class="mt-0 mb-1">List-based media object</h5>-->
-<!--                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="media">-->
-<!--                        <img src="..." class="mr-3" alt="...">-->
-<!--                        <div class="media-body">-->
-<!--                            <h5 class="mt-0 mb-1">List-based media object</h5>-->
-<!--                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                </ul>-->
+
+                <!--                <ul class="list-unstyled">-->
+                <!--                    <li class="media">-->
+                <!--                        <img src="..." class="mr-3" alt="...">-->
+                <!--                        <div class="media-body">-->
+                <!--                            <h5 class="mt-0 mb-1">List-based media object</h5>-->
+                <!--                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+                <!--                        </div>-->
+                <!--                    </li>-->
+                <!--                    <li class="media my-4">-->
+                <!--                        <img src="..." class="mr-3" alt="...">-->
+                <!--                        <div class="media-body">-->
+                <!--                            <h5 class="mt-0 mb-1">List-based media object</h5>-->
+                <!--                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+                <!--                        </div>-->
+                <!--                    </li>-->
+                <!--                    <li class="media">-->
+                <!--                        <img src="..." class="mr-3" alt="...">-->
+                <!--                        <div class="media-body">-->
+                <!--                            <h5 class="mt-0 mb-1">List-based media object</h5>-->
+                <!--                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+                <!--                        </div>-->
+                <!--                    </li>-->
+                <!--                </ul>-->
 
                 <div sec:authorize="isAuthenticated()">
-                        <div class="userComments" style="justify-content: center; align-content: center">
-                            <ul class="list-unstyled comment-container" th:each="comment:${event.getComments()}" style="color:white">
-                                <li class="media inner-comments">
-                                    <img src="http://www.pstalent.com/files/avatars/49/MAsterShake.jpg" style="height: 30px; width:30px;" class="mr-3">
-                                    <div class="media-body">
-                                        <h5 class="mt-0 mb-1">
-                                            <a th:text="${comment.user.username}" th:href="@{|/profile/${comment.user.id}|}"></a>
-                                        </h5>
-<!--                                    <h2><a th:href="@{|/profile/${comment.user.id}|}" style="color:white">-->
-<!--                                    <span th:text="${comment.user.username}" style="color:deepskyblue;"></span>'s-->
-<!--                                    Comments</a></h2>-->
-                                <div th:text="${comment.comment_text}" style="color:white"></div>
-                                    </div>
-                                </li>
-                            </ul>
+                    <div class="userComments" style="justify-content: center; align-content: center">
+                        <ul class="list-unstyled comment-container" th:each="comment:${event.getComments()}" style="color:white">
+                            <li class="media inner-comments">
+                                <img src="http://www.pstalent.com/files/avatars/49/MAsterShake.jpg" style="height: 30px; width:30px;" class="mr-3">
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">
+                                        <a th:text="${comment.user.username}" th:href="@{|/profile/${comment.user.id}|}"></a>
+                                    </h5>
+                                    <!--                                    <h2><a th:href="@{|/profile/${comment.user.id}|}" style="color:white">-->
+                                    <!--                                    <span th:text="${comment.user.username}" style="color:deepskyblue;"></span>'s-->
+                                    <!--                                    Comments</a></h2>-->
+                                    <div th:text="${comment.comment_text}" style="color:white"></div>
+                                </div>
+                            </li>
+                        </ul>
 
-                            <form th:action="@{|/addComment/${event.id}|}" class="addForm" th:method="post" style="color:white">
-                                <textarea name="commentText" placeholder="add a comment"></textarea>
-                                <input type="submit" class="commentBtn" name="commentTextInput">
-                            </form>
+                        <form th:action="@{|/addComment/${event.id}|}" class="addForm" th:method="post" style="color:white">
+                            <textarea name="commentText" placeholder="add a comment"></textarea>
+                            <input type="submit" class="commentBtn" name="commentTextInput">
+                        </form>
 
-                                <br>
+                        <br>
 
-                                <form th:action="@{|/deleteComment/${comment.id}|}" class="deleteBtn" th:method="post"
-                                      style="color:white">
-                                    <button th:text="Delete" class="btn btn-danger" type="submit"
-                                            name="deleteCommentText" style="color:white">
-                                        Delete Comment
-                                    </button>
-                                    <button th:if="${adminCheck}" class="btn btn-danger" type="submit"
-                                            name="deleteCommentText"
-                                            style="color:white">
-                                        Delete Comment
-                                    </button>
-                                </form>
+<!--                        <form th:action="@{|/deleteComment/${comment.id}|}" class="deleteBtn" th:method="post"-->
+<!--                              style="color:white">-->
+<!--                            <button th:text="Delete" class="btn btn-danger" type="submit"-->
+<!--                                    name="deleteCommentText" style="color:white">-->
+<!--                                Delete Comment-->
+<!--                            </button>-->
+<!--                            <button th:if="${adminCheck}" class="btn btn-danger" type="submit"-->
+<!--                                    name="deleteCommentText"-->
+<!--                                    style="color:white">-->
+<!--                                Delete Comment-->
+<!--                            </button>-->
+<!--                        </form>-->
 
-                                <a th:href="@{|/events/${event.id}|}" style="color:white">View Event</a>
-                                <br>
-                                <br>
-                            <br>
-                            <br>
-                        </div>
+                        <!--                        <a th:href="@{|/events/${event.id}|}" style="color:white">View Event</a>-->
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
                 </div>
             </div>
         </div>
@@ -558,8 +567,6 @@
         <li id  ="detailItems">${location}</li>
         <li>${venue}</li>
         <li>${time}</li>
-        <li>Detail 4</li>
-        <li>Detail 5</li>
       </ul>
     </div>
 

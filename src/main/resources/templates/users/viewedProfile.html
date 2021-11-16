@@ -17,11 +17,25 @@
         /* body */
         body {
             background: black;
+
+        }
+
+        .container {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
+        }
+
+        .follow {
+            display: flex;
             justify-content: center;
             align-content: center;
+            align-items: center;
+        }
 
+        .full-card {
+            display: flex;
+            justify-content: center;
         }
 
         /* .flip-card-container */
@@ -38,6 +52,8 @@
             margin: 40px;
 
             perspective: 1000px;
+
+
         }
 
         /* .flip-card */
@@ -356,27 +372,44 @@
 </head>
 
 
+<!--        <div th:if="${!isFollowing}" class="follow">-->
+<!--            <form th:action="@{|/profile/${id}/follow|}" class="followBtn" th:method="post">-->
+<!--                <button type="submit">Follow</button>-->
+<!--            </form>-->
+<!--        </div>-->
+
+<!--        <div th:if="${isFollowing}" class="follow">-->
+<!--            <form th:action="@{|/profile/${id}/unfollow|}" class="unfollowBtn" th:method="post">-->
+<!--                <button type="submit">Unfollow</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--        <br>-->
+
+<h1 style="display: flex; justify-content: center"><span th:text= " ${ viewedUser.username}"></span>'s Profile</h1>
+
+<br>
+<br>
+<br>
+
 <div class="container">
 
     <div th:if="${!isFollowing}" class="container">
 
 
-        <body>
-        <h1><span th:text="${viewedUser.username}"></span>'s Profile</h1>
 
-        <div th:if="${!isFollowing}" class="container">
-            <form th:action="@{|/profile/${id}/follow|}" class="followBtn" th:method="post">
-                <button type="submit">Follow</button>
-            </form>
-        </div>
 
-        <div th:if="${isFollowing}" class="container">
-            <form th:action="@{|/profile/${id}/unfollow|}" class="unfollowBtn" th:method="post">
-                <button type="submit">Unfollow</button>
-            </form>
-        </div>
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+
+        <!--        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>-->
+
+        <!--        <div class="nav-item">-->
+        <!--            <div sec:authorize="isAuthenticated()">-->
+        <!--                <a class="nav-link" href="/events">Concert Punk Member's Events</a>-->
+        <!--            </div>-->
+        <!--        </div>-->
+
         <br>
+        <br>
+
         <br>
         <br>
 
@@ -399,8 +432,7 @@
                     </ul>
                 </div>
         </div>
-
-        </body>
+    </div>
 </div>
 </div>
 </html>
