@@ -76,10 +76,7 @@ $(document).ready(function () {
                     </div>
             </div>
                 <hr>`
-//
-//             `<img  style="width:300px;height:300px " src="${spotifyArtistImage}">
-// <p style="color:black">${artistGenre}</p>
-// <p style="color:black">${artistBio}</p>
+
 
     console.log(artistBio)
     $('.artistInfo').append(moreArtistInfoContainer)
