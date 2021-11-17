@@ -406,19 +406,39 @@
     </body>
     <body>
 
-    <form th:action="@{/events/create}" th:method="post" th:object="${event}">
+    <div class="flip-card-container" style="--hue: 220">
+        <div class="card-front" id="card-front">
+            <figure>
+                <div class="img-bg"></div>
+                <img src="https://source.unsplash.com/random" alt="Brohm Lake">
+            </figure>
 
-        <input type="text" th:field="*{title}" placeholder="title">
-        <input type="text" th:field="*{description}" placeholder="desc">
-        <input type="text" th:field="*{location}" placeholder="location">
-        <input type="datetime-local" th:field="*{startTime}"/>
-        <input type="datetime-local" th:field="*{endTime}"/>
+            <form th:action="@{/events/create}" th:method="post" th:object="${event}">
+            <ul id="details">
+                <input type="text" th:field="*{title}" placeholder="title" id="detailItems">
+                <input type="text" th:field="*{description}" placeholder="desc">
+                <input type="text" th:field="*{location}" placeholder="location">
+                <input type="datetime-local" th:field="*{startTime}">
+                <input type="datetime-local" th:field="*{endTime}">
+            </ul>
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+
+<!--    <form th:action="@{/events/create}" th:method="post" th:object="${event}">-->
+
+<!--        <input type="text" th:field="*{title}" placeholder="title">-->
+<!--        <input type="text" th:field="*{description}" placeholder="desc">-->
+<!--        <input type="text" th:field="*{location}" placeholder="location">-->
+<!--        <input type="datetime-local" th:field="*{startTime}"/>-->
+<!--        <input type="datetime-local" th:field="*{endTime}"/>-->
 
 <!--            <input type="time" th:field="*{startTime}" placeholder="hour/minutes">-->
 <!--            <input type="time" th:field="*{endTime}" placeholder="hour/minutes">-->
-        <input type="submit">
+<!--        <input type="submit">-->
 
-    </form>
+<!--    </form>-->
     </body>
 </nav>
 </html>
