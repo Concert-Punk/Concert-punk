@@ -68,10 +68,11 @@ $(document).ready(function () {
     console.log(artistGenre)
     console.log(spotifyArtistImage)
     let moreArtistInfoContainer = `<div class="media">
-                <img width="300px" height="300px" src="${spotifyArtistImage}" class="mr-3" alt="...">
                     <div class="media-body">
-                        <h3><em>${artist}</em></h3>
-                        <p>${artistBio}</p>
+                        
+                <img width="300px" height="300px" src="${spotifyArtistImage}" class="mr-3" alt="..." id="artistImg" align=left>    <h3><em>${artist}</em></h3>
+                      
+                        <p class="bio">${artistBio}</p>
                     </div>
             </div>
                 <hr>`
