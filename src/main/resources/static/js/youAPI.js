@@ -47,7 +47,6 @@
                         let dynamicBoii = `   <tr  >
                         <th scope="row">
                         <span class="material-icons playerButton videoToggler" data-id="${item.id.videoId}"  onclick="playVideo()" id="playBtn"> play_circle </span>
-                          <span class="material-icons playerButton " data-id="${item.id.videoId}"  onclick="pauseVideo()" id="pauseBtn"> pause_circle </span>
 <!--                      <i class="fas fa-pause" style="hidden"></i>-->
  </th>
                         <td id="description">${item.snippet.title}</td>
@@ -112,9 +111,7 @@ $('')
                 'onReady': onPlayerReady,
             }
         });
-        document.getElementById('pauseBtn').onclick = function() {
-            player.pauseVideo();
-        };
+
     })
 }
 
@@ -122,7 +119,7 @@ $('')
     function onPlayerReady(event) {
     // console.log(event.target)
 
-    event.target.playVideo();
+    // event.target.playVideo();
     // event.target.setVolume(100);
 }
 

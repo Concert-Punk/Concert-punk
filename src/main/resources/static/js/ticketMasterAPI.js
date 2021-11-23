@@ -48,7 +48,7 @@
     <div class="card-back">
       <figure>
         <div class="img-bg"></div>
-        <img src=".../static/images/sky.jpeg" >
+<!--        <img src="/images/sky.jpeg" >-->
       </figure>
       <button class="details"  type="submit" data-artistName="${tourName}" id="saveBtn">More Info</button>
       <div class="design-container">
